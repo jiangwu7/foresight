@@ -149,11 +149,12 @@ local, deterministic build is cleaner and free. The accent token moved from `#F2
 | Compose design-system module scaffolded | done with provisional tokens; 8 components with previews; token lint + i18n tests pass; debug APK builds | `app/app/src/main/java/.../ui/theme/` |
 | `ml/data/download.md`, `preprocess.py` + tests, `make_fixtures.py` | done; 14 unit tests pass; fixture tests skip until APTOS is present | `ml/` |
 | `train_dr.py --small` end-to-end, `eval.py`, `model_card.json` | code done and verified with `--smoke` (random tensors) locally; ONNX export verified; **real APTOS run not yet possible here** (no Kaggle token); TFLite step runs on Colab/CI | `ml/runs/<ts>-smoke/` |
-| Accept: student clones, follows README, gets a model + metrics on Colab in < 1 h | **not yet verified** — needs the team's Kaggle account | README quickstart B |
+| Accept: student clones, follows README, gets a model + metrics on Colab in < 1 h | **passed 2026-11-04**: team lead, Colab T4, 57.1 min wall-clock from clone to `eval.py --check-card`. That hour included three bugs found and fixed live (a `%` in a format string, fp16 NaN in validation, onnx2tf 2.x output layout) and two re-runs of the training cell; training itself took 1.2 min and a clean session is expected to take ~20 min, dominated by the 10 GB download. Held-out APTOS: kappa 0.903, referable sens 0.943 / spec 0.931. | `docs/competition/phase0_small_run_colab_t4/` (once the run zip is dropped in) |
 
-Team to-do before Phase 0 can be accepted: (1) create the GitHub repo and push so CI runs; (2) Kaggle
-account + APTOS download + `make_fixtures.py` + `train_dr.py --small` on Colab, timed; (3) pick a mood-board
-direction and a logo concept; (4) a non-author teammate reviews the gallery screen on a 6.1" phone in a dark room.
+Team to-do before Phase 0 can be accepted: (1) ~~create the GitHub repo and push so CI runs~~ done 2026-11-04,
+CI green; (2) ~~Kaggle account + APTOS download + `make_fixtures.py` + `train_dr.py --small` on Colab, timed~~
+done 2026-11-04, 57.1 min; (3) ~~pick a mood-board direction and a logo concept~~ done 2026-11-03;
+(4) a non-author teammate reviews the gallery screen on a 6.1" phone in a dark room — **still open**.
 
 ## 2026-11-03 — Brand-asset workflow: Higgsfield's bundled brand workflow is used for reference, not as the gate
 **Decision.** `get_workflow_instructions("brand-asset-creation")` was loaded as the server instructs. Its full
