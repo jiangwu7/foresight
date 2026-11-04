@@ -40,3 +40,8 @@ Thumbs.db
 exports/
 *_deid.json
 *_clinic.zip
+
+# Fixtures are built locally from APTOS (license); only the manifests are tracked
+fixtures/gradable/
+fixtures/ungradable/
+fixtures/expected/*.bin

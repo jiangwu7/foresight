@@ -1,0 +1,6 @@
+# Optional: the ONNX -> TensorFlow -> LiteRT (.tflite) conversion chain used by ml/export_tflite.py.
+# Needs a machine where TensorFlow imports (Colab, Linux, macOS). On Windows machines with an
+# Application Control policy TensorFlow's native DLLs may be blocked; the export then stops at ONNX and
+# tells you to finish on Colab. Install with:  pip install -r ml/requirements-export.txt
+tensorflow>=2.17
+onnx2tf>=1.26

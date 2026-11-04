@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Non-medical UI strings, Vietnamese (spec §3.8). Medical result wording lives in strings_medical.xml. -->
+<resources>
+    <string name="app_name">Foresight</string>
+
+    <string name="action_continue">Tiếp tục</string>
+    <string name="action_back">Quay lại</string>
+
+    <string name="lang_en_native">English</string>
+    <string name="lang_es_native">Español</string>
+    <string name="lang_vi_native">Tiếng Việt</string>
+
+    <!-- Developer gallery (Phase 0) -->
+    <string name="gallery_micro_label">Hệ thống thiết kế</string>
+    <string name="gallery_title">Các thành phần của Foresight</string>
+    <string name="gallery_pill_offline">Ngoại tuyến</string>
+    <string name="gallery_pill_experimental">Thử nghiệm</string>
+    <string name="gallery_ring_description">Vòng căn chỉnh</string>
+    <string name="gallery_ring_hint">Chạm vào vòng để chuyển giữa chờ, đang căn chỉnh và đã khóa.</string>
+    <string name="gallery_metric_quality">Chất lượng</string>
+    <string name="gallery_metric_time">Chụp</string>
+    <string name="gallery_result_title">Xem trước thẻ kết quả</string>
+    <string name="gallery_result_body">Văn bản mẫu. Nội dung kết quả thật lấy từ các câu y khoa đã được phê duyệt.</string>
+    <string name="gallery_outcome_description">Biểu tượng kết quả</string>
+    <string name="gallery_heatmap_description">Minh họa bản đồ nhiệt</string>
+</resources>

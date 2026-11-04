@@ -1,0 +1,60 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  python:
+    name: ML pipeline (tests + smoke run)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Install core dependencies
+        run: pip install -r ml/requirements.txt
+      - name: Install TFLite export dependencies (best effort)
+        run: pip install -r ml/requirements-export.txt || echo "::warning::TFLite export deps unavailable; smoke run will stop at ONNX"
+      - name: Unit tests
+        run: python -m pytest ml/tests -q
+      - name: Smoke run (random tensors, no data)
+        run: python ml/train_dr.py --smoke --runs-dir ml/runs
+      - name: Eval reproduces the model card
+        run: |
+          RUN=$(ls -d ml/runs/*-smoke | tail -1)
+          python ml/eval.py --run "$RUN" --check-card
+          python ml/eval.py --run "$RUN" --backend onnx
+          cat "$RUN/export_status.json"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: smoke-run
+          path: ml/runs/*-smoke/*.json
+
+  android:
+    name: Android lint + unit tests + debug build
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: app
+    steps:
+      - uses: actions/checkout@v4
+      - uses: gradle/actions/wrapper-validation@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+      - uses: gradle/actions/setup-gradle@v4
+      - name: Unit tests (design-token lint, i18n completeness)
+        run: ./gradlew :app:testDebugUnitTest
+      - name: Android lint
+        run: ./gradlew :app:lintDebug
+      - name: Assemble debug APK
+        run: ./gradlew :app:assembleDebug
+      - uses: actions/upload-artifact@v4
+        with:
+          name: foresight-debug-apk
+          path: app/app/build/outputs/apk/debug/*.apk

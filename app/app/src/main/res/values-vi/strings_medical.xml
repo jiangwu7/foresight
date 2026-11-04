@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  APPROVED MEDICAL WORDING — VIETNAMESE (spec §1.3, §3.8)
+
+  Every string in this file is user-facing wording about a health condition or a result. These strings must
+  NOT be edited without review by the partnering clinician AND a native Vietnamese speaker. Keys start with
+  "medical_" and must match values/strings_medical.xml exactly.
+
+  Review status: DRAFT translations (2026-11-03), pending clinician + native-speaker review.
+-->
+<resources>
+    <string name="medical_disclaimer">Foresight là công cụ sàng lọc do học sinh vận hành. Đây không phải là chẩn đoán y khoa. Vui lòng đến gặp nhân viên y tế.</string>
+    <string name="medical_heatmap_caption">Các vùng được tô sáng đã ảnh hưởng đến kết quả.</string>
+</resources>

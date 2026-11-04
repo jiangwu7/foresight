@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Non-medical UI strings (spec §3.8). Medical result wording lives in strings_medical.xml. -->
+<resources>
+    <string name="app_name">Foresight</string>
+
+    <string name="action_continue">Continue</string>
+    <string name="action_back">Back</string>
+
+    <string name="lang_en_native">English</string>
+    <string name="lang_es_native">Español</string>
+    <string name="lang_vi_native">Tiếng Việt</string>
+
+    <!-- Developer gallery (Phase 0) -->
+    <string name="gallery_micro_label">Design system</string>
+    <string name="gallery_title">Foresight components</string>
+    <string name="gallery_pill_offline">Offline</string>
+    <string name="gallery_pill_experimental">Experimental</string>
+    <string name="gallery_ring_description">Alignment ring</string>
+    <string name="gallery_ring_hint">Tap the ring to cycle idle, aligning and locked.</string>
+    <string name="gallery_metric_quality">Quality</string>
+    <string name="gallery_metric_time">Capture</string>
+    <string name="gallery_result_title">Result card preview</string>
+    <string name="gallery_result_body">Placeholder body text. Real result wording comes from the approved medical strings.</string>
+    <string name="gallery_outcome_description">Outcome symbol</string>
+    <string name="gallery_heatmap_description">Heat map overlay demo</string>
+</resources>

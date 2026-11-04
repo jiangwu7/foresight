@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  APPROVED MEDICAL WORDING — ENGLISH (spec §1.3, §3.8)
+
+  Every string in this file is user-facing wording about a health condition or a result. These strings must
+  NOT be edited without review by the partnering clinician. Keys start with "medical_". The i18n test checks
+  that every medical_ key exists in all three languages and only in strings_medical.xml.
+
+  Review status: medical_disclaimer is the fixed wording from the spec (§1.3). Other strings: DRAFT, pending
+  clinician review before any screening of real people. Phase 1 adds the full result wording.
+-->
+<resources>
+    <string name="medical_disclaimer">Foresight is a screening tool operated by students. It is not a medical diagnosis. Please see a healthcare provider.</string>
+    <string name="medical_heatmap_caption">Highlighted areas influenced the result.</string>
+</resources>

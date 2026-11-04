@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Window-level theme only (background behind Compose, system bars). All real styling is in ui/theme/. -->
+    <style name="Theme.Foresight" parent="android:Theme.Material.NoActionBar">
+        <item name="android:windowBackground">@color/window_ink</item>
+        <item name="android:statusBarColor">@color/window_ink</item>
+        <item name="android:navigationBarColor">@color/window_ink</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+</resources>

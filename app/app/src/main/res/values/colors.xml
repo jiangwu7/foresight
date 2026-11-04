@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Mirrors Palette.Ink in ui/theme/Color.kt. Used only for the window background before Compose draws.
+         Keep in sync when the direction is chosen. -->
+    <color name="window_ink">#0B0D10</color>
+</resources>

@@ -95,6 +95,48 @@ background removal and all Phase 1 assets wait until the team lead picks a direc
 **Why.** Explicit instruction from the team lead on 2026-11-03; also §13.1.6 cost discipline. Design-system
 tokens in `ui/theme/` are scaffolded with provisional values marked `// PROVISIONAL until direction chosen`.
 
+## 2026-11-03 — TFLite conversion runs on Colab/CI, not on the team lead's Windows machine
+**Decision.** `ml/export_tflite.py` always writes ONNX and verifies it with onnxruntime; the ONNX → TensorFlow
+→ `.tflite` (fp16 + int8) step runs wherever TensorFlow imports (Colab, the Linux CI job, most Macs). On
+this Windows machine TensorFlow's native DLL is blocked by a Windows Application Control policy
+(`DLL load failed ... An Application Control policy has blocked this file`) and `onnx2tf` has no Python
+3.14 wheel, so the local smoke run stops at ONNX and prints the Colab command. `export_status.json` records
+which happened.
+**Why.** Silent failure is forbidden (§0.8); a hard requirement on local TensorFlow would block every student
+on a locked-down laptop. The CI job (`.github/workflows/ci.yml`, Python 3.11 on Ubuntu) is the place where the
+full chain is exercised on every push.
+**Follow-up.** Confirm in CI that `model_int8.tflite` is produced by the smoke run; then verify the layout
+(`input_layout` NHWC) when the Kotlin runner is written in Phase 1.
+
+## 2026-11-03 — Fonts: Be Vietnam Pro + IBM Plex Mono (both OFL)
+**Decision.** Be Vietnam Pro (Light/Regular/Medium/SemiBold) for all text; IBM Plex Mono for numerals.
+**Why.** Spec §3.10 offers Inter/Noto Sans/Be Vietnam Pro; Be Vietnam Pro was designed for Vietnamese
+diacritics first. Google Fonts ships Inter and JetBrains Mono only as variable fonts, which complicate
+Android font resources; IBM Plex Mono has static weights and matches the instrument feel.
+
+## 2026-11-03 — Design-system lint is a JVM unit test, not a custom Android Lint rule
+**Decision.** `DesignTokenLintTest` scans `ui/**` (excluding `ui/theme/`) for `Color(0x…)`, built-in Color
+constants and `.dp/.sp` literals; `I18nCompletenessTest` checks keys across en/es/vi and the medical-string
+separation. Both run in `gradlew test` and CI.
+**Why.** A custom Lint module is more machinery than a student should have to understand; a 60-line test
+with a clear failure message does the same job.
+
+## 2026-11-03 — Phase 0 status against the §10 acceptance criteria
+| Criterion | Status | Evidence |
+|---|---|---|
+| Repo skeleton, CLAUDE.md, DECISIONS.md | done | this repo |
+| CI running lint + unit tests | written, **not yet run** (no GitHub remote yet) | `.github/workflows/ci.yml` |
+| Brand kit via Higgsfield | **partial by instruction**: logo concept directions only | `assets/brand/concepts/`, `ASSETS.md` |
+| Design direction chosen from mood boards | **waiting on the team**: 3 × 6 mood boards delivered | `assets/ui/mockups/moodboards/` |
+| Compose design-system module scaffolded | done with provisional tokens; 8 components with previews; token lint + i18n tests pass; debug APK builds | `app/app/src/main/java/.../ui/theme/` |
+| `ml/data/download.md`, `preprocess.py` + tests, `make_fixtures.py` | done; 14 unit tests pass; fixture tests skip until APTOS is present | `ml/` |
+| `train_dr.py --small` end-to-end, `eval.py`, `model_card.json` | code done and verified with `--smoke` (random tensors) locally; ONNX export verified; **real APTOS run not yet possible here** (no Kaggle token); TFLite step runs on Colab/CI | `ml/runs/<ts>-smoke/` |
+| Accept: student clones, follows README, gets a model + metrics on Colab in < 1 h | **not yet verified** — needs the team's Kaggle account | README quickstart B |
+
+Team to-do before Phase 0 can be accepted: (1) create the GitHub repo and push so CI runs; (2) Kaggle
+account + APTOS download + `make_fixtures.py` + `train_dr.py --small` on Colab, timed; (3) pick a mood-board
+direction and a logo concept; (4) a non-author teammate reviews the gallery screen on a 6.1" phone in a dark room.
+
 ## 2026-11-03 — Brand-asset workflow: Higgsfield's bundled brand workflow is used for reference, not as the gate
 **Decision.** `get_workflow_instructions("brand-asset-creation")` was loaded as the server instructs. Its full
 interactive flow (palette approval → Recraft SVG logos → brandbook) is designed for a finished identity. For
