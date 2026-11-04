@@ -8,17 +8,18 @@ import android.content.Context
  *
  * Focus is set as the distance from the camera to the aerial image in millimetres, which is what a student
  * can measure with a ruler on the rail; the camera wants diopters (1000 / mm). Exposure for the alignment
- * phase is long and high-ISO (the red LED is dim on purpose, spec §7.2). In Mode A the capture phase opens a
- * long, low-ISO window (default 500 ms) so the screener's 40 ms button-press flash lands inside it without
- * exact timing; Mode B (Phase 3) fires the flash itself and can use a short window. Phones cap the exposure
- * time; the controller clamps to the camera's range.
+ * phase is long and high-ISO (the red LED is dim on purpose, spec §7.2). The capture phase is a short,
+ * low-ISO exposure run at full frame rate: in Mode A the app watches those frames and keeps the one where
+ * the screener's 40 ms flash appears ([FlashCatcher]); Mode B (Phase 3) will fire the flash itself.
+ * Phones cap the exposure time (S23 Ultra: 150 ms) and the closest focus (S23 Ultra: 100 mm); the
+ * controller clamps to the camera's advertised ranges.
  */
 data class CaptureSettings(
-    val focusMm: Float = 90f,
+    val focusMm: Float = 100f,
     val alignIso: Int = 1600,
     val alignShutterMs: Float = 33f,
     val captureIso: Int = 200,
-    val captureShutterMs: Float = 500f,
+    val captureShutterMs: Float = 33f,
     val adapterMode: AdapterMode = AdapterMode.MANUAL,
     /** Use the gallery import flow instead of the camera (development, reference-rig photos). */
     val importMode: Boolean = false,

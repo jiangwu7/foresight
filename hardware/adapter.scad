@@ -28,8 +28,11 @@ lens_power_D     = 20;        // diopters, documentation only
 aerial_image_mm  = 50.0;      // mm in front of the lens (camera side) where the aerial image forms (≈ 1000/20D)
 
 // ---- Rail ----
-rail_min_gap     = 60.0;      // mm, closest camera-to-lens distance (phone minimum focus ≈ 60 mm above the aerial plane)
-rail_travel      = 60.0;      // mm of adjustment → 60–120 mm total per spec
+// Camera-to-lens distance = (camera-to-aerial-image distance) + aerial_image_mm. The phone must be able to focus
+// on the aerial image: the Galaxy S23 Ultra main camera focuses no closer than 100 mm (Settings → Device check
+// shows your phone's value), so the lens sits 150 mm or more from the camera. Change these two for other phones.
+rail_min_gap     = 140.0;     // mm, closest camera-to-lens distance (aerial image 90 mm from the camera)
+rail_travel      = 80.0;      // mm of adjustment → lens at 140–220 mm, aerial image at 90–170 mm from the camera
 rail_w           = 24.0;      // mm outer width of the square rail
 rail_slot        = 4.0;       // mm slot width for the locking screw
 

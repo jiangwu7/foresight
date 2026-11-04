@@ -26,6 +26,9 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleOwner
 import android.util.Size
 import java.util.concurrent.Executors
+import java.util.concurrent.atomic.AtomicBoolean
+import kotlinx.coroutines.CompletableDeferred
+import kotlinx.coroutines.withTimeoutOrNull
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
@@ -66,6 +69,9 @@ class CameraController(
     private var lastFrameAt = 0L
     var capabilities: Capabilities? = null
         private set
+    /** While set, every frame goes to [catchSink] at full rate instead of the throttled [onFrame]. */
+    private val catching = AtomicBoolean(false)
+    @Volatile private var catchSink: ((IntArray, Int, Int) -> Unit)? = null
 
     suspend fun bind(previewView: PreviewView) {
         val p = awaitProvider()
@@ -74,7 +80,8 @@ class CameraController(
         val analysis = ImageAnalysis.Builder()
             .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
             .setOutputImageFormat(ImageAnalysis.OUTPUT_IMAGE_FORMAT_RGBA_8888)
-            .setResolutionSelector(ResolutionSelector.Builder().setResolutionStrategy(ResolutionStrategy(Size(640, 480), ResolutionStrategy.FALLBACK_RULE_CLOSEST_LOWER_THEN_HIGHER)).build())
+            // 1280×960: enough for grading (the model sees 224 px) so a caught flash frame can serve as the still.
+            .setResolutionSelector(ResolutionSelector.Builder().setResolutionStrategy(ResolutionStrategy(Size(1280, 960), ResolutionStrategy.FALLBACK_RULE_CLOSEST_LOWER_THEN_HIGHER)).build())
             .build()
         analysis.setAnalyzer(analysisExecutor) { image -> handleFrame(image) }
         val capture = ImageCapture.Builder()
@@ -140,10 +147,37 @@ class CameraController(
 
     fun close() { unbind(); analysisExecutor.shutdown() }
 
+    /**
+     * Mode A capture: the screener fires the flash at an unknown moment, and this phone cannot expose for
+     * longer than its limit (S23 Ultra: 150 ms), so the stream is watched at full rate and the frame in
+     * which the flash appears is kept ([FlashCatcher]). Returns null if no flash is seen within [windowMs].
+     */
+    suspend fun catchFlash(windowMs: Long = FlashCatcher.WINDOW_MS): Bitmap? {
+        val catcher = FlashCatcher()
+        val result = CompletableDeferred<Bitmap?>()
+        var best: IntArray? = null; var bw = 0; var bh = 0
+        catchSink = { px, w, h ->
+            if (!result.isCompleted) {
+                if (catcher.feed(FlashCatcher.luma(px, w, h))) { best = px.copyOf(); bw = w; bh = h }
+                if (catcher.state == FlashCatcher.State.Done) {
+                    val b = best
+                    result.complete(if (b != null) Bitmap.createBitmap(b, bw, bh, Bitmap.Config.ARGB_8888) else null)
+                }
+            }
+        }
+        catching.set(true)
+        return try {
+            withTimeoutOrNull(windowMs) { result.await() } ?: best?.let { Bitmap.createBitmap(it, bw, bh, Bitmap.Config.ARGB_8888) }
+        } finally {
+            catching.set(false); catchSink = null
+        }
+    }
+
     private fun handleFrame(image: ImageProxy) {
         try {
             val now = SystemClock.elapsedRealtime()
-            if (now - lastFrameAt < AutoCapture.FRAME_INTERVAL_MS) return
+            val catch = catching.get()
+            if (!catch && now - lastFrameAt < AutoCapture.FRAME_INTERVAL_MS) return
             lastFrameAt = now
             val plane = image.planes[0]
             val w = image.width; val h = image.height
@@ -162,7 +196,7 @@ class CameraController(
                     i += pixelStride
                 }
             }
-            onFrame(px, w, h)
+            if (catch) catchSink?.invoke(px, w, h) else onFrame(px, w, h)
         } finally {
             image.close()
         }

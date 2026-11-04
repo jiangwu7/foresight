@@ -86,6 +86,9 @@ fun CameraSettingsSection() {
         Spacer(Modifier.height(Dimens.Space1))
         val yes = stringResource(R.string.device_ok); val no = stringResource(R.string.device_missing); val unknown = stringResource(R.string.device_unknown)
         fun flag(v: Boolean?) = when (v) { true -> yes; false -> no; null -> unknown }
+        val minFocus = caps?.minFocusDiopters?.takeIf { it > 0f }?.let { "%.0f".format(1000f / it) } ?: unknown
+        MetricReadout(stringResource(R.string.device_min_focus_mm), minFocus, compact = true)
+        Spacer(Modifier.height(Dimens.Space1))
         Row {
             MetricReadout(stringResource(R.string.device_manual_focus), flag(caps?.manualFocus), compact = true)
             Spacer(Modifier.width(Dimens.Space3))

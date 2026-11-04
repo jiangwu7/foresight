@@ -117,8 +117,12 @@ fun LiveCaptureScreen(vm: ScreeningViewModel, eye: String, onNext: () -> Unit) {
             val bmp: Bitmap? = if (frameHook != null) frameHook() else {
                 val c = controller ?: return
                 c.applyCapture()
-                adapter.captureFlash()               // Mode A: prompts the screener and waits for the press window
-                val b = c.takeStill()
+                // Mode A: prompt the screener, then watch the stream for the flash and keep that frame;
+                // if no flash is seen in the window, take an ordinary still (it will read as too dark → retake).
+                val prompt = scope.launch { adapter.captureFlash() }
+                val caught = c.catchFlash()
+                prompt.join()
+                val b = caught ?: c.takeStill()
                 c.applyAlignment()
                 b
             }

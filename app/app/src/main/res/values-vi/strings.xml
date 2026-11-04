@@ -188,6 +188,7 @@
     <string name="device_manual_focus">Lấy nét thủ công</string>
     <string name="device_manual_exposure">Phơi sáng thủ công</string>
     <string name="device_awb_lock">Khóa cân bằng trắng</string>
+    <string name="device_min_focus_mm">Lấy nét gần nhất (mm)</string>
     <string name="device_ok">Có</string>
     <string name="device_missing">Không</string>
     <string name="device_unknown">Không rõ</string>

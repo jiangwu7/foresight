@@ -201,6 +201,7 @@
     <string name="device_manual_focus">Manual focus</string>
     <string name="device_manual_exposure">Manual exposure</string>
     <string name="device_awb_lock">White balance lock</string>
+    <string name="device_min_focus_mm">Closest focus (mm)</string>
     <string name="device_ok">Yes</string>
     <string name="device_missing">No</string>
     <string name="device_unknown">Unknown</string>

@@ -188,6 +188,7 @@
     <string name="device_manual_focus">Enfoque manual</string>
     <string name="device_manual_exposure">Exposición manual</string>
     <string name="device_awb_lock">Bloqueo de balance de blancos</string>
+    <string name="device_min_focus_mm">Enfoque más cercano (mm)</string>
     <string name="device_ok">Sí</string>
     <string name="device_missing">No</string>
     <string name="device_unknown">Desconocido</string>

@@ -7,7 +7,9 @@ numbers at the top of `adapter.scad` and reprint.
 ## Print it in under 10 minutes of your time
 1. Install OpenSCAD (`winget install OpenSCAD.OpenSCAD` or openscad.org).
 2. Edit the **PARAMETERS** block in `adapter.scad`: `phone_width`, `phone_thickness`, `camera_offset_x/y`
-   (measure the main camera's centre from the phone's left and top edges with the screen up).
+   (measure the main camera's centre from the phone's left and top edges with the screen up), and
+   `rail_min_gap` from the phone's closest focus distance (app → Settings → Device check; Galaxy S23 Ultra:
+   100 mm, so the lens sits ≥ 150 mm from the camera).
 3. `make` (or run the `openscad` lines in `Makefile` by hand) → `stl/*.stl`, one file per part.
 4. Print all five parts in **matte black** PLA/PETG, 0.2 mm layers, 3 walls, 20 % infill. Supports only
    for the eyecup. Order of assembly: clamp → illumination module (3 × M3) → rail (plugs in) → carriage

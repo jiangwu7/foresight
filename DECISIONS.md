@@ -383,6 +383,30 @@ controls on the Galaxy S23 Ultra), and the bench test with a printed fundus phot
 the next action when the phone is back; a screenshot review of the live screen against mockup 503 too.
 **Gallery import** stays available for the end-to-end test hook and via Settings (spec §3.2 last bullet).
 
+## 2026-11-04 — Live capture verified on the Galaxy S23 Ultra; Mode A capture redesigned around the phone's limits
+**Device facts (main back camera, from `dumpsys media.camera` and `CameraController.probe`):** manual focus
+yes, manual exposure yes, AWB lock yes; closest focus **100 mm** (10 D); ISO 50–3200; exposure
+**0.054–150 ms**. Two consequences:
+1. **Rail geometry.** The aerial image must be ≥ 100 mm from the camera, so the lens sits ≥ 150 mm away.
+   `adapter.scad` now defaults to `rail_min_gap = 140`, `rail_travel = 80` (lens 140–220 mm, aerial image
+   90–170 mm); the README tells students to read their phone's closest focus from Settings → Device check
+   and set the rail from it. STLs and renders regenerated.
+2. **Mode A capture.** A 500 ms "catch the press" shutter is impossible (150 ms cap). The app now watches the
+   analysis stream at full rate (1280×960) during a 4 s window after the prompt and keeps the frame in which
+   the screener's 40 ms flash appears (`FlashCatcher`: brightness ≥ 1.8× the dim-red baseline and ≥ 12
+   levels above it, brightest frame of the flash wins; 5 JVM tests). If no flash is seen the app takes an
+   ordinary still, which reads as too dark → retake. The grading model sees 224 px, so a 1280×960 frame is
+   not a quality compromise for M2; the full-resolution still returns with Mode B in Phase 3, when the
+   firmware fires the flash and the app can synchronise.
+**Verified on the phone:** `LiveCaptureTest` (good frame → "Got it"; dark frame never triggers in 6 s),
+`LiveCameraDiagnosticTest` (camera bound with the manual controls, live for 10 s, no crash), plus the
+Phase 1 tests. Screenshot of the live screen with the real camera:
+`docs/competition/phase2_device/live_capture_galaxy_s23u.png` — dim-red scrim, ring + fixation dot,
+traffic-light pill, Mode A prompt, manual shutter; to be reviewed by a teammate against mockup 503.
+**Still untested:** an actual flash catch (no adapter built yet) and auto-capture on a printed fundus
+photo in a dark room. Both are bench tests for the team once parts arrive; the 555 flash can be checked
+against the app with just the LED circuit and a sheet of paper.
+
 ## 2026-11-03 — Brand-asset workflow: Higgsfield's bundled brand workflow is used for reference, not as the gate
 **Decision.** `get_workflow_instructions("brand-asset-creation")` was loaded as the server instructs. Its full
 interactive flow (palette approval → Recraft SVG logos → brandbook) is designed for a finished identity. For
