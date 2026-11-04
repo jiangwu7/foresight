@@ -306,6 +306,38 @@ each `strings_medical.xml` when the wording is final.
 **Phase 2 gating (§6, CLAUDE.md):** nobody is imaged until `hardware/SAFETY.md` is complete and signed and
 the illumination is clinician-reviewed. Phase 2 camera work starts on a model eye.
 
+## 2026-11-04 — Phase 2 plan and order of work
+Phase 2 (§10) deliverables, in the order they are built, one commit per step:
+1. **Hardware v1 (gates everything else):** `adapter.scad` full parametric geometry (phone clamp, rail with
+   locking screw, 20D lens holder, coaxial illumination module with 45° beamsplitter and crossed polarizers,
+   eyecup/forehead rest) exported to STL; `SAFETY.md` irradiance calculations drafted against ISO 15004-2
+   Group 1 with every assumption marked and a spreadsheet; Mode A wiring (switch + series resistors) and
+   the Mode B firmware skeleton with the capped command set; `bom.md` with concrete parts.
+2. **Live capture in the app:** CameraX + Camera2 interop (manual focus distance calibrated per phone in
+   Settings, fixed exposure/ISO, torch off, WB locked), full-screen preview with the ring overlay and
+   traffic-light quality, dim-red alignment mode, auto-capture on 3 consecutive good preview frames with a
+   manual shutter fallback, Mode A/B adapter interface, haptic + spoken cues, gallery import moved to
+   Settings → "Import test image" (kept on the capture screen only in debug builds for the fixture test).
+   Instrumented tests: auto-capture fires on a looped good frame sequence and never on an ungradable one.
+3. **M1 quality model:** `train_quality.py` (MobileNetV3-Small, 256 px; gradable + 4-way problem head +
+   disc-center head), trained on APTOS with the same synthetic degradations as `make_fixtures.py` plus
+   non-fundus negatives; int8 export through the new verification guard; `QualityModelRunner` behind the
+   same `Result` type as the heuristic (which stays as the fallback); ≥ 15 fps budget test on the Galaxy.
+4. **M2 full run infrastructure:** EyePACS + APTOS loaders, Messidor-2 evaluation, adapter-style
+   augmentations (reflection, vignetting, blur), `--datasets`; the full run itself needs EyePACS (~88 GB)
+   and GPU hours and is scheduled by the team on Colab; proper int8 (QAT or selective float fallback).
+5. **Resolution ablation (§4.6):** implemented against Messidor-2; run on the APTOS held-out split as a
+   stand-in until Messidor-2 is obtained, figure produced either way.
+6. **Hardware renders (§13.4) via Higgsfield** from the STL: product shots, exploded view, light-path
+   schematic for SAFETY.md and the application; `assets/hardware/`, logged in ASSETS.md.
+**Gap carried from Phase 1:** the §13.3 UI illustration set (onboarding, consent header, capture guidance,
+result-card backgrounds) was never generated; mockups left slots for it. Scheduled after item 6, scoped
+with the team lead before any credits are spent.
+**Data reality:** only APTOS is on this machine. Messidor-2 (registration) and EyePACS (Kaggle, 88 GB) are
+team downloads; DDR/EyeQ for M1 likewise. Everything is built to run on them, and verified on APTOS now.
+**Safety reality:** nobody is imaged in Phase 2 until `SAFETY.md` is complete and signed; camera work is
+tested on a model eye (a printed fundus photo behind a 20D lens is enough for alignment/auto-capture).
+
 ## 2026-11-03 — Brand-asset workflow: Higgsfield's bundled brand workflow is used for reference, not as the gate
 **Decision.** `get_workflow_instructions("brand-asset-creation")` was loaded as the server instructs. Its full
 interactive flow (palette approval → Recraft SVG logos → brandbook) is designed for a finished identity. For
