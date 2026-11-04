@@ -259,6 +259,8 @@ writer. Re-exporting with it in WSL reproduced the damage in every mode (fp16 un
 Colab run's 0.903 / 0.943 / 0.931). Verification: 12 fixtures, argmax agreement 1.00, max referable-prob
 diff 0.0023 vs ONNX. On the Galaxy S23 Ultra: grade-0 fixture → grade 0 (p 0.986, referable 0.008),
 grade-2 fixture → grade 2 (p 0.819, referable 0.981), 97–264 ms per image. APK 83 MB.
+**Team lead's walk-through on the phone (same day, after the fix):** speckled grade-2 image → yellow, clean
+grade-0 image → green, overall yellow, as expected. Time per participant not yet measured.
 **Deviation from spec §4.3 ("≤ 30 MB int8").** 21.4 MB, so within the size budget, but fp16 rather than
 int8: the calibrated int8 export loads and reacts to input but degrades accuracy (argmax agreement 0.75;
 a mild grade-1 fixture moved from referable 0.05 to 0.64), so the guard rejected it. Proper int8
