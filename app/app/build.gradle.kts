@@ -55,6 +55,7 @@ dependencies {
     implementation(libs.androidx.compose.animation)
 
     testImplementation(libs.junit)
+    testImplementation("ar.com.hjg:pngj:2.1.0")   // pure-Java PNG decoder for the preprocessing equivalence test (android.jar has no javax.imageio)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
