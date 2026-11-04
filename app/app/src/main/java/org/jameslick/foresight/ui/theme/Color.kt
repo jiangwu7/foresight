@@ -8,10 +8,10 @@ import androidx.compose.ui.graphics.Color
  * Color tokens (spec §3.10). This is the ONLY file in the app allowed to contain a Color literal;
  * DesignTokenLintTest fails the build if one appears elsewhere.
  *
- * PROVISIONAL until the team picks a mood-board direction (DECISIONS.md, 2026-11-03). The values below
- * are the common ground of all three directions: near-black (not pure #000), one luminous amber accent,
- * warm off-white text, desaturated outcome colors. Swap the accent/surface values when the direction is
- * chosen; nothing outside this file should need to change.
+ * Direction A "Instrument" (chosen 2026-11-03, see assets/ASSETS.md): near-black charcoal (not pure #000),
+ * one luminous pale-amber accent, warm off-white text, matte surfaces with hairline rules, desaturated
+ * outcome colors. Reference images: assets/ui/mockups/moodboards/A-instrument/. If the brand palette is
+ * refined after the logo is finalized, change values here only; nothing outside this file should move.
  */
 internal object Palette {
     // Dark (default)

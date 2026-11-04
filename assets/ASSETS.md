@@ -58,8 +58,20 @@ Common negative prompt in every image: *no text, no letters, no logo, no eye, no
 | `C-aperture/C5_result_card.png` | 17a17fd3-451f-4f04-8a4a-05899c27d82b | Frosted translucent glass result card, aperture-ring icon in calm green, greeked text, warm-white glow behind. 3:4 |
 | `C-aperture/C6_adapter.png` | 531137ad-7028-4c33-b10d-99decafab2ae | Graphite adapter with frosted translucent lens shroud glowing faintly from within; dark glass surface. 4:3 |
 
-**Review notes (Claude, 2026-11-03):** see "QA" section below. **Winning direction and prompts:** to be
-recorded here once the team picks (spec §13.3a).
+**Review notes (Claude, 2026-11-03):** see "QA" section below.
+
+### Winning direction: A "Instrument" (chosen by the team lead, 2026-11-03)
+Every later asset reuses this style core, prepended to its own subject:
+
+> *Precision optical instrument aesthetic. Near-black matte charcoal background (not pure black), thin
+> hairline rings and tick marks in pale amber light with a soft glow, warm off-white secondary light,
+> desaturated sage green for "good" states, matte black anodized surfaces with a single amber hairline
+> accent. Calm, quiet, luxurious, minimal. No text, no letters, no logos, no faces, no retina photographs.*
+
+Reference images: `A1_key_visual.png` (overall feel), `A4_reticle_motif.png` (alignment ring), `A6_adapter.png`
+(hardware finish), `A3_materials_palette.png` (palette). Tokens in `app/.../ui/theme/Color.kt` are now final
+for this direction. Directions B and C stay in the folder as rejected alternatives; C4's light-path schematic
+may still be reused for SAFETY.md.
 
 ---
 
@@ -84,6 +96,57 @@ with `generate_image_batch`, model `recraft_v4_1`, `model_type: "vector"`, 1:1, 
 | `3-vessel-F/3b_mark_in_ring.svg` | cb352dc9-0e34-46fa-ba6c-9f93761a727b | Vessel-tree F inside a thin ring; mark only |
 | `3-vessel-F/3c_lockup_horizontal.svg` | c0920460-cd58-46a7-93a4-2ade6e67be3c | Vessel-F mark + wordmark, horizontal |
 | `3-vessel-F/3d_lockup_stacked.svg` | b4adad7a-65b9-4af1-9091-54a5bc762a8b | Vessel-F mark in ring + wordmark, stacked |
+
+**Outcome:** all 12 rejected by the team lead on 2026-11-03 ("don't like any of them"); kept in `round1/` for the
+record. New brief: a mark that fuses an eye with a camera shutter, explored across styles.
+
+## 2b. Logo round 2 — eye × camera shutter — `assets/brand/concepts/round2/` (2026-11-03)
+
+Session: balance 1519.5 → 1441.5, **78.0 credits**: 12 × `recraft_v4_1` vector (2.5) = 30.0; 6 × `ideogram_vector`
+generate, quality high (6.5) = 39.0; 6 × `gpt_image_2_5` 1k/high (1.5) = 9.0. Three models on purpose, to vary
+the drawing style, not just the prompt. Recraft and Ideogram return native SVG; GPT returns PNG (raster, would
+need `ideogram_vector` vectorize or a redraw if chosen). Palette `#F2B55B` amber / `#F5F1E8` off-white on `#0B0D10`.
+Contact sheets: `contact_round2_recraft_gpt.jpg`, `contact_round2_ideogram.jpg`. Common negative prompt: no text,
+no gradients, no shading.
+
+| File | Model | Job id | Style brief |
+|---|---|---|---|
+| `recraft/r200_monoline_shutter_iris.svg` | recraft_v4_1 vector | d094a590-2671-44f6-acc9-b6d5880cc46a | monoline eye, six-blade shutter iris |
+| `recraft/r201_monoline_blade_lids.svg` | recraft_v4_1 vector | 0de42abb-a20a-4b12-9e66-888ebdfd9e89 | eyelids are two shutter blades, off-white |
+| `recraft/r202_solid_negative_space.svg` | recraft_v4_1 vector | 2b44e76d-14dd-4065-9709-e993b1f20b14 | solid amber eye, shutter as negative space |
+| `recraft/r203_solid_blades_form_eye.svg` | recraft_v4_1 vector | 871ffff1-f595-4f5e-956d-937f04c80339 | blades themselves form the eye silhouette |
+| `recraft/r204_emblem_ring_ticks.svg` | recraft_v4_1 vector | f59ac19f-c7a7-4e47-8c3d-6f3f95556e62 | lens-barrel ring with tick marks, eye inside |
+| `recraft/r205_emblem_lid_over_circle.svg` | recraft_v4_1 vector | 7c18a550-0a87-45b2-9295-2feaae4ba4d8 | bold circle + eyelid arc, shutter inside, off-white |
+| `recraft/r206_abstract_spiral_open.svg` | recraft_v4_1 vector | a2035538-42d2-434d-9b51-f67f32a516b7 | blades spiraling open under a lid sweep |
+| `recraft/r207_abstract_five_blades.svg` | recraft_v4_1 vector | 29a62d90-f05d-4abe-846a-aaabeee4f78f | five blades, gaps form the eye, off-white |
+| `recraft/r208_soft_friendly.svg` | recraft_v4_1 vector | 9a6edc2e-e219-4c60-bc51-07b367867efb | rounded chunky friendly eye |
+| `recraft/r209_geometric_hex.svg` | recraft_v4_1 vector | 82b1e1b9-fbaa-4f97-a10d-2eb1c8671a12 | angular lids, hexagonal shutter |
+| `recraft/r210_negative_space_circle.svg` | recraft_v4_1 vector | dc07703c-7143-4f92-93c3-783f524a6d61 | eye cut out of a solid circle, off-white |
+| `recraft/r211_minimal_three_blades.svg` | recraft_v4_1 vector | 8732149e-2219-444c-83bc-f2b830256972 | three blades only |
+| `ideogram/i300_monoline.svg` | ideogram_vector | 24a11a77-9427-4b60-a820-d9aee270d5bd | monoline |
+| `ideogram/i301_solid_negative.svg` | ideogram_vector | 49ffb00c-1b4b-48da-a79e-ccf42ec1950b | solid negative space |
+| `ideogram/i302_emblem.svg` | ideogram_vector | e77af316-50ea-41aa-a6d1-9b2512b9286e | emblem ring with ticks |
+| `ideogram/i303_abstract_spiral.svg` | ideogram_vector | 139778ee-ab01-4361-8bbc-e68d1b36ff0d | abstract spiral |
+| `ideogram/i304_soft_friendly.svg` | ideogram_vector | 08eb9dea-e57a-44b2-9386-5fbb8ca86a56 | soft friendly |
+| `ideogram/i305_geometric.svg` | ideogram_vector | ac88ed79-5397-4329-9184-86c5e90e313f | geometric hex |
+| `gpt/g400_monoline.png` | gpt_image_2_5 | b2f23a40-01a7-4806-8c1f-206d0759668f | monoline |
+| `gpt/g401_solid_negative.png` | gpt_image_2_5 | ee65fb42-7adb-420e-a069-b322bae51a91 | solid negative space |
+| `gpt/g402_duotone.png` | gpt_image_2_5 | 53d26695-fc49-4f1b-b85d-9a35cf60ea8d | duotone off-white lids + amber shutter |
+| `gpt/g403_petals_open.png` | gpt_image_2_5 | 0bdeb136-6a59-4d16-9bbc-37ac025390fe | blades open like petals |
+| `gpt/g404_app_icon.png` | gpt_image_2_5 | 306bd06f-6458-4ba6-9d4a-af9dcd907da3 | app-icon framing |
+| `gpt/g405_single_line.png` | gpt_image_2_5 | 36a17c90-8832-48ad-baeb-89462dd657ca | single continuous line |
+
+All 24 pass §13.1 (no text, no photoreal eye, no people, no brand marks).
+
+**Review notes (Claude, 2026-11-03).** Strongest, in order: `r200` (monoline; cleanest fusion, instrument feel,
+survives 48 px), `r204` (same eye inside the lens-barrel ring with ticks — matches the GlowRing/reticle motif
+of direction A exactly; the ring could even become the alignment overlay), `g402` (duotone off-white lids +
+amber shutter; most refined, but raster and the lids' two-tone adds a second color), `r205` (bold off-white
+circle with lid arc; best app-icon silhouette), `r202`/`g401` (solid amber with negative-space blades; punchy,
+reads at tiny sizes), `i303`/`r206` (blades under a single lid sweep; most "opening eye", a little decorative).
+Weak: `r203` (reads as a flower/pinwheel), `r211` (ninja star), `i300` (just a shutter, no eye), `i301` (the S-shape
+inside reads as a lightning bolt), `i305` (busy), `r209` (too small/angular), `r207` (fan blade).
+**Team pick:** to be recorded here.
 
 Next (after the team picks): refine the chosen concept (3–5 tighter variants), test at 48 px, run
 `remove_background` for the raster versions, derive the palette, build the adaptive icon set and favicon.

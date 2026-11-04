@@ -121,6 +121,15 @@ separation. Both run in `gradlew test` and CI.
 **Why.** A custom Lint module is more machinery than a student should have to understand; a 60-line test
 with a clear failure message does the same job.
 
+## 2026-11-03 — Design direction: A "Instrument"; first logo round rejected
+**Decision.** Team lead chose mood-board direction A (precision optical instrument: charcoal, pale-amber
+hairlines, matte black with one amber accent). The 12 first-round logo concepts (sunrise iris, aperture cone,
+vessel F) were all rejected; the new brief is a mark that **fuses an eye with a camera shutter**, explored
+across several styles.
+**Consequences.** `Color.kt` tokens are final for direction A (they already matched it). Style core and
+reference images recorded in `assets/ASSETS.md`. Round-1 logo files stay in `assets/brand/concepts/round1/`
+for the record; round 2 goes in `round2/`.
+
 ## 2026-11-03 — Phase 0 status against the §10 acceptance criteria
 | Criterion | Status | Evidence |
 |---|---|---|
