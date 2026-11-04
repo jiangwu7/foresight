@@ -61,6 +61,9 @@ data class ForesightColors(
     val outcomeGreen: Color,
     val outcomeYellow: Color,
     val outcomeRed: Color,
+    /** The printed referral card: cream paper with ink text, the same in both themes. */
+    val paper: Color,
+    val onPaper: Color,
     val isDark: Boolean,
 )
 
@@ -79,6 +82,8 @@ internal val DarkColors = ForesightColors(
     outcomeGreen = Palette.OutcomeGreen,
     outcomeYellow = Palette.OutcomeYellow,
     outcomeRed = Palette.OutcomeRed,
+    paper = Palette.Bone,
+    onPaper = Palette.Ink,
     isDark = true,
 )
 
@@ -97,6 +102,8 @@ internal val LightColors = ForesightColors(
     outcomeGreen = Palette.LightOutcomeGreen,
     outcomeYellow = Palette.LightOutcomeYellow,
     outcomeRed = Palette.LightOutcomeRed,
+    paper = Palette.Bone,
+    onPaper = Palette.Ink,
     isDark = false,
 )
 

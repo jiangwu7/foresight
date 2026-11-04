@@ -1,15 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  APPROVED MEDICAL WORDING — ENGLISH (spec §1.3, §3.8)
+  APPROVED MEDICAL WORDING — ENGLISH (spec §1.3, §3.4, §3.8)
 
   Every string in this file is user-facing wording about a health condition or a result. These strings must
   NOT be edited without review by the partnering clinician. Keys start with "medical_". The i18n test checks
   that every medical_ key exists in all three languages and only in strings_medical.xml.
 
-  Review status: medical_disclaimer is the fixed wording from the spec (§1.3). Other strings: DRAFT, pending
-  clinician review before any screening of real people. Phase 1 adds the full result wording.
+  Review status: medical_disclaimer and the three outcome titles are the fixed wording from the spec
+  (§1.3, §3.4). Everything else: DRAFT, pending clinician review before any screening of real people.
+  Rules: never "diagnosis", never "you have ...", never "you are healthy"; ungradable is never a negative result.
 -->
 <resources>
     <string name="medical_disclaimer">Foresight is a screening tool operated by students. It is not a medical diagnosis. Please see a healthcare provider.</string>
     <string name="medical_heatmap_caption">Highlighted areas influenced the result.</string>
+
+    <!-- Overall outcomes (§3.4) -->
+    <string name="medical_green_title">No signs detected in this photo.</string>
+    <string name="medical_green_body">This does not replace a full eye exam.</string>
+    <string name="medical_yellow_title">Some signs that are worth a closer look.</string>
+    <string name="medical_yellow_body">We recommend a follow-up eye exam within 3 months. This does not replace a full eye exam.</string>
+    <string name="medical_red_title">Signs that need a prompt eye exam.</string>
+    <string name="medical_red_body">Please see an eye doctor within 2 to 4 weeks. This does not replace a full eye exam.</string>
+    <string name="medical_ungradable_title">We couldn\'t get a clear enough photo.</string>
+    <string name="medical_ungradable_body">Please see an eye-care provider for a full exam.</string>
+
+    <!-- Per-eye plain-language grade (§3.4), spoken as "Your photo shows ..." -->
+    <string name="medical_grade_none">No signs that are often seen in people with diabetic eye disease.</string>
+    <string name="medical_grade_mild">Mild signs that are often seen in people with diabetic eye disease.</string>
+    <string name="medical_grade_moderate">Moderate signs that are often seen in people with diabetic eye disease.</string>
+    <string name="medical_grade_severe">Clear signs that are often seen in people with diabetic eye disease.</string>
+    <string name="medical_grade_proliferative">Advanced signs that are often seen in people with diabetic eye disease.</string>
+
+    <!-- Referral card lines -->
+    <string name="medical_card_green">No signs detected in this photo. Keep up regular eye exams.</string>
+    <string name="medical_card_yellow">Eye exam recommended within 3 months.</string>
+    <string name="medical_card_red">Prompt eye exam recommended within 2 to 4 weeks.</string>
+    <string name="medical_card_ungradable">Photo not clear enough. Please have a full eye exam.</string>
+
+    <!-- Experimental flags (Phase 4) -->
+    <string name="medical_experimental_badge">Experimental</string>
 </resources>

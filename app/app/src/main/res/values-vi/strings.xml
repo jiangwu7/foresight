@@ -1,10 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Non-medical UI strings, Vietnamese (spec §3.8). Medical result wording lives in strings_medical.xml. -->
+<!-- Non-medical UI strings, Vietnamese (spec §3.8). DRAFT translations pending native-speaker review. -->
 <resources>
     <string name="app_name">Foresight</string>
 
     <string name="action_continue">Tiếp tục</string>
     <string name="action_back">Quay lại</string>
+    <string name="action_next">Tiếp theo</string>
+    <string name="action_skip">Bỏ qua câu hỏi này</string>
+    <string name="action_read_aloud">Nghe đọc</string>
+    <string name="action_i_agree">Tôi đồng ý</string>
+    <string name="action_print_card">In thẻ</string>
+    <string name="action_print_referral_card">In thẻ giới thiệu</string>
+    <string name="action_share_pdf">Chia sẻ dạng PDF</string>
+    <string name="action_next_participant">Người tiếp theo</string>
+    <string name="action_retake">Chụp lại</string>
+    <string name="action_new_event">Sự kiện mới</string>
+    <string name="action_settings">Cài đặt</string>
+    <string name="action_choose_photo">Chọn ảnh</string>
+    <string name="action_delete_my_record">Xóa hồ sơ của tôi</string>
+    <string name="action_done">Xong</string>
+    <string name="action_cancel">Hủy</string>
+    <string name="action_create_event">Tạo sự kiện</string>
+    <string name="action_export_deid">Xuất dữ liệu ẩn danh</string>
+    <string name="action_export_clinic">Xuất gói cho phòng khám</string>
+    <string name="action_end_session">Kết thúc phiên</string>
 
     <string name="lang_en_native">English</string>
     <string name="lang_es_native">Español</string>
@@ -13,7 +32,118 @@
     <string name="lang_es_code">ESP</string>
     <string name="lang_vi_code">VN</string>
 
-    <!-- Developer gallery (Phase 0) -->
+    <string name="home_screener">Tình nguyện viên</string>
+    <string name="home_resume_event">Tiếp tục sự kiện</string>
+    <string name="home_event_stats">%1$d đã sàng lọc · %2$d cần theo dõi</string>
+    <string name="home_no_events">Chưa có sự kiện nào. Hãy tạo một sự kiện để bắt đầu.</string>
+    <string name="new_event_title">Sự kiện mới</string>
+    <string name="new_event_name">Tên sự kiện</string>
+    <string name="new_event_location">Địa điểm</string>
+
+    <string name="step_of">Bước %1$d / %2$d</string>
+    <string name="language_title">Chọn ngôn ngữ của bạn</string>
+
+    <string name="consent_title">Trước khi bắt đầu</string>
+    <string name="consent_fingerprint">Ảnh võng mạc của bạn là duy nhất, giống như dấu vân tay.</string>
+    <string name="consent_stays">Ảnh được lưu trên điện thoại này. Ảnh sẽ bị xóa sau 30 ngày, trừ khi bạn chọn chia sẻ với phòng khám.</string>
+    <string name="consent_check_screening">Tôi hiểu đây là sàng lọc, không phải chẩn đoán</string>
+    <string name="consent_check_photo">Tôi đồng ý cho chụp ảnh mắt của mình</string>
+
+    <string name="intake_micro">Câu hỏi %1$d / %2$d · không bắt buộc</string>
+    <string name="q_age">Bạn thuộc độ tuổi nào?</string>
+    <string name="age_under_18">Dưới 18</string>
+    <string name="age_18_39">18 đến 39</string>
+    <string name="age_40_59">40 đến 59</string>
+    <string name="age_60_plus">60 trở lên</string>
+    <string name="q_diabetes">Bạn đã từng được cho biết mình bị tiểu đường chưa?</string>
+    <string name="answer_yes">Có</string>
+    <string name="answer_no">Không</string>
+    <string name="answer_not_sure">Không chắc</string>
+    <string name="q_last_exam">Lần khám mắt gần nhất của bạn là khi nào?</string>
+    <string name="exam_within_1y">Trong vòng 1 năm</string>
+    <string name="exam_1_2y">1 đến 2 năm trước</string>
+    <string name="exam_over_2y">Hơn 2 năm trước</string>
+    <string name="exam_never">Chưa bao giờ</string>
+    <string name="q_doctor">Bạn có thường xuyên được gặp bác sĩ không?</string>
+    <string name="q_contact">Số điện thoại để phòng khám liên hệ với bạn (không bắt buộc)</string>
+    <string name="contact_hint">Bạn có thể bỏ trống. Số này được mã hóa và bạn có thể xóa.</string>
+    <string name="q_share">Chúng tôi có thể chia sẻ ảnh của bạn với phòng khám đối tác không?</string>
+    <string name="share_yes">Có, chia sẻ với phòng khám</string>
+    <string name="share_no">Không, chỉ giữ trên điện thoại này</string>
+    <string name="under18_title">Cảm ơn bạn</string>
+    <string name="under18_body">Foresight chỉ sàng lọc cho người lớn. Hãy hỏi người thân là người lớn xem họ có muốn được sàng lọc không.</string>
+
+    <string name="eye_right">Mắt phải</string>
+    <string name="eye_left">Mắt trái</string>
+    <string name="capture_import_title">Thêm ảnh</string>
+    <string name="capture_import_hint">Chọn ảnh của mắt này từ thư viện.</string>
+    <string name="capture_look_green_dot">Nhìn vào chấm xanh</string>
+    <string name="capture_hold_still">Giữ yên</string>
+    <string name="capture_got_it">Đã xong</string>
+    <string name="capture_quality">Chất lượng</string>
+    <string name="capture_attempt">Lần thử %1$d / %2$d</string>
+    <string name="problem_dark">Ảnh quá tối</string>
+    <string name="problem_dark_tip">Thử lại trong phòng tối hơn, với vành che mắt tựa lên trán.</string>
+    <string name="problem_blurry">Ảnh bị mờ</string>
+    <string name="problem_blurry_tip">Nhờ người được chụp giữ yên và tựa trán vào bộ chuyển đổi.</string>
+    <string name="problem_offcenter">Mắt bị lệch tâm</string>
+    <string name="problem_offcenter_tip">Di chuyển vòng cho đến khi chấm xanh nằm giữa đồng tử.</string>
+    <string name="problem_reflection">Quá nhiều ánh chói</string>
+    <string name="problem_reflection_tip">Nghiêng nhẹ bộ chuyển đổi để điểm sáng rời khỏi tâm.</string>
+
+    <string name="processing_title">Đang phân tích cả hai ảnh</string>
+    <string name="processing_on_phone">Trên điện thoại này · không tải lên</string>
+    <string name="status_done">xong</string>
+    <string name="status_analyzing">đang phân tích</string>
+    <string name="status_waiting">đang chờ</string>
+
+    <string name="result_micro">Kết quả</string>
+    <string name="eye_clear">Không có dấu hiệu</string>
+    <string name="eye_signs_seen">Có dấu hiệu</string>
+    <string name="eye_not_clear">Không rõ</string>
+    <string name="show_heatmap">Hiện bản đồ nhiệt</string>
+    <string name="partner_clinic">Phòng khám đối tác</string>
+    <string name="clinic_placeholder_name">Phòng khám đối tác sẽ được xác nhận</string>
+    <string name="clinic_placeholder_phone">Hỏi tình nguyện viên</string>
+    <string name="next_step">Bước tiếp theo</string>
+    <string name="next_step_card">Chúng tôi sẽ in thẻ giới thiệu để bạn mang đến phòng khám.</string>
+    <string name="outcome_green_description">Kết quả xanh: hình tròn</string>
+    <string name="outcome_yellow_description">Kết quả vàng: hình tam giác</string>
+    <string name="outcome_red_description">Kết quả đỏ: hình vuông</string>
+    <string name="outcome_ungradable_description">Ảnh chưa đủ rõ</string>
+
+    <string name="card_title">Thẻ giới thiệu của bạn</string>
+    <string name="card_code">Mã thẻ</string>
+    <string name="card_date">Ngày</string>
+    <string name="card_pdf_name">Thẻ giới thiệu Foresight</string>
+
+    <string name="done_title">Hoàn tất</string>
+    <string name="done_body">Thẻ đã sẵn sàng. Màn hình này sẽ được xóa cho người tiếp theo.</string>
+    <string name="done_participant">Người tham gia %1$d</string>
+    <string name="delete_confirm_title">Xóa hồ sơ này?</string>
+    <string name="delete_confirm_body">Ảnh, số điện thoại và kết quả sẽ bị xóa khỏi điện thoại này. Chỉ giữ lại số đếm ẩn danh.</string>
+    <string name="delete_done">Đã xóa hồ sơ.</string>
+
+    <string name="settings_title">Cài đặt</string>
+    <string name="settings_event">Sự kiện</string>
+    <string name="settings_models">Mô hình</string>
+    <string name="settings_model_line">%1$s · %2$s</string>
+    <string name="settings_export">Xuất</string>
+    <string name="settings_export_done">Đã xuất tới %1$s</string>
+    <string name="settings_clinic_password">Mật khẩu gói cho phòng khám (từ 8 ký tự)</string>
+    <string name="settings_design_gallery">Thư viện thiết kế</string>
+    <string name="settings_about_models">Về các mô hình</string>
+    <string name="settings_runtime">Thời gian chạy</string>
+    <string name="settings_runtime_ms">%1$d ms</string>
+    <string name="settings_purge">Xóa ảnh hết hạn</string>
+    <string name="settings_purged">Đã xóa %1$d ảnh</string>
+    <string name="settings_metric_sensitivity">Độ nhạy</string>
+    <string name="settings_metric_specificity">Độ đặc hiệu</string>
+    <string name="settings_metric_kappa">Kappa</string>
+    <string name="settings_intended_use">Mục đích sử dụng</string>
+    <string name="settings_limitations">Hạn chế</string>
+    <string name="offline">Ngoại tuyến</string>
+
     <string name="gallery_micro_label">Hệ thống thiết kế</string>
     <string name="gallery_title">Các thành phần của Foresight</string>
     <string name="gallery_pill_offline">Ngoại tuyến</string>

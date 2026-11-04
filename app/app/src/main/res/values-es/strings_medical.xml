@@ -1,14 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  APPROVED MEDICAL WORDING — SPANISH (spec §1.3, §3.8)
+  APPROVED MEDICAL WORDING — SPANISH (spec §1.3, §3.4, §3.8)
 
   Every string in this file is user-facing wording about a health condition or a result. These strings must
   NOT be edited without review by the partnering clinician AND a native Spanish speaker. Keys start with
   "medical_" and must match values/strings_medical.xml exactly.
 
-  Review status: DRAFT translations (2026-11-03), pending clinician + native-speaker review.
+  Review status: DRAFT translations (2026-11-04), pending clinician + native-speaker review.
 -->
 <resources>
     <string name="medical_disclaimer">Foresight es una herramienta de detección operada por estudiantes. No es un diagnóstico médico. Por favor, consulte a un profesional de la salud.</string>
     <string name="medical_heatmap_caption">Las áreas resaltadas influyeron en el resultado.</string>
+
+    <string name="medical_green_title">No se detectaron signos en esta foto.</string>
+    <string name="medical_green_body">Esto no reemplaza un examen completo de la vista.</string>
+    <string name="medical_yellow_title">Algunos signos que vale la pena revisar.</string>
+    <string name="medical_yellow_body">Recomendamos un examen de la vista en los próximos 3 meses. Esto no reemplaza un examen completo de la vista.</string>
+    <string name="medical_red_title">Signos que requieren un examen de la vista pronto.</string>
+    <string name="medical_red_body">Por favor, acuda a un oftalmólogo en 2 a 4 semanas. Esto no reemplaza un examen completo de la vista.</string>
+    <string name="medical_ungradable_title">No pudimos obtener una foto lo bastante clara.</string>
+    <string name="medical_ungradable_body">Por favor, acuda a un profesional de la vista para un examen completo.</string>
+
+    <string name="medical_grade_none">Sin signos de los que suelen verse en personas con enfermedad ocular diabética.</string>
+    <string name="medical_grade_mild">Signos leves de los que suelen verse en personas con enfermedad ocular diabética.</string>
+    <string name="medical_grade_moderate">Signos moderados de los que suelen verse en personas con enfermedad ocular diabética.</string>
+    <string name="medical_grade_severe">Signos claros de los que suelen verse en personas con enfermedad ocular diabética.</string>
+    <string name="medical_grade_proliferative">Signos avanzados de los que suelen verse en personas con enfermedad ocular diabética.</string>
+
+    <string name="medical_card_green">No se detectaron signos en esta foto. Continúe con sus exámenes regulares de la vista.</string>
+    <string name="medical_card_yellow">Se recomienda un examen de la vista en 3 meses.</string>
+    <string name="medical_card_red">Se recomienda un examen de la vista pronto, en 2 a 4 semanas.</string>
+    <string name="medical_card_ungradable">La foto no es lo bastante clara. Por favor, hágase un examen completo de la vista.</string>
+
+    <string name="medical_experimental_badge">Experimental</string>
 </resources>

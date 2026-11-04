@@ -1,10 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Non-medical UI strings, Spanish (spec §3.8). Medical result wording lives in strings_medical.xml. -->
+<!-- Non-medical UI strings, Spanish (spec §3.8). DRAFT translations pending native-speaker review. -->
 <resources>
     <string name="app_name">Foresight</string>
 
     <string name="action_continue">Continuar</string>
     <string name="action_back">Atrás</string>
+    <string name="action_next">Siguiente</string>
+    <string name="action_skip">Omitir esta pregunta</string>
+    <string name="action_read_aloud">Escuchar</string>
+    <string name="action_i_agree">Acepto</string>
+    <string name="action_print_card">Imprimir tarjeta</string>
+    <string name="action_print_referral_card">Imprimir tarjeta de referencia</string>
+    <string name="action_share_pdf">Compartir como PDF</string>
+    <string name="action_next_participant">Siguiente participante</string>
+    <string name="action_retake">Repetir foto</string>
+    <string name="action_new_event">Nuevo evento</string>
+    <string name="action_settings">Ajustes</string>
+    <string name="action_choose_photo">Elegir una foto</string>
+    <string name="action_delete_my_record">Borrar mi registro</string>
+    <string name="action_done">Listo</string>
+    <string name="action_cancel">Cancelar</string>
+    <string name="action_create_event">Crear evento</string>
+    <string name="action_export_deid">Exportar datos anónimos</string>
+    <string name="action_export_clinic">Exportar paquete para la clínica</string>
+    <string name="action_end_session">Terminar sesión</string>
 
     <string name="lang_en_native">English</string>
     <string name="lang_es_native">Español</string>
@@ -13,7 +32,118 @@
     <string name="lang_es_code">ESP</string>
     <string name="lang_vi_code">VN</string>
 
-    <!-- Developer gallery (Phase 0) -->
+    <string name="home_screener">Voluntario</string>
+    <string name="home_resume_event">Continuar evento</string>
+    <string name="home_event_stats">%1$d evaluados · %2$d señalados</string>
+    <string name="home_no_events">Aún no hay eventos. Cree uno para empezar.</string>
+    <string name="new_event_title">Nuevo evento</string>
+    <string name="new_event_name">Nombre del evento</string>
+    <string name="new_event_location">Lugar</string>
+
+    <string name="step_of">Paso %1$d de %2$d</string>
+    <string name="language_title">Elija su idioma</string>
+
+    <string name="consent_title">Antes de empezar</string>
+    <string name="consent_fingerprint">La foto de su retina es única, como una huella digital.</string>
+    <string name="consent_stays">La foto se queda en este teléfono. Se borra después de 30 días, a menos que usted decida compartirla con una clínica.</string>
+    <string name="consent_check_screening">Entiendo que esto es una detección, no un diagnóstico</string>
+    <string name="consent_check_photo">Acepto que se tomen fotos de mis ojos</string>
+
+    <string name="intake_micro">Pregunta %1$d de %2$d · opcional</string>
+    <string name="q_age">¿Cuál es su rango de edad?</string>
+    <string name="age_under_18">Menos de 18</string>
+    <string name="age_18_39">18 a 39</string>
+    <string name="age_40_59">40 a 59</string>
+    <string name="age_60_plus">60 o más</string>
+    <string name="q_diabetes">¿Alguna vez le han dicho que tiene diabetes?</string>
+    <string name="answer_yes">Sí</string>
+    <string name="answer_no">No</string>
+    <string name="answer_not_sure">No estoy seguro</string>
+    <string name="q_last_exam">¿Cuándo fue su último examen de la vista?</string>
+    <string name="exam_within_1y">Hace menos de 1 año</string>
+    <string name="exam_1_2y">Hace 1 a 2 años</string>
+    <string name="exam_over_2y">Hace más de 2 años</string>
+    <string name="exam_never">Nunca</string>
+    <string name="q_doctor">¿Tiene acceso regular a un médico?</string>
+    <string name="q_contact">Número de teléfono para que la clínica le contacte (opcional)</string>
+    <string name="contact_hint">Puede dejarlo vacío. Se guarda cifrado y usted puede borrarlo.</string>
+    <string name="q_share">¿Podemos compartir sus fotos con una clínica asociada?</string>
+    <string name="share_yes">Sí, compartir con la clínica</string>
+    <string name="share_no">No, guardarlas solo en este teléfono</string>
+    <string name="under18_title">Gracias</string>
+    <string name="under18_body">Foresight evalúa solo a adultos. Pregunte a un familiar adulto si desea participar.</string>
+
+    <string name="eye_right">Ojo derecho</string>
+    <string name="eye_left">Ojo izquierdo</string>
+    <string name="capture_import_title">Agregar la foto</string>
+    <string name="capture_import_hint">Elija la foto de este ojo desde la galería.</string>
+    <string name="capture_look_green_dot">Mire el punto verde</string>
+    <string name="capture_hold_still">No se mueva</string>
+    <string name="capture_got_it">Listo</string>
+    <string name="capture_quality">Calidad</string>
+    <string name="capture_attempt">Intento %1$d de %2$d</string>
+    <string name="problem_dark">La foto salió muy oscura</string>
+    <string name="problem_dark_tip">Intente de nuevo en un cuarto más oscuro, apoyando el visor en la frente.</string>
+    <string name="problem_blurry">La foto salió borrosa</string>
+    <string name="problem_blurry_tip">Pida que no se mueva y que apoye la frente en el adaptador.</string>
+    <string name="problem_offcenter">El ojo quedó descentrado</string>
+    <string name="problem_offcenter_tip">Mueva el anillo hasta que el punto verde quede en el centro de la pupila.</string>
+    <string name="problem_reflection">Hay demasiado reflejo</string>
+    <string name="problem_reflection_tip">Incline un poco el adaptador para que el punto brillante salga del centro.</string>
+
+    <string name="processing_title">Analizando las dos fotos</string>
+    <string name="processing_on_phone">En este teléfono · no se sube nada</string>
+    <string name="status_done">listo</string>
+    <string name="status_analyzing">analizando</string>
+    <string name="status_waiting">en espera</string>
+
+    <string name="result_micro">Resultado</string>
+    <string name="eye_clear">Sin signos</string>
+    <string name="eye_signs_seen">Signos vistos</string>
+    <string name="eye_not_clear">No está clara</string>
+    <string name="show_heatmap">Mostrar mapa de calor</string>
+    <string name="partner_clinic">Clínica asociada</string>
+    <string name="clinic_placeholder_name">Clínica asociada por confirmar</string>
+    <string name="clinic_placeholder_phone">Pregunte a su voluntario</string>
+    <string name="next_step">Siguiente paso</string>
+    <string name="next_step_card">Imprimiremos una tarjeta de referencia para que la lleve a la clínica.</string>
+    <string name="outcome_green_description">Resultado verde: círculo</string>
+    <string name="outcome_yellow_description">Resultado amarillo: triángulo</string>
+    <string name="outcome_red_description">Resultado rojo: cuadrado</string>
+    <string name="outcome_ungradable_description">La foto no es lo bastante clara</string>
+
+    <string name="card_title">Su tarjeta de referencia</string>
+    <string name="card_code">Código de la tarjeta</string>
+    <string name="card_date">Fecha</string>
+    <string name="card_pdf_name">Tarjeta de referencia Foresight</string>
+
+    <string name="done_title">Todo listo</string>
+    <string name="done_body">La tarjeta está lista. Esta pantalla se borra para la siguiente persona.</string>
+    <string name="done_participant">Participante %1$d</string>
+    <string name="delete_confirm_title">¿Borrar este registro?</string>
+    <string name="delete_confirm_body">Las fotos, el número de teléfono y los resultados se borrarán de este teléfono. Solo se conserva un conteo anónimo.</string>
+    <string name="delete_done">Registro borrado.</string>
+
+    <string name="settings_title">Ajustes</string>
+    <string name="settings_event">Evento</string>
+    <string name="settings_models">Modelos</string>
+    <string name="settings_model_line">%1$s · %2$s</string>
+    <string name="settings_export">Exportar</string>
+    <string name="settings_export_done">Exportado a %1$s</string>
+    <string name="settings_clinic_password">Contraseña del paquete para la clínica (8+ caracteres)</string>
+    <string name="settings_design_gallery">Galería de diseño</string>
+    <string name="settings_about_models">Acerca de los modelos</string>
+    <string name="settings_runtime">Tiempo de ejecución</string>
+    <string name="settings_runtime_ms">%1$d ms</string>
+    <string name="settings_purge">Borrar imágenes vencidas</string>
+    <string name="settings_purged">%1$d imagen(es) borradas</string>
+    <string name="settings_metric_sensitivity">Sensibilidad</string>
+    <string name="settings_metric_specificity">Especificidad</string>
+    <string name="settings_metric_kappa">Kappa</string>
+    <string name="settings_intended_use">Uso previsto</string>
+    <string name="settings_limitations">Limitaciones</string>
+    <string name="offline">Sin conexión</string>
+
     <string name="gallery_micro_label">Sistema de diseño</string>
     <string name="gallery_title">Componentes de Foresight</string>
     <string name="gallery_pill_offline">Sin conexión</string>

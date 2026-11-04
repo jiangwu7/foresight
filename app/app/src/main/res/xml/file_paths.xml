@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Only these two folders can ever be shared out of the app: generated referral-card PDFs and exports.
+     Images and the database are never under a shareable path (spec §6). -->
+<paths>
+    <cache-path name="cards" path="cards/" />
+    <files-path name="exports" path="exports/" />
+</paths>

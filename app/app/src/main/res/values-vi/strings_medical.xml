@@ -1,14 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  APPROVED MEDICAL WORDING — VIETNAMESE (spec §1.3, §3.8)
+  APPROVED MEDICAL WORDING — VIETNAMESE (spec §1.3, §3.4, §3.8)
 
   Every string in this file is user-facing wording about a health condition or a result. These strings must
   NOT be edited without review by the partnering clinician AND a native Vietnamese speaker. Keys start with
   "medical_" and must match values/strings_medical.xml exactly.
 
-  Review status: DRAFT translations (2026-11-03), pending clinician + native-speaker review.
+  Review status: DRAFT translations (2026-11-04), pending clinician + native-speaker review.
 -->
 <resources>
     <string name="medical_disclaimer">Foresight là công cụ sàng lọc do học sinh vận hành. Đây không phải là chẩn đoán y khoa. Vui lòng đến gặp nhân viên y tế.</string>
     <string name="medical_heatmap_caption">Các vùng được tô sáng đã ảnh hưởng đến kết quả.</string>
+
+    <string name="medical_green_title">Không phát hiện dấu hiệu nào trong ảnh này.</string>
+    <string name="medical_green_body">Điều này không thay thế một cuộc khám mắt đầy đủ.</string>
+    <string name="medical_yellow_title">Có một số dấu hiệu cần xem kỹ hơn.</string>
+    <string name="medical_yellow_body">Chúng tôi khuyên bạn khám mắt trong vòng 3 tháng. Điều này không thay thế một cuộc khám mắt đầy đủ.</string>
+    <string name="medical_red_title">Có dấu hiệu cần khám mắt sớm.</string>
+    <string name="medical_red_body">Vui lòng đến gặp bác sĩ mắt trong vòng 2 đến 4 tuần. Điều này không thay thế một cuộc khám mắt đầy đủ.</string>
+    <string name="medical_ungradable_title">Chúng tôi chưa chụp được ảnh đủ rõ.</string>
+    <string name="medical_ungradable_body">Vui lòng đến cơ sở chăm sóc mắt để được khám đầy đủ.</string>
+
+    <string name="medical_grade_none">Không có dấu hiệu thường thấy ở người mắc bệnh mắt do tiểu đường.</string>
+    <string name="medical_grade_mild">Dấu hiệu nhẹ thường thấy ở người mắc bệnh mắt do tiểu đường.</string>
+    <string name="medical_grade_moderate">Dấu hiệu vừa thường thấy ở người mắc bệnh mắt do tiểu đường.</string>
+    <string name="medical_grade_severe">Dấu hiệu rõ thường thấy ở người mắc bệnh mắt do tiểu đường.</string>
+    <string name="medical_grade_proliferative">Dấu hiệu nặng thường thấy ở người mắc bệnh mắt do tiểu đường.</string>
+
+    <string name="medical_card_green">Không phát hiện dấu hiệu nào trong ảnh này. Hãy tiếp tục khám mắt định kỳ.</string>
+    <string name="medical_card_yellow">Nên khám mắt trong vòng 3 tháng.</string>
+    <string name="medical_card_red">Nên khám mắt sớm, trong vòng 2 đến 4 tuần.</string>
+    <string name="medical_card_ungradable">Ảnh chưa đủ rõ. Vui lòng đi khám mắt đầy đủ.</string>
+
+    <string name="medical_experimental_badge">Thử nghiệm</string>
 </resources>

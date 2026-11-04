@@ -31,7 +31,7 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions { jvmTarget = "17" }
-    buildFeatures { compose = true }
+    buildFeatures { compose = true; buildConfig = true }
     androidResources {
         // The .tflite must stay uncompressed so it can be memory-mapped straight from the APK.
         noCompress += "tflite"
@@ -79,6 +79,7 @@ dependencies {
 
     implementation(libs.kotlinx.serialization.json)   // model card + de-identified export
     implementation(libs.zip4j)                        // password-protected clinic export (§3.7)
+    implementation("com.google.zxing:core:3.5.3")     // QR code on the referral card (§3.1 step 8)
 
     testImplementation(libs.junit)
     testImplementation("ar.com.hjg:pngj:2.1.0")   // pure-Java PNG decoder for the preprocessing equivalence test (android.jar has no javax.imageio)

@@ -3,16 +3,158 @@
 <resources>
     <string name="app_name">Foresight</string>
 
+    <!-- Actions -->
     <string name="action_continue">Continue</string>
     <string name="action_back">Back</string>
+    <string name="action_next">Next</string>
+    <string name="action_skip">Skip this question</string>
+    <string name="action_read_aloud">Read aloud</string>
+    <string name="action_i_agree">I agree</string>
+    <string name="action_print_card">Print card</string>
+    <string name="action_print_referral_card">Print referral card</string>
+    <string name="action_share_pdf">Share as PDF</string>
+    <string name="action_next_participant">Next participant</string>
+    <string name="action_retake">Retake</string>
+    <string name="action_new_event">New event</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_choose_photo">Choose a photo</string>
+    <string name="action_delete_my_record">Delete my record</string>
+    <string name="action_done">Done</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_create_event">Create event</string>
+    <string name="action_export_deid">Export de-identified data</string>
+    <string name="action_export_clinic">Export clinic package</string>
+    <string name="action_end_session">End session</string>
 
+    <!-- Languages (display codes chosen by the team, DECISIONS.md 2026-11-04; not locale codes) -->
     <string name="lang_en_native">English</string>
     <string name="lang_es_native">Español</string>
     <string name="lang_vi_native">Tiếng Việt</string>
-    <!-- Display codes chosen by the team (DECISIONS.md 2026-11-04); not locale codes. -->
     <string name="lang_en_code">EN</string>
     <string name="lang_es_code">ESP</string>
     <string name="lang_vi_code">VN</string>
+
+    <!-- Home -->
+    <string name="home_screener">Screener</string>
+    <string name="home_resume_event">Resume event</string>
+    <string name="home_event_stats">%1$d screened · %2$d flagged</string>
+    <string name="home_no_events">No events yet. Create one to begin.</string>
+    <string name="new_event_title">New event</string>
+    <string name="new_event_name">Event name</string>
+    <string name="new_event_location">Location</string>
+
+    <!-- Flow -->
+    <string name="step_of">Step %1$d of %2$d</string>
+    <string name="language_title">Choose your language</string>
+
+    <!-- Consent (reviewed by the district before use with real people, spec §6) -->
+    <string name="consent_title">Before we begin</string>
+    <string name="consent_fingerprint">A photo of your retina is unique to you, like a fingerprint.</string>
+    <string name="consent_stays">The photo stays on this phone. It is deleted after 30 days unless you choose to share it with a clinic.</string>
+    <string name="consent_check_screening">I understand this is a screening, not a diagnosis</string>
+    <string name="consent_check_photo">I agree to have my eyes photographed</string>
+
+    <!-- Intake (spec §3.3; all optional) -->
+    <string name="intake_micro">Question %1$d of %2$d · optional</string>
+    <string name="q_age">What is your age range?</string>
+    <string name="age_under_18">Under 18</string>
+    <string name="age_18_39">18 to 39</string>
+    <string name="age_40_59">40 to 59</string>
+    <string name="age_60_plus">60 or older</string>
+    <string name="q_diabetes">Have you ever been told you have diabetes?</string>
+    <string name="answer_yes">Yes</string>
+    <string name="answer_no">No</string>
+    <string name="answer_not_sure">Not sure</string>
+    <string name="q_last_exam">When was your last eye exam?</string>
+    <string name="exam_within_1y">Within 1 year</string>
+    <string name="exam_1_2y">1 to 2 years</string>
+    <string name="exam_over_2y">More than 2 years</string>
+    <string name="exam_never">Never</string>
+    <string name="q_doctor">Do you have regular access to a doctor?</string>
+    <string name="q_contact">Phone number for the clinic to reach you (optional)</string>
+    <string name="contact_hint">You can leave this empty. It is stored encrypted and you can delete it.</string>
+    <string name="q_share">May we share your photos with a partner clinic?</string>
+    <string name="share_yes">Yes, share with the clinic</string>
+    <string name="share_no">No, keep them on this phone</string>
+    <string name="under18_title">Thank you</string>
+    <string name="under18_body">Foresight screens adults only. Please ask an adult family member if they would like to be screened.</string>
+
+    <!-- Capture (Phase 1 imports a photo; the live camera arrives in Phase 2) -->
+    <string name="eye_right">Right eye</string>
+    <string name="eye_left">Left eye</string>
+    <string name="capture_import_title">Add the photo</string>
+    <string name="capture_import_hint">Choose the photo of this eye from the gallery.</string>
+    <string name="capture_look_green_dot">Look at the green dot</string>
+    <string name="capture_hold_still">Hold still</string>
+    <string name="capture_got_it">Got it</string>
+    <string name="capture_quality">Quality</string>
+    <string name="capture_attempt">Attempt %1$d of %2$d</string>
+    <string name="problem_dark">Photo was too dark</string>
+    <string name="problem_dark_tip">Try again in a darker room with the eyecup resting on the brow.</string>
+    <string name="problem_blurry">Photo was blurry</string>
+    <string name="problem_blurry_tip">Ask them to hold still and rest their forehead on the adapter.</string>
+    <string name="problem_offcenter">Eye was off-center</string>
+    <string name="problem_offcenter_tip">Move the ring until the green dot sits in the middle of the pupil.</string>
+    <string name="problem_reflection">Too much glare</string>
+    <string name="problem_reflection_tip">Tilt the adapter slightly so the bright spot leaves the center.</string>
+
+    <!-- Processing -->
+    <string name="processing_title">Analyzing both photos</string>
+    <string name="processing_on_phone">On this phone · nothing is uploaded</string>
+    <string name="status_done">done</string>
+    <string name="status_analyzing">analyzing</string>
+    <string name="status_waiting">waiting</string>
+
+    <!-- Results -->
+    <string name="result_micro">Result</string>
+    <string name="eye_clear">Clear</string>
+    <string name="eye_signs_seen">Signs seen</string>
+    <string name="eye_not_clear">Not clear</string>
+    <string name="show_heatmap">Show heat map</string>
+    <string name="partner_clinic">Partner clinic</string>
+    <string name="clinic_placeholder_name">Partner clinic to be confirmed</string>
+    <string name="clinic_placeholder_phone">Ask your screener</string>
+    <string name="next_step">Next step</string>
+    <string name="next_step_card">We will print a referral card for you to bring to the clinic.</string>
+    <string name="outcome_green_description">Green outcome: circle</string>
+    <string name="outcome_yellow_description">Yellow outcome: triangle</string>
+    <string name="outcome_red_description">Red outcome: square</string>
+    <string name="outcome_ungradable_description">Photo not clear enough</string>
+
+    <!-- Card -->
+    <string name="card_title">Your referral card</string>
+    <string name="card_code">Card code</string>
+    <string name="card_date">Date</string>
+    <string name="card_pdf_name">Foresight referral card</string>
+
+    <!-- Done -->
+    <string name="done_title">All done</string>
+    <string name="done_body">The card is ready. This screen clears for the next person.</string>
+    <string name="done_participant">Participant %1$d</string>
+    <string name="delete_confirm_title">Delete this record?</string>
+    <string name="delete_confirm_body">The photos, phone number and results will be erased from this phone. Only an anonymous count is kept.</string>
+    <string name="delete_done">Record deleted.</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_event">Event</string>
+    <string name="settings_models">Models</string>
+    <string name="settings_model_line">%1$s · %2$s</string>
+    <string name="settings_export">Export</string>
+    <string name="settings_export_done">Exported to %1$s</string>
+    <string name="settings_clinic_password">Clinic package password (8+ characters)</string>
+    <string name="settings_design_gallery">Design gallery</string>
+    <string name="settings_about_models">About models</string>
+    <string name="settings_runtime">Runtime</string>
+    <string name="settings_runtime_ms">%1$d ms</string>
+    <string name="settings_purge">Delete expired images</string>
+    <string name="settings_purged">%1$d image(s) deleted</string>
+    <string name="settings_metric_sensitivity">Sensitivity</string>
+    <string name="settings_metric_specificity">Specificity</string>
+    <string name="settings_metric_kappa">Kappa</string>
+    <string name="settings_intended_use">Intended use</string>
+    <string name="settings_limitations">Limitations</string>
+    <string name="offline">Offline</string>
 
     <!-- Developer gallery (Phase 0) -->
     <string name="gallery_micro_label">Design system</string>

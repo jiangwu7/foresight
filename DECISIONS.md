@@ -191,6 +191,19 @@ because the 2.10 / 2.11 releases demand compileSdk 37 and AGP 9.1, which are not
 **Why.** The newest AndroidX releases moved faster than the stable AGP; pinning keeps students on Android Studio
 stable. Revisit when AGP 9.1 ships.
 
+## 2026-11-04 — Phase 1 status after the first build day
+Built and compiling, 31 JVM tests green, lint clean, debug APK builds: full screening flow (home → new event →
+language → consent → intake ×6 with the under-18 refusal → right eye → left eye → processing → results →
+card → done), Settings (model card, exports, retention purge), de-identified export + validator, clinic zip,
+encrypted storage, LiteRT inference with the heat map, trilingual strings (ES/VI drafts), PDF card with QR,
+print + share, TTS read-aloud, dashboard reader.
+**Not yet verified on a device.** Nothing here has run on a phone: SQLCipher/Keystore, LiteRT, the photo
+picker, print and share are exercised only by compilation and unit tests. The instrumented end-to-end test
+(`ScreeningFlowTest`) is written and needs a device or emulator with a fixture pushed; CI has no emulator
+job yet (Phase 1 follow-up).
+**Phase 1 acceptance still open:** instrumented test run, non-technical teammate mock screening in < 90 s,
+design review gate on a 6.1" phone against the mockups, clinician review of the draft medical strings.
+
 ## 2026-11-04 — Phase 1 gradability check is a heuristic, not M1
 **Decision.** `QualityHeuristic` (brightness, saturated-pixel fraction, fundus-center offset, Laplacian
 variance) decides gradable / dark / reflection / off-center / blurry on still images until the M1 quality

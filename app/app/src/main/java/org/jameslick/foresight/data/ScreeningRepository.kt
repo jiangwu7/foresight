@@ -29,6 +29,9 @@ class ScreeningRepository(private val context: Context) {
 
     val modelCard get() = runner.card
 
+    /** Decrypts a stored capture image for display on the results screen (never leaves the process). */
+    fun loadImage(fileName: String?): Bitmap? = fileName?.let { images.load(it) }
+
     // ---- events & participants ---------------------------------------------------------------
     suspend fun createEvent(name: String, location: String, now: Long = System.currentTimeMillis()): Event = withContext(Dispatchers.IO) {
         Event(name = name, locationLabel = location, date = now).also { db.events().upsert(it) }
