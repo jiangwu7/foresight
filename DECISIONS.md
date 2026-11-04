@@ -289,6 +289,23 @@ session ended as ungradable, not with a color.
 in a dark room) can still pass; that needs the M1 quality model (Phase 2). The screener briefing should
 say: only photos taken through the adapter.
 
+## 2026-11-04 — Phase 1 accepted (as reported by the team lead); Phase 2 may start
+**Acceptance items (§10 Phase 1) and who verified them, per the team lead's report:**
+- Fixture image reaches a result and a card: instrumented test on the Galaxy S23 Ultra, green.
+- Non-technical teammate mock screening < 90 s: team lead measured 88 s; a teammate who did not build the
+  app ran it cold (reported done).
+- Design review gate on a 6.1" phone in a dark room against the approved mockups: reported done by a
+  teammate.
+- Clinician review of the draft ES/VI medical strings and the outcome thresholds: reported done.
+- "Delete my record" keeps the anonymous count; ES and VI runs show no cut-off text or missing diacritics:
+  team lead.
+- Non-retina photos refused; model verified on device (see the two entries above).
+**Not re-verified by the assistant:** the teammate review and the clinician review are the team lead's
+report; no written sign-off is in the repo yet. Suggested: add the clinician's name/date to the header of
+each `strings_medical.xml` when the wording is final.
+**Phase 2 gating (§6, CLAUDE.md):** nobody is imaged until `hardware/SAFETY.md` is complete and signed and
+the illumination is clinician-reviewed. Phase 2 camera work starts on a model eye.
+
 ## 2026-11-03 — Brand-asset workflow: Higgsfield's bundled brand workflow is used for reference, not as the gate
 **Decision.** `get_workflow_instructions("brand-asset-creation")` was loaded as the server instructs. Its full
 interactive flow (palette approval → Recraft SVG logos → brandbook) is designed for a finished identity. For
