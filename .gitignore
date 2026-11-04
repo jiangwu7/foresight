@@ -1,0 +1,42 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.egg-info/
+.pytest_cache/
+ml/runs/
+ml/data/raw/
+ml/data/aptos/
+ml/data/eyepacs/
+ml/data/messidor2/
+ml/data/ddr/
+ml/data/idrid/
+
+# Android
+app/.gradle/
+app/build/
+app/app/build/
+app/local.properties
+app/.idea/
+*.iml
+app/captures/
+.kotlin/
+
+# Model binaries produced by training live in ml/runs (ignored); shipped models are tracked in
+# app/app/src/main/assets/models only
+ml/**/*.pt
+ml/**/*.onnx
+ml/**/*.tflite
+
+# Media working files (finals are committed under assets/)
+assets/**/_work/
+*.psd
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Privacy: never commit anything that could be participant data
+exports/
+*_deid.json
+*_clinic.zip
