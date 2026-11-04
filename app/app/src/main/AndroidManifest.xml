@@ -7,11 +7,12 @@
         android:allowBackup="false"
         android:fullBackupContent="false"
         android:dataExtractionRules="@xml/data_extraction_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Foresight"
-        tools:ignore="MissingApplicationIcon">
-        <!-- App icon arrives with the brand kit once a logo direction is chosen (Phase 0, §13.2). -->
+        android:theme="@style/Theme.Foresight">
+        <!-- Icons are generated from the logo by assets/brand/build_brand_kit.py; do not hand-edit mipmaps. -->
 
         <activity
             android:name=".MainActivity"

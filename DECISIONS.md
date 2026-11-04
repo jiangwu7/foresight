@@ -130,6 +130,15 @@ across several styles.
 reference images recorded in `assets/ASSETS.md`. Round-1 logo files stay in `assets/brand/concepts/round1/`
 for the record; round 2 goes in `round2/`.
 
+## 2026-11-03 — Logo chosen: round-2 `i304_soft_friendly` (eye with a four-blade shutter iris)
+**Decision.** Team lead picked the Ideogram vector mark. Used as-is (no refinement round). Brand kit built
+locally by `assets/brand/build_brand_kit.py`: clean SVGs, PNGs, lockups with the wordmark outlined from
+Be Vietnam Pro, Android adaptive/legacy icons, dashboard favicon, palette with contrast checks.
+**Deviation from §13.2.** `remove_background` / SVG tracing were not used: the source is already vector, so a
+local, deterministic build is cleaner and free. The accent token moved from `#F2B55B` to the mark's exact
+`#F3B661` (contrast on Ink 10.8:1).
+**Consequences.** Phase 0 brand-kit item is complete pending the team's own look at the icon on a phone.
+
 ## 2026-11-03 — Phase 0 status against the §10 acceptance criteria
 | Criterion | Status | Evidence |
 |---|---|---|

@@ -19,7 +19,7 @@ internal object Palette {
     val Charcoal = Color(0xFF14171C)     // cards
     val Graphite = Color(0xFF1E2228)     // raised / pressed surfaces
     val Hairline = Color(0xFF2B3038)     // 1dp rules and borders
-    val Amber = Color(0xFFF2B55B)        // the single luminous accent
+    val Amber = Color(0xFFF3B661)        // the single luminous accent = the logo mark's exact fill
     val AmberDeep = Color(0xFF9A7030)    // accent on light surfaces / dimmed accent
     val Bone = Color(0xFFF5F1E8)         // primary text on dark
     val Ash = Color(0xFFA9A49A)          // secondary text on dark (≥ 4.5:1 on Ink)

@@ -146,10 +146,28 @@ circle with lid arc; best app-icon silhouette), `r202`/`g401` (solid amber with 
 reads at tiny sizes), `i303`/`r206` (blades under a single lid sweep; most "opening eye", a little decorative).
 Weak: `r203` (reads as a flower/pinwheel), `r211` (ninja star), `i300` (just a shutter, no eye), `i301` (the S-shape
 inside reads as a lightning bolt), `i305` (busy), `r209` (too small/angular), `r207` (fan blade).
-**Team pick:** to be recorded here.
+**Team pick (2026-11-03): `ideogram/i304_soft_friendly.svg`** — the rounded eye with four curved shutter blades
+and a center dot. Used as-is; the team lead asked for no further variants.
 
-Next (after the team picks): refine the chosen concept (3–5 tighter variants), test at 48 px, run
-`remove_background` for the raster versions, derive the palette, build the adaptive icon set and favicon.
+## 2c. Brand kit — `assets/brand/logo/` (built 2026-11-03, no credits: generated locally from the SVG)
+
+Everything below is produced by `assets/brand/build_brand_kit.py` from the chosen SVG and the bundled fonts;
+re-run it to regenerate. No Higgsfield `remove_background` or `upscale_image` was needed because the source is
+vector (spec §13.2 asks for those only for raster finalists).
+
+| File(s) | What | Used by |
+|---|---|---|
+| `foresight_mark.svg`, `_offwhite.svg`, `_ink.svg`, `_square.svg` | clean transparent mark; interior is a true hole (`fill-rule="evenodd"`), edge slivers and background from the source removed | everything |
+| `foresight_mark_{48,96,192,512,1024}.png`, `_offwhite_512.png`, `_ink_512.png`, `_on_ink_1024.png` | raster mark, transparent (or on Ink) | docs, slides, print |
+| `lockups/foresight_lockup_horizontal.*`, `_stacked.*` (+ `_on_ink.png`, `_light.svg`) | mark + wordmark "Foresight" outlined from Be Vietnam Pro SemiBold (OFL). Typography is from the real font file, never generated (§13.2) | app About screen, card header, video title cards, application |
+| `app_icon_store_512.png` | 512 px store icon | Play listing / application |
+| `app/app/src/main/res/mipmap-*/ic_launcher*.png`, `mipmap-anydpi-v26/ic_launcher*.xml` | adaptive icon (foreground 58/108 dp inside the safe zone, Ink background, monochrome layer for themed icons) + legacy square/round icons at 5 densities | the app |
+| `dashboard/favicon.svg`, `favicon-32.png`, `apple-touch-icon.png` | dashboard favicon | dashboard |
+| `palette.md` | palette derived from the mark (`#F3B661` is the mark's exact fill) with WCAG AA contrast for every text/background pair; all pass | design system |
+
+Provenance of the mark: Higgsfield `ideogram_vector` (generate, quality high), job id
+08eb9dea-e57a-44b2-9386-5fbb8ca86a56, 2026-11-03, prompt in the round-2 table above. License: Higgsfield
+Ultra subscription terms. The wordmark font is Be Vietnam Pro, SIL OFL 1.1 (`app/app/licenses/`).
 
 ---
 
