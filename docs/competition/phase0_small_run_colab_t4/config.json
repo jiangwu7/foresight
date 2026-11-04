@@ -1,0 +1,51 @@
+{
+  "arch": "efficientnet_b3",
+  "img_size": 224,
+  "epochs": 3,
+  "batch_size": 32,
+  "lr": 0.0003,
+  "seed": 42,
+  "reg_weight": 0.5,
+  "pretrained": true,
+  "small": true,
+  "smoke": false,
+  "preprocess": {
+    "size": 224,
+    "mean": [
+      0.3966,
+      0.2125,
+      0.0682
+    ],
+    "std": [
+      0.2878,
+      0.1566,
+      0.0805
+    ],
+    "bbox_threshold": 10,
+    "ben_graham_sigma": null
+  },
+  "sources": {
+    "aptos2019": {
+      "n_train": 2929,
+      "n_val": 733,
+      "train_grade_counts": [
+        1444,
+        296,
+        799,
+        154,
+        236
+      ],
+      "val_grade_counts": [
+        361,
+        74,
+        200,
+        39,
+        59
+      ]
+    }
+  },
+  "device": "cuda",
+  "torch": "2.11.0+cu130",
+  "git_sha": "61fb3fa",
+  "started": "20261104-172135"
+}

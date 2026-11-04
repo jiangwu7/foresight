@@ -1,0 +1,55 @@
+{
+  "n": 733,
+  "accuracy": 0.8362892223738063,
+  "kappa_quadratic": 0.9030394283702986,
+  "kappa_quadratic_regression_head": 0.9118271071892424,
+  "referable_sensitivity": 0.9429530201342282,
+  "referable_specificity": 0.9310344827586207,
+  "referable_auc": 0.984957185836612,
+  "referable_threshold": 0.5,
+  "confusion_matrix": [
+    [
+      359,
+      1,
+      1,
+      0,
+      0
+    ],
+    [
+      10,
+      35,
+      29,
+      0,
+      0
+    ],
+    [
+      0,
+      13,
+      175,
+      7,
+      5
+    ],
+    [
+      0,
+      0,
+      16,
+      11,
+      12
+    ],
+    [
+      0,
+      4,
+      20,
+      2,
+      33
+    ]
+  ],
+  "referable_counts": {
+    "tp": 281,
+    "tn": 405,
+    "fp": 30,
+    "fn": 17
+  },
+  "loss": 0.5114911183165983,
+  "n_nonfinite_outputs": 0
+}

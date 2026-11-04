@@ -156,6 +156,26 @@ CI green; (2) ~~Kaggle account + APTOS download + `make_fixtures.py` + `train_dr
 done 2026-11-04, 57.1 min; (3) ~~pick a mood-board direction and a logo concept~~ done 2026-11-03;
 (4) a non-author teammate reviews the gallery screen on a 6.1" phone in a dark room — **still open**.
 
+## 2026-11-04 — Phase 0 accepted; Phase 1 started
+**Decision.** All §10 Phase 0 criteria are met (table above). The remaining human review of the gallery
+screen on a phone is the team's standing action and does not block Phase 1. Team lead instructed: "start
+phase 1".
+**Shipped model for Phase 1.** `app/app/src/main/assets/models/dr_m2_int8.tflite` (11.7 MB) and its model
+card come from the Colab T4 `--small` run (`docs/competition/phase0_small_run_colab_t4/`). Held-out APTOS:
+kappa 0.903, referable sens 0.943 / spec 0.931, AUC 0.985. It is the weak classroom model by design and is
+used only to build and test the on-device pipeline. It must never be used on a person.
+**Deviation (§2.1 int8).** onnx2tf 2.6.9's calibrated int8 path failed ("flatbuffer_direct fast path
+failed"); the fallback produced a **dynamic-range** quantized model (int8 weights, float32 activations).
+Good enough for Phase 1 on CPU; full int8 (activations too, for the GPU/NNAPI delegates and the 1.5 s
+budget) is re-attempted in Phase 2 with the full model. `export_status.json` records which was produced.
+**ONNX vs PyTorch.** Max abs difference 0.065, on the raw `features` output (large-magnitude activations);
+logits agree far more closely. The Phase 1 on-device test compares TFLite outcomes against the Python
+reference on the fixture images rather than raw tensors.
+**Phase 1 order.** (1) High-fidelity screen mockups in direction A for approval (gate per §3.10 / §13.3a);
+(2) in parallel, the non-UI core: Kotlin preprocessing port + equivalence test, outcome mapping + exhaustive
+tests, LiteRT runner + CAM heat map, Room/SQLCipher data layer, de-identified export, dashboard reader;
+(3) screens in Compose only after mockup approval.
+
 ## 2026-11-03 — Brand-asset workflow: Higgsfield's bundled brand workflow is used for reference, not as the gate
 **Decision.** `get_workflow_instructions("brand-asset-creation")` was loaded as the server instructs. Its full
 interactive flow (palette approval → Recraft SVG logos → brandbook) is designed for a finished identity. For
