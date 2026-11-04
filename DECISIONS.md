@@ -212,6 +212,29 @@ model arrives in Phase 2. Thresholds are pinned by a test on the 25 gradable + 1
 can be swapped later behind the same result type. Known gap: tuned on clinical-camera crops, so it will be
 re-tuned on adapter photos in Phase 2.
 
+## 2026-11-04 — First run on a phone (Galaxy S23 Ultra, Android 16): two bugs fixed, end-to-end test passes
+**What happened.** The team lead installed the debug build from Android Studio and walked the flow. Two defects
+that no JVM test could catch showed up immediately:
+1. **Black text on the near-black background** on every screen. Material's default content color is pure
+   black until a `Surface` sets it; our screens draw straight onto the background, so every `Text` without an
+   explicit color was invisible. Fix: `ForesightTheme` now provides `LocalContentColor = colors.onBackground`
+   at the root. Text inside cards/tiles was already fine because those are Surfaces.
+2. **Crash on the capture screen** (`No ActivityResultRegistryOwner was provided`). `Localized` wrapped the
+   screens in a bare `createConfigurationContext` Context, so the photo picker could not find the Activity;
+   the share sheet (`startActivity`) and `PrintManager.print` would have failed the same way. Fix: the
+   localized Context is now a `ContextWrapper` around the Activity that only overrides `getResources()`, and
+   the result-registry and back-dispatcher owners are re-provided explicitly.
+**Test harness fixes.** `ScreeningFlowTest` now (a) waits for the event list to load from the encrypted
+database before deciding whether to create an event, and creates one itself ("Flow test") if none exists;
+(b) reads the fixture through the instrumentation's shell access, because on Android 11+ the app cannot open
+`/sdcard/Download` directly (EACCES) and must not gain a storage permission to do so. `gradle.properties`
+sets `android.injected.androidTest.leaveApksInstalledAfterRun=true`: Gradle's default uninstalls the app
+after a connected test run and that wiped the team lead's first event (database gone with the app).
+**Result.** `connectedDebugAndroidTest`: 1 test, 0 failures, 0 skipped, 5.4 s on the device. LiteRT loaded
+the int8 model with the XNNPACK CPU delegate; no app errors in Logcat. Home screen checked against mockup
+511 (wordmark crossing the ring matches the mockup). Phase 1 acceptance items still open: teammate mock
+screening in < 90 s, dark-room design review of every screen, clinician review of ES/VI medical strings.
+
 ## 2026-11-03 — Brand-asset workflow: Higgsfield's bundled brand workflow is used for reference, not as the gate
 **Decision.** `get_workflow_instructions("brand-asset-creation")` was loaded as the server instructs. Its full
 interactive flow (palette approval → Recraft SVG logos → brandbook) is designed for a finished identity. For

@@ -2,6 +2,7 @@ package org.jameslick.foresight.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.ColorScheme
+import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
@@ -33,8 +34,12 @@ fun ForesightTheme(
         MaterialTheme(
             colorScheme = colors.toMaterial(),
             typography = typography.toMaterial(),
-            content = content,
-        )
+        ) {
+            // Material's default content color is pure black until a Surface sets it. Our screens draw
+            // straight onto the background (no Surface), so without this every Text that does not pass
+            // a color explicitly is black on near-black (found on the first device run, 2026-11-04).
+            CompositionLocalProvider(LocalContentColor provides colors.onBackground, content = content)
+        }
     }
 }
 

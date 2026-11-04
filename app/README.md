@@ -15,8 +15,9 @@ From a terminal (needs `local.properties` with `sdk.dir=` pointing at your SDK; 
 ./gradlew :app:testDebugUnitTest   # 31 JVM tests: tokens, i18n, preprocessing equivalence, outcomes, CAM, export, quality
 ./gradlew :app:lintDebug           # Android lint (AllowBackup and HardcodedText are errors)
 ./gradlew :app:assembleDebug       # app/build/outputs/apk/debug/app-debug.apk
-# with a device/emulator and a fixture pushed to /sdcard/Download/foresight_fixture.png:
-./gradlew :app:connectedDebugAndroidTest
+# with a device/emulator and a fixture pushed to /sdcard/Download/foresight_fixture.png
+# (adb push fixtures/gradable/grade2_000c1434d8d7.png /sdcard/Download/foresight_fixture.png):
+./gradlew :app:connectedDebugAndroidTest   # creates its own event; the app stays installed afterwards
 ```
 
 ## Where things live
