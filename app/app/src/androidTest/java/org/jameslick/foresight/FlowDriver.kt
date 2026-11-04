@@ -24,7 +24,8 @@ object FlowDriver {
 
     fun bitmap(path: String): Bitmap? = readViaShell(path).takeIf { it.isNotEmpty() }?.let { BitmapFactory.decodeByteArray(it, 0, it.size) }
 
-    fun ComposeTestRule.nodesWithText(text: String) = try { onAllNodes(hasText(text)).fetchSemanticsNodes() } catch (e: Throwable) { emptyList() }
+    /** Case-insensitive: pills and micro-labels render their text in small caps. */
+    fun ComposeTestRule.nodesWithText(text: String) = try { onAllNodes(hasText(text, ignoreCase = true)).fetchSemanticsNodes() } catch (e: Throwable) { emptyList() }
 
     /** Home → (create event) → language (English) → consent → intake (skipped) → right-eye capture screen. */
     fun ComposeTestRule.reachCapture() {

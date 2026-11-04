@@ -37,7 +37,7 @@ class LiveCaptureTest {
         rule.reachCapture()
         // Three good frames at 5 fps → capture → analysis → "Got it" (spec §3.2 cue) on the review block.
         rule.waitUntil(timeoutMillis = 30_000) { rule.nodesWithText("Got it").isNotEmpty() }
-        rule.onNodeWithText("Got it").assertIsDisplayed()
+        rule.onNodeWithText("Got it", ignoreCase = true).assertIsDisplayed()
     }
 
     @Test
