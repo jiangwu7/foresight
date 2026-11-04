@@ -21,3 +21,4 @@ onnxruntime>=1.18
 onnxscript>=0.2
 # Runs .tflite files on the desktop (Windows wheels exist) so exports are verified before shipping.
 ai-edge-litert>=2.1
+openpyxl>=3.1     # hardware/safety_calc.py writes the ISO 15004-2 spreadsheet
