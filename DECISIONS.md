@@ -283,6 +283,8 @@ screenshot would otherwise read as glare). New strings `problem_not_fundus(_tip)
 not medical). `QualityHeuristicTest` adds synthetic non-retina images (face on light background,
 screenshot, sky/grass): all refused; all 25 gradable and 16 degraded fixtures keep their labels. Lint,
 32 JVM tests and both device tests green.
+**Re-tested by the team lead on the phone:** face photos for both eyes refused on all three attempts; the
+session ended as ungradable, not with a color.
 **Known gap, documented in the code:** a warm-toned object photographed on a black background (e.g. a face
 in a dark room) can still pass; that needs the M1 quality model (Phase 2). The screener briefing should
 say: only photos taken through the adapter.
