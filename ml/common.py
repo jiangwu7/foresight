@@ -189,6 +189,8 @@ def compute_metrics(y_true: np.ndarray, probs: np.ndarray, reg: np.ndarray) -> d
     """y_true [N] ints, probs [N,5] softmax, reg [N] regression output."""
     from sklearn.metrics import cohen_kappa_score, confusion_matrix, roc_auc_score
     y_true = np.asarray(y_true).astype(int)
+    probs = np.nan_to_num(np.asarray(probs, dtype=np.float64), nan=1.0 / NUM_GRADES, posinf=1.0, neginf=0.0)
+    reg = np.nan_to_num(np.asarray(reg, dtype=np.float64), nan=0.0, posinf=NUM_GRADES - 1, neginf=0.0)
     pred_cls = probs.argmax(axis=1)
     pred_reg = np.clip(np.rint(reg), 0, NUM_GRADES - 1).astype(int)
     referable_true = (y_true >= REFERABLE_MIN_GRADE).astype(int)
@@ -242,6 +244,7 @@ def save_roc_curve(y_true, referable_prob, path: str | Path) -> None:
     import matplotlib.pyplot as plt
     from sklearn.metrics import roc_curve
     y = (np.asarray(y_true) >= REFERABLE_MIN_GRADE).astype(int)
+    referable_prob = np.nan_to_num(np.asarray(referable_prob, dtype=np.float64), nan=0.5, posinf=1.0, neginf=0.0)
     fig, ax = plt.subplots(figsize=(4.5, 4.5))
     if len(set(y.tolist())) > 1:
         fpr, tpr, _ = roc_curve(y, referable_prob)

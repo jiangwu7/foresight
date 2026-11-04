@@ -113,7 +113,9 @@ def run_epoch(model, loader, device, optimizer=None, scaler=None, reg_weight=0.5
     total_loss, n = 0.0, 0
     for x, y, _ in tqdm(loader, desc=desc, leave=False):
         x, y = x.to(device, non_blocking=True), y.to(device)
-        with torch.set_grad_enabled(train), torch.autocast(device_type=device.type, enabled=(device.type == "cuda")):
+        # Mixed precision only while training; validation runs in full precision so fp16 overflow can never
+        # turn a metric into NaN (seen on a T4 in the first Colab run).
+        with torch.set_grad_enabled(train), torch.autocast(device_type=device.type, enabled=(train and device.type == "cuda")):
             logits, reg, _ = model(x)
             loss = F.cross_entropy(logits, y) + reg_weight * F.smooth_l1_loss(reg.squeeze(1), y.float())
         if train:
@@ -124,14 +126,22 @@ def run_epoch(model, loader, device, optimizer=None, scaler=None, reg_weight=0.5
                 loss.backward(); optimizer.step()
             if scheduler is not None:
                 scheduler.step()
-        total_loss += float(loss) * len(y)
+        total_loss += loss.detach().item() * len(y)
         n += len(y)
         all_y.append(y.cpu().numpy())
-        all_p.append(torch.softmax(logits.float(), dim=1).detach().cpu().numpy())
-        all_r.append(reg.squeeze(1).float().detach().cpu().numpy())
+        all_p.append(torch.softmax(logits.detach().float(), dim=1).cpu().numpy())
+        all_r.append(reg.detach().squeeze(1).float().cpu().numpy())
     y = np.concatenate(all_y); p = np.concatenate(all_p); r = np.concatenate(all_r)
+    # Guard: a non-finite output is a model failure, never a silent crash. Count it, make it a "no
+    # confidence" prediction (uniform probabilities, grade 0), and report the count in the metrics.
+    bad = ~(np.isfinite(p).all(axis=1) & np.isfinite(r))
+    if bad.any():
+        print(f"warning: {int(bad.sum())} of {len(bad)} outputs were non-finite; counted as uniform predictions")
+        p[bad] = 1.0 / NUM_GRADES
+        r[bad] = 0.0
     metrics = compute_metrics(y, p, r)
     metrics["loss"] = total_loss / max(n, 1)
+    metrics["n_nonfinite_outputs"] = int(bad.sum())
     return metrics, (y, p, r)
 
 
