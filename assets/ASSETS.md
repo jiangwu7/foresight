@@ -171,6 +171,57 @@ Ultra subscription terms. The wordmark font is Be Vietnam Pro, SIL OFL 1.1 (`app
 
 ---
 
+## 4. Phase 1 screen mockups, round 1 — `assets/ui/mockups/screens/round1/` (spec §13.3a step 2)
+
+Status: **awaiting team approval** (design gate: UI is coded only to approved mockups). Generated 2026-11-04 with
+`generate_image_batch`, model `nano_banana_pro` (served as `nano_banana_2`), 2k, 9:16 (dashboard 16:9), with three
+style references on every request: the logo mark (uploaded media 3c9eaf1e-e480-4c64-a77d-ae2676e6f6dc), mood board
+A4 reticle (86230a2c…) and A5 result card (a89e9b4c…). 24 images × 2.0 = **48.0 credits**; balance 1441.5 → 1393.5.
+Every prompt carried the direction-A style core, the exact §3.4 result wording and the §1.3 disclaimer, and the
+negatives "no photographs of eyes or retinas, no Material purple/teal, no stock icons". Contact sheets:
+`contact_screens_1.jpg`, `contact_screens_2.jpg`.
+
+| File | Job id | Screen |
+|---|---|---|
+| `500_language_A.png` | e65420a0-5508-4972-8d06-58e4c4a82812 | Language picker, tiles with large codes |
+| `501_consent_A.png` | 62ed5a99-e9de-4c54-951a-b2648c6a4b39 | Consent, text-first |
+| `502_intake_A.png` | 6747cff6-e57a-4883-a55c-d28b3731b4d8 | Intake Q3 (last eye exam), rows |
+| `503_capture_A.png` | 02641f23-e808-433b-bd0c-bf53fcd2176f | Capture right eye, red mode, "Look at the green dot" |
+| `504_processing_A.png` | 49a0e24a-74ed-4756-9988-4984d5ca4ac8 | Processing with per-eye status |
+| `505_result_green_A.png` | 74c6e410-c407-4d68-a481-7d353fe83fce | Result green |
+| `506_result_yellow_A.png` | 79494128-9845-4059-8a4a-9ed6f1a96a4f | Result yellow (rendered inside a phone frame despite the prompt) |
+| `507_result_red_A.png` | c18ca09f-4a6b-446a-af88-18d9ab793c7d | Result red with partner-clinic card (fictional clinic/number) |
+| `508_result_ungradable_A.png` | 2b64ef7c-ad17-43bd-8908-b0f6abeb0834 | Ungradable with retake tip |
+| `509_referral_card_A.png` | 9b857f76-7276-4c69-8602-53903078ff1d | Referral card preview + share/print |
+| `510_settings_A.png` | 0c63c8f4-aa25-4582-8be4-0553551e6b32 | Settings list (one row duplicated by the model) |
+| `511_home_A.png` | 3676b665-730b-402b-9f7c-a92fcbd3ffa3 | Home with resume-event card |
+| `512_dashboard_A.png` | 49fcbe50-a3c4-4626-a187-967a444a8cdf | Dashboard, "SAMPLE DATA · MOCKUP" pill; map is a generic city, not San José |
+| `513_result_yellow_ES.png` | f18db7ba-a588-4a71-9629-ce4345a645f4 | Result yellow in Spanish (in a phone frame) |
+| `514_result_yellow_VI.png` | e792f40b-4f05-49cd-873f-700b89b8a661 | Result yellow in Vietnamese; diacritics correct |
+| `600_language_B.png` | 73bae185-567a-4184-b0d2-2991b2425875 | Language picker with ring motif behind |
+| `601_consent_B.png` | 146246ce-4e62-4c0c-9239-a19dfe97f1c2 | Consent with flat fingerprint-to-ring illustration |
+| `602_intake_B.png` | d53b4cb8-d777-49a3-ae46-213698c95ded | Intake Q2 (diabetes), 2×2 tiles |
+| `603_capture_B.png` | ea32db6f-baf2-4bd5-93bd-d1616abed3ce | Capture left eye at lock, "Hold still" |
+| `604_processing_B.png` | 8f9ce555-af37-4c3d-96b5-da1bb973cbb9 | Processing, minimal (label duplicated by the model) |
+| `605_result_green_B.png` | 987e9751-ebcb-4c36-89fb-ef1ebabf5b9f | Result green with a large glyph |
+| `606_result_yellow_heatmap_B.png` | 9b2af2ea-3006-463b-ae5e-97d7bd281ff2 | Result yellow with heat map on (abstract disc, no retina) |
+| `607_result_red_B.png` | f31ccc46-fcf7-42b0-b1b7-cde745903a48 | Result red, clinic handoff focus, "Delete my record" |
+| `608_done_B.png` | 7c65d77c-2c40-4d3d-94ed-e688d4e7b05e | Done / next participant |
+
+**§13.1 check:** no retina photographs (the capture previews are abstract red glow; the heat-map panel is a plain
+dark disc), no real people, no real clinic or brand (clinic name and phone are fictional placeholders), the
+dashboard carries a visible "SAMPLE DATA · MOCKUP" label. All medical sentences are the §3.4 / §1.3 wording.
+
+**Review notes (Claude, 2026-11-04).** Consistent with direction A throughout; type sizes and the one-button rule
+hold. Recommended picks: language **600** (ring motif) or 500; consent **601** (illustration slot) ; intake **602**
+(2×2 tiles are easier for older participants) with 502's row style for 4-option questions; capture **503** idle +
+**603** locked (they are the same screen's two states); processing **504** (per-eye status is useful); green **505**;
+yellow **506** / **606** (heat-map on); red **607** (handoff + delete-record); ungradable **508**; card **509**;
+settings **510** (drop the duplicate row); home **511**; done **608**; dashboard **512**. Caveats to fix in Compose,
+not by regenerating: the large green glyph in 605 is the logo shutter, which the result glyph must not be (circle /
+triangle / square are the §3.4 shape cues); 503's red glow inside the ring should stay abstract and dim in the real
+app; the dashboard map will be a real tile map of East San José. **Team decision:** to be recorded here.
+
 ## 3. Not generated (bundled third-party, for the record)
 - Fonts in `app/app/src/main/res/font/`: Be Vietnam Pro (Light/Regular/Medium/SemiBold) and IBM Plex Mono
   (Regular/Medium), SIL Open Font License 1.1, from github.com/google/fonts. License files sit beside them.
