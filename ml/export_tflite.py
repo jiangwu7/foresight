@@ -102,15 +102,25 @@ def convert_tflite(onnx_path: Path, run_dir: Path, calibration=None) -> dict:
 
     out_dir = run_dir / "tflite_build"
     shutil.rmtree(out_dir, ignore_errors=True)
+    _ensure_onnx2tf_sample_data()
     calib_npy = _calibration_npy(calibration, run_dir)
     status = {"status": "ok", "input_layout": "NHWC", "onnx2tf_version": getattr(onnx2tf, "__version__", "unknown")}
 
     # --- Step 1: run onnx2tf. Ask for int8 directly when we have calibration data; fall back to the
     #     minimal call if this onnx2tf version does not know the quantization arguments.
     kwargs = dict(input_onnx_file_path=str(onnx_path), output_folder_path=str(out_dir),
-                  copy_onnx_input_output_names_to_tflite=True, non_verbose=True,
-                  output_dynamic_range_quantized_tflite=True)
-    if calib_npy is not None:
+                  copy_onnx_input_output_names_to_tflite=True, non_verbose=True)
+    try:
+        onnx2tf_major = int(str(status["onnx2tf_version"]).split(".")[0])
+    except ValueError:
+        onnx2tf_major = 2
+    # onnx2tf 1.x writes a SavedModel (+ float32/float16 .tflite); we quantize that SavedModel ourselves
+    # below with the official TFLite converter and our calibration images. Its built-in quantizer is
+    # not used: it downloads a pickled sample set that current NumPy refuses to load. onnx2tf 2.x has
+    # no SavedModel, so there we must ask it for the quantized files directly.
+    if onnx2tf_major >= 2:
+        kwargs["output_dynamic_range_quantized_tflite"] = True
+    if calib_npy is not None and onnx2tf_major >= 2:
         # Our calibration tensors are already (pixel/255 - mean) / std, i.e. exactly what the model
         # sees, so onnx2tf's own normalization is the identity: mean 0, std 1.
         kwargs.update(output_integer_quantized_tflite=True, quant_type="per-channel",
@@ -179,6 +189,46 @@ def convert_tflite(onnx_path: Path, run_dir: Path, calibration=None) -> dict:
     return status
 
 
+def verify_exports(run_dir: Path, onnx_path: Path, status: dict) -> dict:
+    """Run ml/verify_tflite.py on every .tflite we produced. A file that fails is renamed *.BROKEN.tflite
+    and dropped from the status so it can never be copied into the app by mistake (2026-11-04 lesson)."""
+    import verify_tflite as vt
+    card_path = run_dir / "model_card.json"
+    card = json.loads(card_path.read_text()) if card_path.exists() else {"preprocess": {"size": 224}}
+    checks = {}
+    for key, kind in (("tflite_fp16", "fp16"), ("tflite_int8", "int8")):
+        info = status.get(key)
+        if not info:
+            continue
+        path = run_dir / info["path"]
+        res = vt.verify(path, onnx_path, card, kind)
+        checks[kind] = res
+        if res["ok"]:
+            print(f"verified {path.name}: inputs={res.get('inputs')} argmax_agreement={res.get('argmax_agreement')} "
+                  f"max_abs_referable_diff={res.get('max_abs_referable_diff')}")
+        else:
+            broken = path.with_name(path.stem + ".BROKEN.tflite")
+            path.replace(broken)
+            status[key] = None
+            print(f"REJECTED {path.name} -> {broken.name}: {res.get('error') or res}")
+    return checks
+
+
+def _ensure_onnx2tf_sample_data() -> None:
+    """onnx2tf 1.x downloads a 20x128x128x3 float32 sample batch (for its own ONNX-vs-TF sanity check)
+    into the current directory; the download now returns an HTML page that NumPy refuses to load.
+    It only needs *some* image-like batch, so write a deterministic one ourselves (git-ignored)."""
+    f = Path.cwd() / "calibration_image_sample_data_20x128x128x3_float32.npy"
+    ok = False
+    if f.exists():
+        try:
+            ok = np.load(f).shape == (20, 128, 128, 3)
+        except Exception:
+            ok = False
+    if not ok:
+        np.save(f, np.random.default_rng(0).random((20, 128, 128, 3), dtype=np.float32))
+
+
 def _file_info(p: Path) -> dict:
     return {"path": p.name, "bytes": p.stat().st_size, "mb": round(p.stat().st_size / 1e6, 2), "sha256": sha256(p)}
 
@@ -195,14 +245,22 @@ def export_run(model: torch.nn.Module, run_dir: Path, size: int, calibration=Non
         status.update({"status": "tflite_failed", "reason": f"{type(e).__name__}: {str(e)[:300]}",
                        "traceback": traceback.format_exc()[-2000:],
                        "how_to_finish": f"fix the converter, then: python ml/export_tflite.py --run {run_dir.as_posix()}"})
+    if status["status"] == "ok":
+        status["checks"] = verify_exports(run_dir, onnx_path, status)
     if status["status"] == "onnx_only":
         print("TensorFlow is not usable here; wrote ONNX only. " + status["how_to_finish"])
     elif status["status"] == "tflite_failed":
         print("TFLite conversion FAILED (ONNX is fine): " + status["reason"])
     else:
-        i8 = status.get("tflite_int8")
-        print(f"wrote {status['tflite_fp16']['path']} ({status['tflite_fp16']['mb']} MB)"
-              + (f" and {i8['path']} ({i8['mb']} MB)" if i8 else " (no int8 file: see export_status.json)"))
+        f16, i8 = status.get("tflite_fp16"), status.get("tflite_int8")
+        if not f16 and not i8:
+            status["status"] = "tflite_rejected"
+            status["how_to_finish"] = ("every .tflite failed ml/verify_tflite.py (see 'checks'); try another onnx2tf/TensorFlow "
+                                       "version, e.g. onnx2tf<2 with tensorflow<2.20, then rerun export_tflite.py")
+            print("TFLite conversion produced only BROKEN files (ONNX is fine): " + status["how_to_finish"])
+        else:
+            print("wrote " + " and ".join(f"{x['path']} ({x['mb']} MB)" for x in (f16, i8) if x)
+                  + ("" if f16 and i8 else "  (the other file was rejected: see export_status.json 'checks')"))
     write_json(status, run_dir / "export_status.json")
     return status
 

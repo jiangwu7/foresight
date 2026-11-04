@@ -89,15 +89,16 @@ class DrModelRunner private constructor(
     private data class Quad(val rows: Int, val cols: Int, val channels: Int, val data: FloatArray)
 
     companion object {
-        const val MODEL_ASSET = "models/dr_m2_int8.tflite"
+        const val MODEL_ASSET = "models/dr_m2.tflite"
         const val CARD_ASSET = "models/dr_m2_model_card.json"
 
-        fun load(context: Context, modelAsset: String = MODEL_ASSET, cardAsset: String = CARD_ASSET, threads: Int = 4): DrModelRunner {
+        fun load(context: Context, modelAsset: String = MODEL_ASSET, cardAsset: String = CARD_ASSET, threads: Int = 4,
+                 useXnnpack: Boolean = true): DrModelRunner {
             val card = ModelCard.parse(context.assets.open(cardAsset).bufferedReader().readText())
             val model = context.assets.openFd(modelAsset).use { fd ->
                 fd.createInputStream().channel.map(FileChannel.MapMode.READ_ONLY, fd.startOffset, fd.declaredLength)
             }
-            val options = Interpreter.Options().setNumThreads(threads)
+            val options = Interpreter.Options().setNumThreads(threads).setUseXNNPACK(useXnnpack)
             return DrModelRunner(card, Interpreter(model, options))
         }
 

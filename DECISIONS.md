@@ -235,6 +235,37 @@ the int8 model with the XNNPACK CPU delegate; no app errors in Logcat. Home scre
 511 (wordmark crossing the ring matches the mockup). Phase 1 acceptance items still open: teammate mock
 screening in < 90 s, dark-room design review of every screen, clinician review of ES/VI medical strings.
 
+## 2026-11-04 — Shipped model was broken: every image graded red. Replaced with a verified fp16 export
+**What happened.** On the team lead's first hand-run, both eyes came back red, including a clean grade-0
+fixture. A diagnostic test on the phone showed the model returned the *same* output for every image (near
+uniform 20 % per grade, regression ≈ 0). The file `dr_m2_int8.tflite` from the Colab run had been shipped
+unverified. Desktop LiteRT refuses to load it (per-channel quantization on the wrong axis, `conv.cc:751`);
+the Android runtime loads it silently and computes garbage. Cause: onnx2tf 2.6.9's "flatbuffer_direct"
+writer. Re-exporting with it in WSL reproduced the damage in every mode (fp16 unloadable, int8 NaN).
+**Fix.**
+- `ml/verify_tflite.py` (new): loads a `.tflite` with ai-edge-litert (Windows wheels exist) or
+  `tf.lite`, runs the fixtures through it and the ONNX model, and requires: loads, input-dependent, argmax
+  agreement ≥ 0.95 (fp16) / ≥ 0.80 (int8), referable-prob diff ≤ 0.05 / ≤ 0.15. `export_tflite.py` runs it
+  on every file it writes and renames failures `*.BROKEN.tflite` so they cannot be shipped.
+- `ml/requirements-export.txt` pinned to onnx2tf 1.x + TensorFlow < 2.20 (+ tf_keras, onnx-graphsurgeon,
+  sng4onnx, psutil). On that line onnx2tf writes a SavedModel and the official TFLite converter does fp16
+  and calibrated int8; onnx2tf's own quantizer is bypassed (it downloads a sample batch that current NumPy
+  rejects; the script now writes that file itself).
+- Export runs locally after all: TensorFlow is blocked on Windows but not in WSL Ubuntu (ml/README.md).
+- `ml/tests/test_shipped_model.py` (new, desktop) and `ModelParityTest` (new, on the phone) fail if the
+  shipped asset does not load, does not react to its input, or misgrades the clear fixtures.
+**Shipped now:** `app/.../assets/models/dr_m2.tflite` = **fp16** export of the local CPU `--small` run
+`20261104-082149` (kappa 0.907, referable sens 0.950 / spec 0.931, AUC 0.985 — marginally better than the
+Colab run's 0.903 / 0.943 / 0.931). Verification: 12 fixtures, argmax agreement 1.00, max referable-prob
+diff 0.0023 vs ONNX. On the Galaxy S23 Ultra: grade-0 fixture → grade 0 (p 0.986, referable 0.008),
+grade-2 fixture → grade 2 (p 0.819, referable 0.981), 97–264 ms per image. APK 83 MB.
+**Deviation from spec §4.3 ("≤ 30 MB int8").** 21.4 MB, so within the size budget, but fp16 rather than
+int8: the calibrated int8 export loads and reacts to input but degrades accuracy (argmax agreement 0.75;
+a mild grade-1 fixture moved from referable 0.05 to 0.64), so the guard rejected it. Proper int8
+(quantization-aware training or selective float fallback) is a Phase 2 task alongside the delegate
+benchmark. The Colab run's ONNX is not on this machine; if the team wants that exact model shipped,
+download `model.onnx` from the Colab run and re-export with the pinned toolchain.
+
 ## 2026-11-03 — Brand-asset workflow: Higgsfield's bundled brand workflow is used for reference, not as the gate
 **Decision.** `get_workflow_instructions("brand-asset-creation")` was loaded as the server instructs. Its full
 interactive flow (palette approval → Recraft SVG logos → brandbook) is designed for a finished identity. For

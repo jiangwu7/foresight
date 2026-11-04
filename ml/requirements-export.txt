@@ -1,6 +1,14 @@
-# Optional: the ONNX -> TensorFlow -> LiteRT (.tflite) conversion chain used by ml/export_tflite.py.
-# Needs a machine where TensorFlow imports (Colab, Linux, macOS). On Windows machines with an
-# Application Control policy TensorFlow's native DLLs may be blocked; the export then stops at ONNX and
-# tells you to finish on Colab. Install with:  pip install -r ml/requirements-export.txt
-tensorflow>=2.17
-onnx2tf>=1.26
+# The ONNX -> TensorFlow -> LiteRT (.tflite) conversion chain used by ml/export_tflite.py.
+# Needs a machine where TensorFlow imports (Colab, Linux, macOS, or WSL on the team laptop: see ml/README.md).
+# Install with:  pip install -r ml/requirements-export.txt
+#
+# Pinned on 2026-11-04 after onnx2tf 2.6.9 (its "flatbuffer_direct" writer) produced .tflite files that either
+# would not load or returned the same output for every image. The 1.x line writes a SavedModel that the
+# official TFLite converter then quantizes; ml/verify_tflite.py checks every file either way.
+tensorflow>=2.17,<2.20
+tf_keras
+onnx2tf>=1.26,<2
+onnx-graphsurgeon
+sng4onnx
+psutil
+ai-edge-litert>=2.1

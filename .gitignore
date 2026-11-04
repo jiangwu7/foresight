@@ -45,3 +45,5 @@ exports/
 fixtures/gradable/
 fixtures/ungradable/
 fixtures/expected/*.bin
+# onnx2tf 1.x sample batch written by ml/export_tflite.py
+calibration_image_sample_data_*.npy

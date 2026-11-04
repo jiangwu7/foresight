@@ -39,7 +39,7 @@ app/src/main/java/org/jameslick/foresight/
 ├── ml/QualityHeuristic.kt          Phase 1 gradability check (M1 replaces it in Phase 2)
 └── data/                           Room entities (§3.6), SQLCipher database, Keystore crypto, encrypted images,
                                     de-identified export + validator, clinic zip, ScreeningRepository
-app/src/main/assets/models/         dr_m2_int8.tflite + dr_m2_model_card.json (from the Colab run)
+app/src/main/assets/models/         dr_m2.tflite + dr_m2_model_card.json (from the Colab run)
 app/src/main/res/values*/           strings.xml (UI) and strings_medical.xml (approved wording, clinician-reviewed)
 app/src/test/                       JVM tests;  app/src/androidTest/  the end-to-end flow test
 ```

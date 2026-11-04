@@ -31,7 +31,8 @@ spends a few minutes caching cropped copies of the 3,662 images under `ml/data/a
 | `common.py` | Labels, dataset, `DRModel`, metrics, plots. |
 | `train_dr.py` | Train M2. `--small` classroom preset, `--smoke` code check, full mode. |
 | `eval.py` | Metrics on the held-out split; `--check-card` verifies the model card within ±0.01. |
-| `export_tflite.py` | PyTorch → ONNX → TFLite fp16/int8. Falls back to ONNX-only where TensorFlow can't import. |
+| `export_tflite.py` | PyTorch → ONNX → TFLite fp16/int8, then runs `verify_tflite.py` on each file. Falls back to ONNX-only where TensorFlow can't import. |
+| `verify_tflite.py` | Proves a `.tflite` loads, reacts to its input and agrees with the ONNX model on the fixtures. A file that fails is renamed `*.BROKEN.tflite`. |
 | `make_model_card.py` | Writes `model_card.json` (shown in the app's Settings → About models). |
 | `make_fixtures.py` | Builds `fixtures/` from APTOS (real images + degraded copies + expected tensors). |
 | `data/download.md` | How to obtain every dataset and its license. |
@@ -44,7 +45,15 @@ Phase 2 adds `train_quality.py` (M1) and the full EyePACS run.
 `config.json` · `split.json` · `history.json` · `metrics.json` · `confusion_matrix.png` · `roc_curve.png`
 · `best.pt` · `model.onnx` · `model_fp16.tflite` · `model_int8.tflite` · `export_status.json` · `model_card.json`
 
-To ship a model, copy `model_int8.tflite` and `model_card.json` into `app/app/src/main/assets/models/`.
+To ship a model: check `export_status.json` says `"checks" → "int8" → "ok": true` (if int8 was rejected, ship
+`model_fp16.tflite` instead), then copy the `.tflite` as `dr_m2.tflite` plus `model_card.json` into
+`app/app/src/main/assets/models/` and run `pytest ml/tests/test_shipped_model.py` and, on a phone,
+`ModelParityTest`. Never ship an unverified file: the first one (2026-11-04) returned the same grade for every
+image.
+
+**Windows note.** TensorFlow is blocked by the Application Control policy on the team laptop, but WSL Ubuntu is
+not: `wsl -d Ubuntu-26.04`, make a Python 3.12 env there (e.g. `uv venv ~/fx --python 3.12`), install torch CPU
+plus `ml/requirements.txt` and `ml/requirements-export.txt`, and run `export_tflite.py` from `/mnt/c/...`.
 
 ## The model
 `DRModel` = timm backbone (EfficientNet-B3 by default) → global average pool → one linear layer with
