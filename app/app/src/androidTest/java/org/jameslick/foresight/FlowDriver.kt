@@ -41,8 +41,12 @@ object FlowDriver {
         onNodeWithText("Continue").performClick()
         onNodeWithText("I understand this is a screening, not a diagnosis").performClick()
         onNodeWithText("I agree to have my eyes photographed").performClick()
+        onNodeWithText("I am 18 or older").performClick()
         onNodeWithText("I agree").performClick()
-        repeat(5) { onNodeWithText("Skip this question").performClick() }
-        onNodeWithText("Next").performClick()
+        // Intake questions are off by default (Settings switch); if a device has them on, skip through.
+        if (nodesWithText("Skip this question").isNotEmpty()) {
+            repeat(5) { onNodeWithText("Skip this question").performClick() }
+            onNodeWithText("Next").performClick()
+        }
     }
 }

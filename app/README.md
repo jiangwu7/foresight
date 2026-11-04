@@ -26,7 +26,7 @@ From a terminal (needs `local.properties` with `sdk.dir=` pointing at your SDK; 
 ```
 app/src/main/java/org/jameslick/foresight/
 ├── MainActivity.kt                 hosts ForesightNav
-├── ui/ForesightNav.kt              routes per spec §3.1
+├── ui/ForesightNav.kt              routes per spec §3.1 (intake questions only when enabled in Settings)
 ├── ui/ScreeningViewModel.kt        one session's state; nextParticipant() wipes it
 ├── ui/FlowScreen.kt                the screen skeleton every step uses
 ├── ui/screens/                     Home, NewEvent, Language, Consent, Intake, Under18, LiveCapture (+ Capture = import), Processing, Results, Card, Done, Settings (+ CameraSettings)

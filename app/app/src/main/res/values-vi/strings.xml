@@ -195,4 +195,8 @@
     <string name="settings_led_test">Kiểm tra đèn LED</string>
     <string name="settings_led_test_body">Chế độ A: bật công tắc đỏ, xác nhận có ánh đỏ mờ trong thấu kính. Nhấn nút chụp một lần: một chớp trắng ngắn. Giữ nút không được làm đèn sáng liên tục.</string>
     <string name="action_save">Lưu</string>
+    <string name="consent_check_adult">Tôi từ 18 tuổi trở lên</string>
+    <string name="consent_under18_link">Người tham gia dưới 18 tuổi</string>
+    <string name="settings_ask_intake">Hỏi các câu hỏi tùy chọn (tuổi, tiểu đường, lần khám gần nhất, bác sĩ) trước khi chụp</string>
+    <string name="results_followup_title">Dành cho phòng khám (tùy chọn)</string>
 </resources>

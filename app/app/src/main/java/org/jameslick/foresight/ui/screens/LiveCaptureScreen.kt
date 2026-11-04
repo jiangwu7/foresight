@@ -93,7 +93,7 @@ fun LiveCaptureScreen(vm: ScreeningViewModel, eye: String, onNext: () -> Unit) {
     val gradable = analysis?.quality?.gradable == true
     val exhausted = analysis != null && !gradable && !vm.canRetake(eye)
     val eyeLabel = stringResource(if (eye == "R") R.string.eye_right else R.string.eye_left)
-    val micro = eyeLabel + " · " + stringResource(R.string.step_of, if (eye == "R") 4 else 5, FLOW_STEPS)
+    val micro = eyeLabel + " · " + stepLabel(if (eye == "R") 4 else 5)
     val cueLook = stringResource(R.string.capture_look_green_dot)
     val cueHold = stringResource(R.string.capture_hold_still)
     val cueGotIt = stringResource(R.string.capture_got_it)

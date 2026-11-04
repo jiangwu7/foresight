@@ -63,7 +63,11 @@ fun ForesightNav(nav: NavHostController = rememberNavController(), vm: Screening
             Localized(state.language) { LanguageScreen(vm, onNext = { nav.navigate(Routes.CONSENT) }) }
         }
         composable(Routes.CONSENT) {
-            Localized(state.language) { ConsentScreen(vm, onAgree = { vm.giveConsent(); nav.navigate(Routes.INTAKE) }) }
+            val askIntake = CaptureSettings.load(LocalContext.current).askIntake
+            Localized(state.language) {
+                ConsentScreen(vm, onAgree = { vm.giveConsent(); nav.navigate(if (askIntake) Routes.INTAKE else Routes.CAPTURE_RIGHT) },
+                              onUnder18 = { nav.navigate(Routes.UNDER18) })
+            }
         }
         composable(Routes.INTAKE) {
             Localized(state.language) {
@@ -93,7 +97,8 @@ fun ForesightNav(nav: NavHostController = rememberNavController(), vm: Screening
             Localized(state.language) { ProcessingScreen(vm, onReady = { nav.navigate(Routes.RESULTS) { popUpTo(Routes.PROCESSING) { inclusive = true } } }) }
         }
         composable(Routes.RESULTS) {
-            Localized(state.language) { ResultsScreen(vm, onCard = { nav.navigate(Routes.CARD) }, onDeleted = { nav.navigate(Routes.DONE) }) }
+            // The follow-up card on the results screen (phone, share-with-clinic) is saved when the participant moves on.
+            Localized(state.language) { ResultsScreen(vm, onCard = { vm.saveIntake(); nav.navigate(Routes.CARD) }, onDeleted = { nav.navigate(Routes.DONE) }) }
         }
         composable(Routes.CARD) {
             Localized(state.language) { CardScreen(vm, onDone = { nav.navigate(Routes.DONE) }) }

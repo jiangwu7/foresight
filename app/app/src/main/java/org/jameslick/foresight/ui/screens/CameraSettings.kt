@@ -63,6 +63,8 @@ fun CameraSettingsSection() {
         CheckRow(stringResource(R.string.settings_red_mode), s.redMode, onCheckedChange = { s = s.copy(redMode = it) })
         Spacer(Modifier.height(Dimens.Space1))
         CheckRow(stringResource(R.string.settings_import_mode), s.importMode, onCheckedChange = { s = s.copy(importMode = it) })
+        Spacer(Modifier.height(Dimens.Space1))
+        CheckRow(stringResource(R.string.settings_ask_intake), s.askIntake, onCheckedChange = { s = s.copy(askIntake = it) })
         Spacer(Modifier.height(Dimens.Space2))
         Text(stringResource(R.string.settings_adapter_mode).uppercase(), style = type.microLabel, color = colors.onBackgroundMuted)
         Spacer(Modifier.height(Dimens.Space1))

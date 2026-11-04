@@ -195,4 +195,8 @@
     <string name="settings_led_test">Prueba de LED</string>
     <string name="settings_led_test_body">Modo A: active el interruptor rojo y confirme un brillo rojo tenue en la lente. Presione el botón de captura una vez: un destello blanco corto. Mantenerlo presionado no debe dejarlo encendido.</string>
     <string name="action_save">Guardar</string>
+    <string name="consent_check_adult">Tengo 18 años o más</string>
+    <string name="consent_under18_link">La persona es menor de 18 años</string>
+    <string name="settings_ask_intake">Hacer las preguntas opcionales (edad, diabetes, último examen, médico) antes de las fotos</string>
+    <string name="results_followup_title">Para la clínica (opcional)</string>
 </resources>

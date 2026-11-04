@@ -14,7 +14,12 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Switch
+import androidx.compose.ui.text.input.KeyboardType
+import org.jameslick.foresight.capture.CaptureSettings
+import org.jameslick.foresight.ui.theme.CheckRow
 import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -101,6 +106,22 @@ fun ResultsScreen(vm: ScreeningViewModel, onCard: () -> Unit, onDeleted: () -> U
             EyeCard(stringResource(R.string.eye_right), state.right, state.rightOutcome, Modifier.weight(1f))
             Spacer(Modifier.width(Dimens.Space1))
             EyeCard(stringResource(R.string.eye_left), state.left, state.leftOutcome, Modifier.weight(1f))
+        }
+        // Follow-up (phone for the clinic, share-with-clinic consent): the two intake answers that matter for
+        // a referral, asked here since the 2026-11-04 user tests cut the intake screens from the default flow.
+        if (!CaptureSettings.load(context).askIntake && !state.recordDeleted) {
+            Spacer(Modifier.height(Dimens.Space2))
+            InstrumentCard {
+                Text(stringResource(R.string.results_followup_title).uppercase(), style = type.microLabel, color = colors.onBackgroundMuted)
+                Spacer(Modifier.height(Dimens.Space1))
+                OutlinedTextField(value = state.intake.contactPhone, onValueChange = { vm.answerContact(it) }, singleLine = true,
+                                  label = { Text(stringResource(R.string.q_contact)) },
+                                  keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone), modifier = Modifier.fillMaxWidth(), textStyle = type.body)
+                Spacer(Modifier.height(Dimens.Space1))
+                Text(stringResource(R.string.contact_hint), style = type.body, color = colors.onBackgroundMuted)
+                Spacer(Modifier.height(Dimens.Space2))
+                CheckRow(stringResource(R.string.share_yes), state.intake.consentShareImages, { vm.answerShare(it) })
+            }
         }
         val heatSource = listOf(state.right, state.left).firstOrNull { it?.output != null && it.outcome != EyeOutcome.Green } ?: state.right
         if (heatSource?.output != null) {

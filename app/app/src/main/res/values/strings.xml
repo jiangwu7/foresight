@@ -208,4 +208,8 @@
     <string name="settings_led_test">LED test</string>
     <string name="settings_led_test_body">Mode A: flip the red switch, confirm a dim red glow in the lens. Press the capture button once: one short white flash. Holding the button must not keep it on.</string>
     <string name="action_save">Save</string>
+    <string name="consent_check_adult">I am 18 or older</string>
+    <string name="consent_under18_link">The participant is under 18</string>
+    <string name="settings_ask_intake">Ask the optional intake questions (age, diabetes, last exam, doctor) before the photos</string>
+    <string name="results_followup_title">For the clinic (optional)</string>
 </resources>

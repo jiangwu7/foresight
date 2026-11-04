@@ -72,7 +72,7 @@ fun CaptureScreen(vm: ScreeningViewModel, eye: String, onNext: () -> Unit) {
     val exhausted = analysis != null && !gradable && !vm.canRetake(eye)
 
     FlowScreen(
-        micro = eyeLabel + " · " + stringResource(R.string.step_of, if (eye == "R") 4 else 5, FLOW_STEPS),
+        micro = eyeLabel + " · " + stepLabel(if (eye == "R") 4 else 5),
         headline = stringResource(R.string.capture_import_title),
         primaryText = when {
             analysis == null -> stringResource(R.string.action_choose_photo)

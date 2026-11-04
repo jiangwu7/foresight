@@ -79,10 +79,13 @@ class ScreeningFlowTest {
         // Consent
         r.onNodeWithText("I understand this is a screening, not a diagnosis").performClick()
         r.onNodeWithText("I agree to have my eyes photographed").performClick()
+        r.onNodeWithText("I am 18 or older").performClick()
         r.onNodeWithText("I agree").performClick()
-        // Intake: skip all six
-        repeat(5) { r.onNodeWithText("Skip this question").performClick() }
-        r.onNodeWithText("Next").performClick()
+        // Intake questions are off by default since the 2026-11-04 user tests; skip through if a device has them on.
+        if (r.onAllNodesWithTextSafe("Skip this question").isNotEmpty()) {
+            repeat(5) { r.onNodeWithText("Skip this question").performClick() }
+            r.onNodeWithText("Next").performClick()
+        }
         // Right eye, left eye via the hook
         r.onNodeWithText("Choose a photo").performClick()
         r.waitUntil(timeoutMillis = 30_000) { r.onAllNodesWithTextSafe("Continue").isNotEmpty() }

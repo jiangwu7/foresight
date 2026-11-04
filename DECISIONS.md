@@ -407,6 +407,24 @@ traffic-light pill, Mode A prompt, manual shutter; to be reviewed by a teammate 
 photo in a dark room. Both are bench tests for the team once parts arrive; the 555 flash can be checked
 against the app with just the LED circuit and a sheet of paper.
 
+## 2026-11-04 — User-test feedback: intake screens cut from the default flow (deviation from spec §3.3, team lead's call)
+**Feedback.** Testers said there were too many optional questions before the photos. The team lead asked
+to keep only what is essential.
+**Decision.** Default participant flow is now **language → consent → right eye → left eye → processing →
+results → card** (7 steps; the step counter adapts). The six intake questions (§3.3) still exist and run
+exactly as before when **Settings → Camera → "Ask the optional intake questions"** is on (research events,
+bias analysis by age group per §6); off by default. What was essential moved:
+- **Age gate (§6, minors never screened):** a required third checkbox on the consent screen, "I am 18 or
+  older", plus a link "The participant is under 18" to the refusal screen. "I agree" stays disabled until
+  all three boxes are ticked.
+- **Phone number and share-with-clinic consent:** a "For the clinic (optional)" card on the results screen,
+  saved when the participant moves on to the card. Share still defaults to No (§6); the contact number is
+  still stored encrypted and deleted by "Delete my record". Shown only when the intake questions are off.
+**Not collected by default any more:** age range, diabetes history, last exam, access to a doctor. The
+de-identified export writes them as null; the dashboard's age/history breakdowns are empty unless an event
+turns the questions on. Noted for the competition report.
+**Verified:** 41 JVM tests, lint, 5 device tests (flow drivers updated for the consent checkbox).
+
 ## 2026-11-03 — Brand-asset workflow: Higgsfield's bundled brand workflow is used for reference, not as the gate
 **Decision.** `get_workflow_instructions("brand-asset-creation")` was loaded as the server instructs. Its full
 interactive flow (palette approval → Recraft SVG logos → brandbook) is designed for a finished identity. For

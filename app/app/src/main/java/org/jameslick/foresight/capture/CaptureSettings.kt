@@ -24,6 +24,9 @@ data class CaptureSettings(
     /** Use the gallery import flow instead of the camera (development, reference-rig photos). */
     val importMode: Boolean = false,
     val redMode: Boolean = true,
+    /** Ask the six optional intake questions (spec §3.3) between consent and capture. Off by default since the
+     *  2026-11-04 user tests: the default flow is language → consent → camera. Research events turn it on. */
+    val askIntake: Boolean = false,
 ) {
     val focusDiopters: Float get() = 1000f / focusMm.coerceAtLeast(10f)
     val alignShutterNs: Long get() = (alignShutterMs * 1_000_000f).toLong()
@@ -44,6 +47,7 @@ data class CaptureSettings(
                 adapterMode = runCatching { AdapterMode.valueOf(p.getString("adapter_mode", d.adapterMode.name)!!) }.getOrDefault(d.adapterMode),
                 importMode = p.getBoolean("import_mode", d.importMode),
                 redMode = p.getBoolean("red_mode", d.redMode),
+                askIntake = p.getBoolean("ask_intake", d.askIntake),
             )
         }
 
@@ -51,7 +55,7 @@ data class CaptureSettings(
             context.getSharedPreferences(PREFS, Context.MODE_PRIVATE).edit()
                 .putFloat("focus_mm", s.focusMm).putInt("align_iso", s.alignIso).putFloat("align_shutter_ms", s.alignShutterMs)
                 .putInt("capture_iso", s.captureIso).putFloat("capture_shutter_ms", s.captureShutterMs)
-                .putString("adapter_mode", s.adapterMode.name).putBoolean("import_mode", s.importMode).putBoolean("red_mode", s.redMode)
+                .putString("adapter_mode", s.adapterMode.name).putBoolean("import_mode", s.importMode).putBoolean("red_mode", s.redMode).putBoolean("ask_intake", s.askIntake)
                 .apply()
         }
     }
