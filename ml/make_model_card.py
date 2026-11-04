@@ -59,7 +59,7 @@ def build(run_dir: str | Path, model: torch.nn.Module | None = None) -> Path:
         limitations.insert(0, "SMOKE RUN: trained on random tensors. Contains no knowledge of retinas at all. "
                               "Exists only to test the code path.")
 
-    files = {k: export[k] for k in ("onnx", "tflite_fp16", "tflite_int8") if k in export}
+    files = {k: export[k] for k in ("onnx", "tflite_fp16", "tflite_int8") if export.get(k)}
     card = {
         "name": "foresight-dr-m2",
         "version": f"{config.get('started', 'unknown')}+{config.get('git_sha', 'unknown')}",
