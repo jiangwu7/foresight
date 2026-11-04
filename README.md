@@ -19,6 +19,9 @@ python -m venv .venv
 .venv/Scripts/python -m pytest ml/tests -q
 .venv/Scripts/python ml/train_dr.py --smoke          # ~1 minute on CPU
 ```
+Windows users: run these in PowerShell **one line at a time**. PowerShell 5 does not support `&&`, and
+`unzip`/`rm` are not Windows commands (use `tar -xf` and `Remove-Item`); `ml/data/download.md` has the
+PowerShell versions.
 Then look inside `ml/runs/<timestamp>-smoke/`: metrics, plots, an ONNX model and a `model_card.json`.
 
 ### B. The classroom run on Colab (real data, < 1 hour)

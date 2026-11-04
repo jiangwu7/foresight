@@ -1,0 +1,100 @@
+{
+  "preprocess": {
+    "size": 512,
+    "mean": [
+      0.485,
+      0.456,
+      0.406
+    ],
+    "std": [
+      0.229,
+      0.224,
+      0.225
+    ],
+    "bbox_threshold": 10,
+    "ben_graham_sigma": null
+  },
+  "dtype": "float32 little-endian, CHW",
+  "items": [
+    {
+      "image": "fixtures/gradable/grade0_002c21358ce6.png",
+      "tensor": "fixtures/expected/grade0_002c21358ce6_512.bin"
+    },
+    {
+      "image": "fixtures/gradable/grade0_005b95c28852.png",
+      "tensor": "fixtures/expected/grade0_005b95c28852_512.bin"
+    },
+    {
+      "image": "fixtures/gradable/grade0_0097f532ac9f.png",
+      "tensor": "fixtures/expected/grade0_0097f532ac9f_512.bin"
+    },
+    {
+      "image": "fixtures/gradable/grade0_00cc2b75cddd.png",
+      "tensor": "fixtures/expected/grade0_00cc2b75cddd_512.bin"
+    },
+    {
+      "image": "fixtures/gradable/grade0_00f6c1be5a33.png",
+      "tensor": "fixtures/expected/grade0_00f6c1be5a33_512.bin"
+    },
+    {
+      "image": "fixtures/gradable/grade1_0024cdab0c1e.png",
+      "tensor": "fixtures/expected/grade1_0024cdab0c1e_512.bin"
+    },
+    {
+      "image": "fixtures/gradable/grade1_00cb6555d108.png",
+      "tensor": "fixtures/expected/grade1_00cb6555d108_512.bin"
+    },
+    {
+      "image": "fixtures/gradable/grade1_0124dffecf29.png",
+      "tensor": "fixtures/expected/grade1_0124dffecf29_512.bin"
+    },
+    {
+      "image": "fixtures/gradable/grade1_01b3aed3ed4c.png",
+      "tensor": "fixtures/expected/grade1_01b3aed3ed4c_512.bin"
+    },
+    {
+      "image": "fixtures/gradable/grade1_0369f3efe69b.png",
+      "tensor": "fixtures/expected/grade1_0369f3efe69b_512.bin"
+    },
+    {
+      "image": "fixtures/gradable/grade2_000c1434d8d7.png",
+      "tensor": "fixtures/expected/grade2_000c1434d8d7_512.bin"
+    },
+    {
+      "image": "fixtures/gradable/grade2_00a8624548a9.png",
+      "tensor": "fixtures/expected/grade2_00a8624548a9_512.bin"
+    },
+    {
+      "image": "fixtures/gradable/grade2_00b74780d31d.png",
+      "tensor": "fixtures/expected/grade2_00b74780d31d_512.bin"
+    },
+    {
+      "image": "fixtures/gradable/grade2_00e4ddff966a.png",
+      "tensor": "fixtures/expected/grade2_00e4ddff966a_512.bin"
+    },
+    {
+      "image": "fixtures/gradable/grade2_012a242ac6ff.png",
+      "tensor": "fixtures/expected/grade2_012a242ac6ff_512.bin"
+    },
+    {
+      "image": "fixtures/gradable/grade3_0104b032c141.png",
+      "tensor": "fixtures/expected/grade3_0104b032c141_512.bin"
+    },
+    {
+      "image": "fixtures/gradable/grade3_03c85870824c.png",
+      "tensor": "fixtures/expected/grade3_03c85870824c_512.bin"
+    },
+    {
+      "image": "fixtures/gradable/grade3_042470a92154.png",
+      "tensor": "fixtures/expected/grade3_042470a92154_512.bin"
+    },
+    {
+      "image": "fixtures/gradable/grade3_05cd0178ccfe.png",
+      "tensor": "fixtures/expected/grade3_05cd0178ccfe_512.bin"
+    },
+    {
+      "image": "fixtures/gradable/grade3_069f43616fab.png",
+      "tensor": "fixtures/expected/grade3_069f43616fab_512.bin"
+    }
+  ]
+}

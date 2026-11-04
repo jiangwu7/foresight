@@ -25,16 +25,25 @@ below turns out to be out of date, the license page wins and this file should be
 - Terms: Kaggle competition rules (non-commercial, research/education; redistribution not
   permitted — which is why `fixtures/` is built locally and not committed).
 - Labels: `train.csv` with `id_code,diagnosis` (0 none, 1 mild, 2 moderate, 3 severe, 4 proliferative).
+macOS / Linux / Colab:
 ```bash
 kaggle competitions download -c aptos2019-blindness-detection -p ml/data/aptos
-cd ml/data/aptos && unzip -q aptos2019-blindness-detection.zip && rm aptos2019-blindness-detection.zip
-# Expect: ml/data/aptos/train.csv, ml/data/aptos/train_images/*.png  (~9.5 GB unzipped)
+cd ml/data/aptos && unzip -q aptos2019-blindness-detection.zip && rm aptos2019-blindness-detection.zip && cd ../../..
+# Expect: ml/data/aptos/train.csv, ml/data/aptos/train_images/*.png  (3,662 images, ~9.5 GB)
 ```
-Then build the fixtures and run the classroom training:
+Windows PowerShell (no `&&`, no `unzip`; `tar` is built in and handles .zip; run one line at a time):
+```powershell
+.venv/Scripts/kaggle competitions download -c aptos2019-blindness-detection -p ml/data/aptos
+tar -xf ml/data/aptos/aptos2019-blindness-detection.zip -C ml/data/aptos
+Remove-Item ml/data/aptos/aptos2019-blindness-detection.zip
+```
+Then build the fixtures and run the classroom training (same on every OS, from the repo root):
 ```bash
 .venv/Scripts/python ml/make_fixtures.py --data-dir ml/data/aptos
 .venv/Scripts/python ml/train_dr.py --small --data-dir ml/data/aptos
 ```
+Tip: the download is ~10 GB; at typical school bandwidth allow 5–15 minutes. Kaggle sometimes names the
+file differently; if `tar` cannot find it, run `ls ml/data/aptos` and use the name you see.
 
 ## 2. Kaggle Diabetic Retinopathy Detection (EyePACS) — ~88k images (Phase 2 main training set)
 - Page: https://www.kaggle.com/competitions/diabetic-retinopathy-detection

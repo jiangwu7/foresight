@@ -1,0 +1,214 @@
+{
+  "source": "APTOS 2019 Blindness Detection (Kaggle), train split",
+  "license_note": "Kaggle competition rules: non-commercial research/education; files are built locally and never committed.",
+  "max_side": 1024,
+  "gradable": [
+    {
+      "file": "fixtures/gradable/grade0_002c21358ce6.png",
+      "id_code": "002c21358ce6",
+      "diagnosis": 0
+    },
+    {
+      "file": "fixtures/gradable/grade0_005b95c28852.png",
+      "id_code": "005b95c28852",
+      "diagnosis": 0
+    },
+    {
+      "file": "fixtures/gradable/grade0_0097f532ac9f.png",
+      "id_code": "0097f532ac9f",
+      "diagnosis": 0
+    },
+    {
+      "file": "fixtures/gradable/grade0_00cc2b75cddd.png",
+      "id_code": "00cc2b75cddd",
+      "diagnosis": 0
+    },
+    {
+      "file": "fixtures/gradable/grade0_00f6c1be5a33.png",
+      "id_code": "00f6c1be5a33",
+      "diagnosis": 0
+    },
+    {
+      "file": "fixtures/gradable/grade1_0024cdab0c1e.png",
+      "id_code": "0024cdab0c1e",
+      "diagnosis": 1
+    },
+    {
+      "file": "fixtures/gradable/grade1_00cb6555d108.png",
+      "id_code": "00cb6555d108",
+      "diagnosis": 1
+    },
+    {
+      "file": "fixtures/gradable/grade1_0124dffecf29.png",
+      "id_code": "0124dffecf29",
+      "diagnosis": 1
+    },
+    {
+      "file": "fixtures/gradable/grade1_01b3aed3ed4c.png",
+      "id_code": "01b3aed3ed4c",
+      "diagnosis": 1
+    },
+    {
+      "file": "fixtures/gradable/grade1_0369f3efe69b.png",
+      "id_code": "0369f3efe69b",
+      "diagnosis": 1
+    },
+    {
+      "file": "fixtures/gradable/grade2_000c1434d8d7.png",
+      "id_code": "000c1434d8d7",
+      "diagnosis": 2
+    },
+    {
+      "file": "fixtures/gradable/grade2_00a8624548a9.png",
+      "id_code": "00a8624548a9",
+      "diagnosis": 2
+    },
+    {
+      "file": "fixtures/gradable/grade2_00b74780d31d.png",
+      "id_code": "00b74780d31d",
+      "diagnosis": 2
+    },
+    {
+      "file": "fixtures/gradable/grade2_00e4ddff966a.png",
+      "id_code": "00e4ddff966a",
+      "diagnosis": 2
+    },
+    {
+      "file": "fixtures/gradable/grade2_012a242ac6ff.png",
+      "id_code": "012a242ac6ff",
+      "diagnosis": 2
+    },
+    {
+      "file": "fixtures/gradable/grade3_0104b032c141.png",
+      "id_code": "0104b032c141",
+      "diagnosis": 3
+    },
+    {
+      "file": "fixtures/gradable/grade3_03c85870824c.png",
+      "id_code": "03c85870824c",
+      "diagnosis": 3
+    },
+    {
+      "file": "fixtures/gradable/grade3_042470a92154.png",
+      "id_code": "042470a92154",
+      "diagnosis": 3
+    },
+    {
+      "file": "fixtures/gradable/grade3_05cd0178ccfe.png",
+      "id_code": "05cd0178ccfe",
+      "diagnosis": 3
+    },
+    {
+      "file": "fixtures/gradable/grade3_069f43616fab.png",
+      "id_code": "069f43616fab",
+      "diagnosis": 3
+    },
+    {
+      "file": "fixtures/gradable/grade4_001639a390f0.png",
+      "id_code": "001639a390f0",
+      "diagnosis": 4
+    },
+    {
+      "file": "fixtures/gradable/grade4_0083ee8054ee.png",
+      "id_code": "0083ee8054ee",
+      "diagnosis": 4
+    },
+    {
+      "file": "fixtures/gradable/grade4_0243404e8a00.png",
+      "id_code": "0243404e8a00",
+      "diagnosis": 4
+    },
+    {
+      "file": "fixtures/gradable/grade4_02685f13cefd.png",
+      "id_code": "02685f13cefd",
+      "diagnosis": 4
+    },
+    {
+      "file": "fixtures/gradable/grade4_02dda30d3acf.png",
+      "id_code": "02dda30d3acf",
+      "diagnosis": 4
+    }
+  ],
+  "ungradable": [
+    {
+      "file": "fixtures/ungradable/dark_002c21358ce6.png",
+      "kind": "dark",
+      "from": "grade0_002c21358ce6.png"
+    },
+    {
+      "file": "fixtures/ungradable/dark_0024cdab0c1e.png",
+      "kind": "dark",
+      "from": "grade1_0024cdab0c1e.png"
+    },
+    {
+      "file": "fixtures/ungradable/dark_000c1434d8d7.png",
+      "kind": "dark",
+      "from": "grade2_000c1434d8d7.png"
+    },
+    {
+      "file": "fixtures/ungradable/dark_0104b032c141.png",
+      "kind": "dark",
+      "from": "grade3_0104b032c141.png"
+    },
+    {
+      "file": "fixtures/ungradable/blur_005b95c28852.png",
+      "kind": "blur",
+      "from": "grade0_005b95c28852.png"
+    },
+    {
+      "file": "fixtures/ungradable/blur_00cb6555d108.png",
+      "kind": "blur",
+      "from": "grade1_00cb6555d108.png"
+    },
+    {
+      "file": "fixtures/ungradable/blur_00a8624548a9.png",
+      "kind": "blur",
+      "from": "grade2_00a8624548a9.png"
+    },
+    {
+      "file": "fixtures/ungradable/blur_03c85870824c.png",
+      "kind": "blur",
+      "from": "grade3_03c85870824c.png"
+    },
+    {
+      "file": "fixtures/ungradable/offcenter_0097f532ac9f.png",
+      "kind": "offcenter",
+      "from": "grade0_0097f532ac9f.png"
+    },
+    {
+      "file": "fixtures/ungradable/offcenter_0124dffecf29.png",
+      "kind": "offcenter",
+      "from": "grade1_0124dffecf29.png"
+    },
+    {
+      "file": "fixtures/ungradable/offcenter_00b74780d31d.png",
+      "kind": "offcenter",
+      "from": "grade2_00b74780d31d.png"
+    },
+    {
+      "file": "fixtures/ungradable/offcenter_042470a92154.png",
+      "kind": "offcenter",
+      "from": "grade3_042470a92154.png"
+    },
+    {
+      "file": "fixtures/ungradable/reflection_00cc2b75cddd.png",
+      "kind": "reflection",
+      "from": "grade0_00cc2b75cddd.png"
+    },
+    {
+      "file": "fixtures/ungradable/reflection_01b3aed3ed4c.png",
+      "kind": "reflection",
+      "from": "grade1_01b3aed3ed4c.png"
+    },
+    {
+      "file": "fixtures/ungradable/reflection_00e4ddff966a.png",
+      "kind": "reflection",
+      "from": "grade2_00e4ddff966a.png"
+    },
+    {
+      "file": "fixtures/ungradable/reflection_05cd0178ccfe.png",
+      "kind": "reflection",
+      "from": "grade3_05cd0178ccfe.png"
+    }
+  ]
+}

@@ -49,7 +49,7 @@ def stratified_split(df: pd.DataFrame, val_frac: float = 0.2, seed: int = 42):
     rng = np.random.RandomState(seed)
     val_idx = []
     for grade, group in df.groupby("diagnosis"):
-        idx = group.index.to_numpy()
+        idx = group.index.to_numpy().copy()   # pandas 3 returns a read-only view; shuffle needs a copy
         rng.shuffle(idx)
         n_val = int(round(len(idx) * val_frac))
         val_idx.extend(idx[:n_val].tolist())
