@@ -90,6 +90,8 @@
     <string name="problem_offcenter_tip">Mueva el anillo hasta que el punto verde quede en el centro de la pupila.</string>
     <string name="problem_reflection">Hay demasiado reflejo</string>
     <string name="problem_reflection_tip">Incline un poco el adaptador para que el punto brillante salga del centro.</string>
+    <string name="problem_not_fundus">Esta no parece una foto de la retina</string>
+    <string name="problem_not_fundus_tip">Elija la foto tomada con el adaptador: el ojo sobre un fondo oscuro.</string>
 
     <string name="processing_title">Analizando las dos fotos</string>
     <string name="processing_on_phone">En este teléfono · no se sube nada</string>

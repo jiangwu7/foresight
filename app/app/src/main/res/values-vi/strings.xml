@@ -90,6 +90,8 @@
     <string name="problem_offcenter_tip">Di chuyển vòng cho đến khi chấm xanh nằm giữa đồng tử.</string>
     <string name="problem_reflection">Quá nhiều ánh chói</string>
     <string name="problem_reflection_tip">Nghiêng nhẹ bộ chuyển đổi để điểm sáng rời khỏi tâm.</string>
+    <string name="problem_not_fundus">Ảnh này không giống ảnh võng mạc</string>
+    <string name="problem_not_fundus_tip">Chọn ảnh chụp qua bộ chuyển đổi: mắt trên nền tối.</string>
 
     <string name="processing_title">Đang phân tích cả hai ảnh</string>
     <string name="processing_on_phone">Trên điện thoại này · không tải lên</string>

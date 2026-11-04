@@ -97,6 +97,8 @@
     <string name="problem_offcenter_tip">Move the ring until the green dot sits in the middle of the pupil.</string>
     <string name="problem_reflection">Too much glare</string>
     <string name="problem_reflection_tip">Tilt the adapter slightly so the bright spot leaves the center.</string>
+    <string name="problem_not_fundus">This does not look like a retina photo</string>
+    <string name="problem_not_fundus_tip">Choose the photo taken through the adapter: the eye on a dark background.</string>
 
     <!-- Processing -->
     <string name="processing_title">Analyzing both photos</string>

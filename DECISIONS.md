@@ -268,6 +268,25 @@ a mild grade-1 fixture moved from referable 0.05 to 0.64), so the guard rejected
 benchmark. The Colab run's ONNX is not on this machine; if the team wants that exact model shipped,
 download `model.onnx` from the Colab run and re-export with the pinned toolchain.
 
+## 2026-11-04 — Hand-run #2: 88 s per participant; face photos were graded, so a "not a retina photo" rule was added
+**Results of the team lead's run on the Galaxy.** Full flow timed at **88 s** (target < 90 s, §10 Phase 1).
+Retina fixtures: grade-2 → yellow, grade-0 → green, overall yellow (correct). Print opens Samsung's print
+dialog, which offers "Share as PDF" rather than "Save as PDF": that is the phone's print service, not the
+app; the app's own Share button covers saving the card. **Failure:** two photos of a person's face were
+graded (red and green, overall red) instead of being refused. The Phase 1 heuristic only asked "is this
+fundus photo clear enough?", never "is this a fundus photo?".
+**Fix.** `QualityHeuristic` gains `Problem.NotFundus`: the four 8 % corner patches of the original photo
+must be dark (mean max-channel ≤ 40; the 25 gradable fixtures measure ≤ 15, ordinary photos and screenshots
+≥ 180) and the disc must be red-dominant (R/B ≥ 0.95, R/G ≥ 0.85; fixtures ≥ 1.02 / 0.95). Checked after
+"dark" and "off-center" (a fundus pushed into a corner is still a fundus) and before "reflection" (a white
+screenshot would otherwise read as glare). New strings `problem_not_fundus(_tip)` in EN/ES/VI (UI wording,
+not medical). `QualityHeuristicTest` adds synthetic non-retina images (face on light background,
+screenshot, sky/grass): all refused; all 25 gradable and 16 degraded fixtures keep their labels. Lint,
+32 JVM tests and both device tests green.
+**Known gap, documented in the code:** a warm-toned object photographed on a black background (e.g. a face
+in a dark room) can still pass; that needs the M1 quality model (Phase 2). The screener briefing should
+say: only photos taken through the adapter.
+
 ## 2026-11-03 — Brand-asset workflow: Higgsfield's bundled brand workflow is used for reference, not as the gate
 **Decision.** `get_workflow_instructions("brand-asset-creation")` was loaded as the server instructs. Its full
 interactive flow (palette approval → Recraft SVG logos → brandbook) is designed for a finished identity. For

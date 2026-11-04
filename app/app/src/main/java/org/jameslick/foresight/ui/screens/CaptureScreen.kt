@@ -121,6 +121,7 @@ fun problemTitle(p: QualityHeuristic.Problem?): Int = when (p) {
     QualityHeuristic.Problem.Dark -> R.string.problem_dark
     QualityHeuristic.Problem.Blurry -> R.string.problem_blurry
     QualityHeuristic.Problem.OffCenter -> R.string.problem_offcenter
+    QualityHeuristic.Problem.NotFundus -> R.string.problem_not_fundus
     QualityHeuristic.Problem.Reflection, null -> R.string.problem_reflection
 }
 
@@ -128,6 +129,7 @@ fun problemTip(p: QualityHeuristic.Problem?): Int = when (p) {
     QualityHeuristic.Problem.Dark -> R.string.problem_dark_tip
     QualityHeuristic.Problem.Blurry -> R.string.problem_blurry_tip
     QualityHeuristic.Problem.OffCenter -> R.string.problem_offcenter_tip
+    QualityHeuristic.Problem.NotFundus -> R.string.problem_not_fundus_tip
     QualityHeuristic.Problem.Reflection, null -> R.string.problem_reflection_tip
 }
 
