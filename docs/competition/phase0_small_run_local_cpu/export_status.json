@@ -1,0 +1,23 @@
+{
+  "onnx": {
+    "path": "model.onnx",
+    "bytes": 43625713,
+    "mb": 43.63,
+    "sha256": "ac28eaa95f77664cd00f460dbe184626559b7d0ea2e45fc06e9a07263818069a"
+  },
+  "onnx_vs_torch_max_abs_diff": 5.53131103515625e-05,
+  "input_shape_onnx": [
+    1,
+    3,
+    224,
+    224
+  ],
+  "outputs": [
+    "logits",
+    "reg",
+    "features"
+  ],
+  "status": "onnx_only",
+  "reason": "ModuleNotFoundError: No module named 'onnx2tf'",
+  "how_to_finish": "On Colab: pip install -r ml/requirements.txt && python ml/export_tflite.py --run C:/Users/jiang/Desktop/Foresight/ml/runs/20261104-082149-small"
+}

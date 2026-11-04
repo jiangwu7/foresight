@@ -85,7 +85,8 @@ def build(run_dir: str | Path, model: torch.nn.Module | None = None) -> Path:
         "training_data": config.get("sources", {}),
         "training_config": {k: config[k] for k in ("img_size", "epochs", "batch_size", "lr", "seed", "reg_weight", "pretrained") if k in config},
         "metrics_heldout": {
-            "split": "stratified 20% of APTOS 2019 train (seed %s)" % config.get("seed") if not config.get("smoke") else "random tensors",
+            "split": ("random tensors" if config.get("smoke")
+                      else f"stratified 20% of APTOS 2019 train (seed {config.get('seed')})"),
             **{k: metrics[k] for k in ("n", "accuracy", "kappa_quadratic", "kappa_quadratic_regression_head",
                                        "referable_sensitivity", "referable_specificity", "referable_auc",
                                        "referable_threshold") if k in metrics},
