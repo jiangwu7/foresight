@@ -11,7 +11,7 @@ anything a participant or clinician could mistake for a real retinal photo or re
 |---|---|---|---|---|
 | 2026-11-03 | Phase 0: mood boards (3 × 6) + logo concept directions (3 × 4) | 1585.5 | 1519.5 | 66.0 |
 
-Per group on 2026-11-03: mood boards 18 images × 2.0 = 36.0 credits (`nano_banana_pro`, served by the
+Per group on 2026-11-04: logo round 3, 12 images, 39.0 credits (1393.5 → 1354.5). Per group on 2026-11-03: mood boards 18 images × 2.0 = 36.0 credits (`nano_banana_pro`, served by the
 backend as `nano_banana_2`, 1k); logo concepts 12 × 2.5 = 30.0 credits (`recraft_v4_1`, `model_type: vector`,
 1k, SVG output). One batch item failed submission on a mistyped model id and was resubmitted; no charge.
 
@@ -148,6 +148,43 @@ Weak: `r203` (reads as a flower/pinwheel), `r211` (ninja star), `i300` (just a s
 inside reads as a lightning bolt), `i305` (busy), `r209` (too small/angular), `r207` (fan blade).
 **Team pick (2026-11-03): `ideogram/i304_soft_friendly.svg`** — the rounded eye with four curved shutter blades
 and a center dot. Used as-is; the team lead asked for no further variants.
+
+## 2d. Logo round 3 — warm / welcoming — `assets/brand/concepts/round3/` (2026-11-04)
+
+**Why.** User tests of the Phase 1 app: the chosen eye-and-shutter mark (`i304`) "looks like someone is watching
+or monitoring". The team lead asked for safe, welcoming designs that keep the camera/eye theme where possible,
+and allowed concepts that leave the eye behind. Palette unchanged (amber `#F3B661`, off-white `#F5F1E8`, ink
+`#0B0D10`). Session: `balance` 1393.5 → 1354.5, **39.0 credits**: 6 × `recraft_v4_1` vector (2.5) = 15.0;
+3 × `ideogram_vector` generate, quality high (6.5) = 19.5; 3 × `gpt_image_2_5` 1k/high (1.5) = 4.5. Contact
+sheet: `contact_round3.jpg`. Common constraints in every prompt: no text, no gradients, no shading, no faces.
+
+| File | Model | Job id | Concept |
+|---|---|---|---|
+| `recraft/r500_resting_eye_sun.svg` | recraft_v4_1 vector | bd046899-1e66-4de2-b6e6-ac3e9c57172c | closed resting eye as a smile curve + small sun |
+| `recraft/r501_sunrise_eye.svg` | recraft_v4_1 vector | 177e53fa-238b-413a-9206-14881a2d20a4 | eye whose iris is a rising sun, rays = shutter blades |
+| `recraft/r502_aperture_bloom.svg` | recraft_v4_1 vector | 8e54b02e-4153-48ff-862b-b550f0e92c07 | aperture as a six-petal bloom, no eye |
+| `recraft/r503_lantern_ring.svg` | recraft_v4_1 vector | 9d6c1680-2d5a-41bd-91b7-6eb91f438f23 | reticle ring with nested arcs of light, no eye |
+| `recraft/r504_vessel_tree.svg` | recraft_v4_1 vector | 6c156a1c-92b8-433a-a619-edb36050657b | retinal-vessel tree of life in a circle |
+| `recraft/r505_leaf_eye.svg` | recraft_v4_1 vector | 3f2a644e-cd02-49b9-b78d-bb23ef543f48 | leaf / eye hybrid (came out as an open eye) |
+| `ideogram/i600_sunrise_ring.svg` | ideogram_vector | 908e2117-d232-4b72-b968-e790d29fee4b | thin ring, rising sun over a horizon |
+| `ideogram/i601_cupped_light.svg` | ideogram_vector | addb60a1-1931-4f82-90dd-0c26b2867209 | two cupped arcs holding a point of light |
+| `ideogram/i602_lens_sprout.svg` | ideogram_vector | a39beb4a-7f71-410d-ba2a-444bd388ed17 | lens ring with a sprout |
+| `gpt/g700_resting_eye_sun.png` | gpt_image_2_5 | 5966fb17-4996-4f08-9a00-e1cd7f9cc433 | smile curve + shutter-blade sun (raster) |
+| `gpt/g701_window_light.png` | gpt_image_2_5 | 626817da-a9ce-463d-ada6-bfcac38a9a58 | open doorway with light and sun (raster) |
+| `gpt/g702_lighthouse.png` | gpt_image_2_5 | 5cca6bee-9d01-4d42-97d0-eb59b6efa311 | lighthouse beam in a ring (raster) |
+
+All 12 pass §13.1 (no text, no photoreal eye, no people, no brand marks). Ideogram ignored the exact hex and
+returned a hotter orange; a chosen Ideogram mark is recolored in the SVG, not regenerated.
+
+**Review notes (Claude, 2026-11-04).** Strongest against the brief: `r501` (the eye is there but it is *watching
+a sunrise*, lids thick and relaxed; keeps eye + camera and reads as hope rather than surveillance), `r503`
+(no eye at all; the reticle ring with tick marks is literally the app's alignment ring, so the brand and the
+UI become one object; arcs of light say "we help you see"), `i600` (sunrise in a ring; calm, hopeful,
+survives 48 px; needs the amber recolor), `r502` (bloom; friendliest shape, keeps the aperture, but could
+read as a flower shop). Middle: `r500`/`g700` (smile + sun; warm but close to a generic smiley), `i601`
+(gentle but generic), `i602` (friendly, says "garden"). Weak for this brief: `r505` (still an open eye
+staring: exactly the complaint), `r504` (lovely but too detailed for an icon), `g701`/`g702`
+(illustrations, not marks; raster).
 
 ## 2c. Brand kit — `assets/brand/logo/` (built 2026-11-03, no credits: generated locally from the SVG)
 
