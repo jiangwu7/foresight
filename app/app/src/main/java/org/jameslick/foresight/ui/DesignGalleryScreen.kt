@@ -104,11 +104,11 @@ fun DesignGalleryScreen() {
         }
 
         Spacer(Modifier.height(Dimens.Space4))
-        LanguageTile(stringResource(R.string.lang_en_native), "en", selected = language == 0, onClick = { language = 0 })
+        LanguageTile(stringResource(R.string.lang_en_native), stringResource(R.string.lang_en_code), selected = language == 0, onClick = { language = 0 })
         Spacer(Modifier.height(Dimens.Space1))
-        LanguageTile(stringResource(R.string.lang_es_native), "es", selected = language == 1, onClick = { language = 1 })
+        LanguageTile(stringResource(R.string.lang_es_native), stringResource(R.string.lang_es_code), selected = language == 1, onClick = { language = 1 })
         Spacer(Modifier.height(Dimens.Space1))
-        LanguageTile(stringResource(R.string.lang_vi_native), "vi", selected = language == 2, onClick = { language = 2 })
+        LanguageTile(stringResource(R.string.lang_vi_native), stringResource(R.string.lang_vi_code), selected = language == 2, onClick = { language = 2 })
 
         Spacer(Modifier.height(Dimens.Space4))
         ResultCard(

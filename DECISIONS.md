@@ -176,6 +176,29 @@ reference on the fixture images rather than raw tensors.
 tests, LiteRT runner + CAM heat map, Room/SQLCipher data layer, de-identified export, dashboard reader;
 (3) screens in Compose only after mockup approval.
 
+## 2026-11-04 — Phase 1 mockups approved; language codes shown as EN / ESP / VN
+**Decision.** Team lead approved the round-1 mockups as recommended (list in `assets/ASSETS.md` §4). Language
+tiles display "EN", "ESP", "VN". These are display labels chosen by the team; resource qualifiers stay the
+BCP-47 codes `es` / `vi`, and TTS locales stay `es-US` / `vi-VN`.
+**Consequences.** Compose screens are built to these mockups. Known corrections applied in code rather than by
+regeneration: result glyphs are circle / triangle / square (never the logo); capture preview stays abstract and
+dim; dashboard uses a real map.
+
+## 2026-11-04 — Toolchain: AGP 8.11.2, Gradle 8.13, Kotlin 2.2.10, compileSdk 36; library pins
+**Decision.** Upgraded from AGP 8.7 / Kotlin 2.0.21 / compileSdk 35 so Room 2.8.5, LiteRT 1.4.2 and
+kotlinx-serialization 1.9 (built with Kotlin 2.2) resolve. Navigation is pinned to 2.9.8 and Lifecycle to 2.9.4
+because the 2.10 / 2.11 releases demand compileSdk 37 and AGP 9.1, which are not yet stable.
+**Why.** The newest AndroidX releases moved faster than the stable AGP; pinning keeps students on Android Studio
+stable. Revisit when AGP 9.1 ships.
+
+## 2026-11-04 — Phase 1 gradability check is a heuristic, not M1
+**Decision.** `QualityHeuristic` (brightness, saturated-pixel fraction, fundus-center offset, Laplacian
+variance) decides gradable / dark / reflection / off-center / blurry on still images until the M1 quality
+model arrives in Phase 2. Thresholds are pinned by a test on the 25 gradable + 16 degraded fixtures.
+**Why.** The flow, strings and "ungradable is never negative" behaviour must be final in Phase 1; the detector
+can be swapped later behind the same result type. Known gap: tuned on clinical-camera crops, so it will be
+re-tuned on adapter photos in Phase 2.
+
 ## 2026-11-03 — Brand-asset workflow: Higgsfield's bundled brand workflow is used for reference, not as the gate
 **Decision.** `get_workflow_instructions("brand-asset-creation")` was loaded as the server instructs. Its full
 interactive flow (palette approval → Recraft SVG logos → brandbook) is designed for a finished identity. For

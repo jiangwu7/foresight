@@ -1,0 +1,19 @@
+{
+  "schema": "foresight-deid-v1",
+  "exported_at": 1762300000000,
+  "app_version": "0.1.0-phase1",
+  "model": { "name": "foresight-dr-m2", "version": "SAMPLE" },
+  "event": { "id": "sample-fake-0001", "name": "SAMPLE DATA (fake event)", "location_label": "Nowhere", "date": 1762200000000, "lat": null, "lng": null },
+  "summary": {
+    "screened": 5, "records_deleted": 1, "with_result": 4, "gradability_rate": 87.5,
+    "pct_no_exam_2y_or_never": 75.0, "pct_green": 50.0, "pct_yellow": 25.0, "pct_red": 25.0, "pct_ungradable": 0.0,
+    "referrals_printed": 2, "follow_ups_completed": 0
+  },
+  "participants": [
+    { "language": "es", "age_range": "40_59", "dx_diabetes": "no", "last_exam": "never", "has_doctor": true, "outcome": "green", "gradable_eyes": 2, "captured_eyes": 2, "card_printed": false, "follow_up_status": "none", "record_deleted": false },
+    { "language": "vi", "age_range": "60_plus", "dx_diabetes": "yes", "last_exam": "over_2y", "has_doctor": false, "outcome": "yellow", "gradable_eyes": 2, "captured_eyes": 2, "card_printed": true, "follow_up_status": "pending", "record_deleted": false },
+    { "language": "en", "age_range": "40_59", "dx_diabetes": "not_sure", "last_exam": "over_2y", "has_doctor": true, "outcome": "red", "gradable_eyes": 1, "captured_eyes": 2, "card_printed": true, "follow_up_status": "none", "record_deleted": false },
+    { "language": "es", "age_range": "18_39", "dx_diabetes": "no", "last_exam": "within_1y", "has_doctor": true, "outcome": "green", "gradable_eyes": 2, "captured_eyes": 2, "card_printed": false, "follow_up_status": "none", "record_deleted": false },
+    { "language": "es", "age_range": null, "dx_diabetes": null, "last_exam": null, "has_doctor": null, "outcome": null, "gradable_eyes": 0, "captured_eyes": 0, "card_printed": null, "follow_up_status": null, "record_deleted": true }
+  ]
+}

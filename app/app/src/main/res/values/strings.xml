@@ -9,6 +9,10 @@
     <string name="lang_en_native">English</string>
     <string name="lang_es_native">Español</string>
     <string name="lang_vi_native">Tiếng Việt</string>
+    <!-- Display codes chosen by the team (DECISIONS.md 2026-11-04); not locale codes. -->
+    <string name="lang_en_code">EN</string>
+    <string name="lang_es_code">ESP</string>
+    <string name="lang_vi_code">VN</string>
 
     <!-- Developer gallery (Phase 0) -->
     <string name="gallery_micro_label">Design system</string>

@@ -1,0 +1,40 @@
+/* Foresight dashboard — direction A tokens, mirrored from app/.../ui/theme/Color.kt and assets/brand/palette.md */
+:root {
+  --ink: #0B0D10; --charcoal: #14171C; --graphite: #1E2228; --hairline: #2B3038;
+  --amber: #F3B661; --bone: #F5F1E8; --ash: #A9A49A;
+  --green: #6FA882; --yellow: #D4B25A; --red: #C9645B;
+  --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --sans: "Be Vietnam Pro", "Inter", system-ui, sans-serif;
+}
+* { box-sizing: border-box; }
+html { background: var(--ink); color: var(--bone); font-family: var(--sans); font-size: 18px; }
+body { margin: 0; min-height: 100vh; display: flex; flex-direction: column; }
+main { flex: 1; width: min(1200px, 100% - 48px); margin: 0 auto; padding: 24px 0 48px; }
+.top { display: flex; align-items: center; justify-content: space-between; padding: 24px; border-bottom: 1px solid var(--hairline); }
+.brand { display: flex; align-items: center; gap: 12px; font-weight: 500; font-size: 1.25rem; letter-spacing: .01em; }
+.pill { font-family: var(--mono); font-size: .75rem; letter-spacing: .12em; padding: 6px 14px; border: 1px solid var(--hairline); border-radius: 999px; color: var(--ash); }
+.pill.loaded { color: var(--amber); border-color: var(--amber); }
+.micro { font-size: .78rem; letter-spacing: .12em; text-transform: uppercase; color: var(--ash); margin: 0 0 8px; }
+.muted { color: var(--ash); }
+.small { font-size: .9rem; }
+h1 { font-weight: 500; font-size: 2rem; margin: 16px 0 8px; }
+h2 { font-weight: 500; font-size: 1.6rem; margin: 0 0 4px; }
+.drop { border: 1px dashed var(--hairline); border-radius: 24px; padding: 48px 32px; text-align: center; margin-bottom: 32px; outline: none; }
+.drop.over, .drop:focus-visible { border-color: var(--amber); box-shadow: 0 0 48px rgba(243,182,97,.18); }
+.ring { width: 96px; height: 96px; margin: 0 auto; border: 2px solid var(--amber); border-radius: 50%; box-shadow: 0 0 48px rgba(243,182,97,.35); position: relative; }
+.ring::before, .ring::after { content: ""; position: absolute; background: var(--amber); }
+.ring::before { width: 2px; height: 10px; left: calc(50% - 1px); top: -16px; }
+.ring::after { width: 2px; height: 10px; left: calc(50% - 1px); bottom: -16px; }
+.link { color: var(--amber); cursor: pointer; text-decoration: underline; text-underline-offset: 4px; }
+.error { color: var(--red); border: 1px solid var(--red); border-radius: 12px; padding: 12px 16px; display: inline-block; }
+code { font-family: var(--mono); font-size: .95em; }
+.events { display: grid; gap: 24px; }
+.event { background: var(--charcoal); border: 1px solid var(--hairline); border-radius: 24px; padding: 24px; }
+.event > header { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 16px; }
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
+.tile { background: var(--ink); border: 1px solid var(--hairline); border-radius: 16px; padding: 16px; }
+.num { font-family: var(--mono); font-size: 2.25rem; margin: 0; line-height: 1.1; }
+.num.good { color: var(--green); } .num.caution { color: var(--yellow); } .num.alert { color: var(--red); }
+footer { border-top: 1px solid var(--hairline); padding: 24px; font-size: .95rem; }
+footer p { margin: 4px 0; }
+@media (prefers-color-scheme: light) { /* the dashboard stays dark: it shares the app's screening-room look */ }

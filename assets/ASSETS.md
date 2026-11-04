@@ -220,7 +220,9 @@ yellow **506** / **606** (heat-map on); red **607** (handoff + delete-record); u
 settings **510** (drop the duplicate row); home **511**; done **608**; dashboard **512**. Caveats to fix in Compose,
 not by regenerating: the large green glyph in 605 is the logo shutter, which the result glyph must not be (circle /
 triangle / square are the §3.4 shape cues); 503's red glow inside the ring should stay abstract and dim in the real
-app; the dashboard map will be a real tile map of East San José. **Team decision:** to be recorded here.
+app; the dashboard map will be a real tile map of East San José. **Team decision (2026-11-04): approved as
+recommended**, with one change: the language tiles show the codes **EN / ESP / VN** (display labels only; the
+Android locale qualifiers remain `es` and `vi`). These files are the design target for Phase 1 screens.
 
 ## 3. Not generated (bundled third-party, for the record)
 - Fonts in `app/app/src/main/res/font/`: Be Vietnam Pro (Light/Regular/Medium/SemiBold) and IBM Plex Mono

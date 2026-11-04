@@ -9,6 +9,9 @@
     <string name="lang_en_native">English</string>
     <string name="lang_es_native">Español</string>
     <string name="lang_vi_native">Tiếng Việt</string>
+    <string name="lang_en_code">EN</string>
+    <string name="lang_es_code">ESP</string>
+    <string name="lang_vi_code">VN</string>
 
     <!-- Developer gallery (Phase 0) -->
     <string name="gallery_micro_label">Hệ thống thiết kế</string>

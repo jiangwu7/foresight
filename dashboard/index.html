@@ -7,20 +7,59 @@
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
-  <style>
-    /* Placeholder (Phase 1 builds the real dashboard, spec §5). Palette mirrors the provisional app tokens. */
-    html { background: #0B0D10; color: #F5F1E8; font-family: system-ui, sans-serif; }
-    body { max-width: 720px; margin: 10vh auto; padding: 0 24px; line-height: 1.5; }
-    h1 { font-weight: 500; font-size: 2rem; }
-    p { color: #A9A49A; font-size: 1.125rem; }
-    .ring { width: 96px; height: 96px; border: 2px solid #F2B55B; border-radius: 50%; box-shadow: 0 0 48px rgba(242,181,91,.35); margin-bottom: 32px; }
-  </style>
+  <link rel="stylesheet" href="dashboard.css">
 </head>
 <body>
-  <div class="ring" aria-hidden="true"></div>
-  <h1>Foresight dashboard</h1>
-  <p>Phase 1 will let you load one or more <code>foresight_export_&lt;event&gt;_deid.json</code> files here and
-     see per-event summary cards. This page works offline by opening <code>index.html</code>.</p>
-  <p>Foresight is a screening tool operated by students. It is not a medical diagnosis. Please see a healthcare provider.</p>
+  <header class="top">
+    <div class="brand"><img src="../assets/brand/logo/foresight_mark_96.png" alt="" width="36" height="36" onerror="this.style.display='none'"><span>Foresight</span></div>
+    <span id="mode-pill" class="pill">NO FILE LOADED</span>
+  </header>
+
+  <main>
+    <section id="drop" class="drop" tabindex="0" aria-label="Load de-identified export files">
+      <div class="ring" aria-hidden="true"></div>
+      <h1>Load an event export</h1>
+      <p>Drop one or more <code>foresight_export_&lt;event&gt;_deid.json</code> files here, or
+        <label class="link">choose files<input id="file" type="file" accept="application/json,.json" multiple hidden></label>.</p>
+      <p class="muted">Files are read in your browser only. Nothing is uploaded. Files containing names, contact
+        details, images or free text are rejected.</p>
+      <p id="error" class="error" role="alert" hidden></p>
+    </section>
+
+    <section id="events" class="events" hidden></section>
+  </main>
+
+  <footer>
+    <p>Foresight is a screening tool operated by students. It is not a medical diagnosis. Please see a healthcare provider.</p>
+    <p class="muted">No names, contact details or images are ever loaded into this dashboard.</p>
+  </footer>
+
+  <template id="event-card">
+    <article class="event">
+      <header>
+        <div>
+          <p class="micro">EVENT</p>
+          <h2 class="name"></h2>
+          <p class="muted where"></p>
+        </div>
+        <p class="micro exported"></p>
+      </header>
+      <div class="tiles">
+        <div class="tile"><p class="micro">SCREENED</p><p class="num" data-k="screened"></p></div>
+        <div class="tile"><p class="micro">GRADABLE EYES</p><p class="num good" data-k="gradability_rate" data-pct></p></div>
+        <div class="tile"><p class="micro">NO EXAM IN 2+ YEARS</p><p class="num" data-k="pct_no_exam_2y_or_never" data-pct></p></div>
+        <div class="tile"><p class="micro">GREEN</p><p class="num good" data-k="pct_green" data-pct></p></div>
+        <div class="tile"><p class="micro">YELLOW</p><p class="num caution" data-k="pct_yellow" data-pct></p></div>
+        <div class="tile"><p class="micro">RED</p><p class="num alert" data-k="pct_red" data-pct></p></div>
+        <div class="tile"><p class="micro">NOT CLEAR</p><p class="num" data-k="pct_ungradable" data-pct></p></div>
+        <div class="tile"><p class="micro">REFERRALS PRINTED</p><p class="num" data-k="referrals_printed"></p></div>
+        <div class="tile"><p class="micro">FOLLOW-UPS DONE</p><p class="num" data-k="follow_ups_completed"></p></div>
+        <div class="tile"><p class="micro">RECORDS DELETED</p><p class="num" data-k="records_deleted"></p></div>
+      </div>
+      <p class="muted small model"></p>
+    </article>
+  </template>
+
+  <script src="dashboard.js"></script>
 </body>
 </html>
