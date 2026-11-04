@@ -70,6 +70,12 @@ dependencies {
     implementation(libs.litert)
     implementation(libs.litert.gpu)
 
+    // Live capture (spec §3.2, Phase 2): CameraX with Camera2 interop for manual focus/exposure/WB
+    implementation(libs.androidx.camera.core)
+    implementation(libs.androidx.camera.camera2)
+    implementation(libs.androidx.camera.lifecycle)
+    implementation(libs.androidx.camera.view)
+
     // Encrypted local storage (spec §2.1, §6): Room + SQLCipher
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)

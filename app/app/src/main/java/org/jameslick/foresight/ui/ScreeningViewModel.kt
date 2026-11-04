@@ -99,13 +99,13 @@ class ScreeningViewModel(app: Application) : AndroidViewModel(app) {
     }
 
     /** Phase 1: the photo comes from the gallery picker (or a test hook). Phase 2 wires the camera here. */
-    fun analyzeEye(eye: String, bitmap: Bitmap, source: String = "gallery_import") = viewModelScope.launch {
+    fun analyzeEye(eye: String, bitmap: Bitmap, source: String = "gallery_import", focusCal: Float? = null) = viewModelScope.launch {
         val s = _state.value
         val pid = s.participantId ?: return@launch
         val attempt = if (eye == "R") s.rightAttempts else s.leftAttempts
         _state.update { it.copy(analyzing = eye, error = null) }
         try {
-            val result = repo.analyzeEye(pid, eye, bitmap, source, retakeN = attempt)
+            val result = repo.analyzeEye(pid, eye, bitmap, source, retakeN = attempt, focusCal = focusCal)
             _state.update {
                 if (eye == "R") it.copy(right = result, rightAttempts = attempt + 1, analyzing = null)
                 else it.copy(left = result, leftAttempts = attempt + 1, analyzing = null)

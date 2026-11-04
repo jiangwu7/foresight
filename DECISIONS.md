@@ -360,6 +360,29 @@ through-hole LED was found; v1 accepts CRI ≈ 80 (Cree C513A) and notes the SMD
 **Known model warnings.** OpenSCAD reports the clamp and assembly as possibly non-manifold (coincident
 faces between the jaws and lips); slicers repair this automatically. Geometry has not been printed yet.
 
+## 2026-11-04 — Phase 2 step 2: live capture built (device verification pending)
+**Built.** `capture/` package: `CameraController` (CameraX 1.5.3 + Camera2 interop: AF off with the focus
+distance from Settings in diopters, AE off with two exposure programs, torch off, AWB locked; ~5 fps RGBA
+analysis stream; full-resolution still), `AutoCapture` (pure state machine: 3 consecutive gradable frames →
+trigger, bad frame resets, 4 s cooldown; unit-tested), `AdapterLink` (Mode A `ManualSwitchLink` prompts the
+screener; Mode B `BleLink` placeholder with the firmware command strings, no Bluetooth permission yet),
+`CaptureSettings` (per-phone calibration in SharedPreferences). `LiveCaptureScreen`: full-screen preview
+under a dim-red scrim, the GlowRing with a green fixation dot, traffic-light pill, live problem tip,
+adapter prompt card, manual "Take photo", haptic + spoken "Look at the green dot / Hold still / Got it",
+then the same review block as the import flow (`EyeReviewBlock`, shared). Settings → Camera: focus mm,
+ISO/shutter for both programs, dim-red toggle, adapter mode, "import test images" switch, device check
+(manual focus / manual exposure / AWB lock) and the Mode A LED test text. Only new permission: CAMERA.
+**Mode A timing decision.** The app cannot know when the screener presses the flash button, so the
+capture program opens a long low-ISO window (default 500 ms at ISO 200) 400 ms after the spoken prompt;
+the 40 ms flash lands inside it. A missed press yields a dark still → "too dark" → retake. Mode B fixes
+this properly in Phase 3. Exposure is clamped to the phone's advertised range.
+**Tests.** `AutoCaptureTest` (4 JVM tests). `LiveCaptureTest` (device): the screen loops a fixture through
+`TestHooks.frameProvider`; a good frame must reach "Got it", a dark frame must never trigger in 6 s.
+**Not yet run on the phone** (unplugged at the time): `LiveCaptureTest`, the real camera path (manual
+controls on the Galaxy S23 Ultra), and the bench test with a printed fundus photo in a dark room. Those are
+the next action when the phone is back; a screenshot review of the live screen against mockup 503 too.
+**Gallery import** stays available for the end-to-end test hook and via Settings (spec §3.2 last bullet).
+
 ## 2026-11-03 — Brand-asset workflow: Higgsfield's bundled brand workflow is used for reference, not as the gate
 **Decision.** `get_workflow_instructions("brand-asset-creation")` was loaded as the server instructs. Its full
 interactive flow (palette approval → Recraft SVG logos → brandbook) is designed for a finished identity. For

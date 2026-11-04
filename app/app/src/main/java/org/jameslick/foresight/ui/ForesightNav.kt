@@ -16,6 +16,9 @@ import org.jameslick.foresight.ui.screens.DoneScreen
 import org.jameslick.foresight.ui.screens.HomeScreen
 import org.jameslick.foresight.ui.screens.IntakeScreen
 import org.jameslick.foresight.ui.screens.LanguageScreen
+import org.jameslick.foresight.ui.screens.LiveCaptureScreen
+import org.jameslick.foresight.capture.CaptureSettings
+import androidx.compose.ui.platform.LocalContext
 import org.jameslick.foresight.ui.screens.NewEventScreen
 import org.jameslick.foresight.ui.screens.ProcessingScreen
 import org.jameslick.foresight.ui.screens.ResultsScreen
@@ -70,11 +73,21 @@ fun ForesightNav(nav: NavHostController = rememberNavController(), vm: Screening
         composable(Routes.UNDER18) {
             Localized(state.language) { Under18Screen(onEnd = { restart() }) }
         }
+        // Phase 2: the live camera is the capture screen; the Phase 1 import flow stays for test images
+        // (Settings → import mode) and for the end-to-end test hook.
         composable(Routes.CAPTURE_RIGHT) {
-            Localized(state.language) { CaptureScreen(vm, eye = "R", onNext = { nav.navigate(Routes.CAPTURE_LEFT) }) }
+            val import = TestHooks.bitmapProvider != null || CaptureSettings.load(LocalContext.current).importMode
+            Localized(state.language) {
+                if (import) CaptureScreen(vm, eye = "R", onNext = { nav.navigate(Routes.CAPTURE_LEFT) })
+                else LiveCaptureScreen(vm, eye = "R", onNext = { nav.navigate(Routes.CAPTURE_LEFT) })
+            }
         }
         composable(Routes.CAPTURE_LEFT) {
-            Localized(state.language) { CaptureScreen(vm, eye = "L", onNext = { nav.navigate(Routes.PROCESSING) }) }
+            val import = TestHooks.bitmapProvider != null || CaptureSettings.load(LocalContext.current).importMode
+            Localized(state.language) {
+                if (import) CaptureScreen(vm, eye = "L", onNext = { nav.navigate(Routes.PROCESSING) })
+                else LiveCaptureScreen(vm, eye = "L", onNext = { nav.navigate(Routes.PROCESSING) })
+            }
         }
         composable(Routes.PROCESSING) {
             Localized(state.language) { ProcessingScreen(vm, onReady = { nav.navigate(Routes.RESULTS) { popUpTo(Routes.PROCESSING) { inclusive = true } } }) }

@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- No INTERNET permission on purpose (spec §6): the app cannot upload anything. -->
+    <!-- The camera is the only permission: live capture (§3.2). No storage, no Bluetooth (Mode B is Phase 3). -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
 
     <!-- Privacy (spec §6): no backup of the app's data directory, ever. -->
     <application

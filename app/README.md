@@ -1,7 +1,7 @@
 # app/ — the Foresight Android app
 
-Kotlin · Jetpack Compose · LiteRT · Room + SQLCipher. Phase 1 = the full screening flow with imported
-photos (the live camera, red mode and auto-capture arrive in Phase 2).
+Kotlin · Jetpack Compose · CameraX · LiteRT · Room + SQLCipher. Phase 2 = the full screening flow with the
+live camera (dim-red alignment, auto-capture, Mode A adapter prompts); gallery import stays for test images.
 
 ## Run it in under 10 minutes
 1. Install Android Studio (Narwhal or newer) with SDK Platform 36.
@@ -18,6 +18,8 @@ From a terminal (needs `local.properties` with `sdk.dir=` pointing at your SDK; 
 # with a device/emulator and a fixture pushed to /sdcard/Download/foresight_fixture.png
 # (adb push fixtures/gradable/grade2_000c1434d8d7.png /sdcard/Download/foresight_fixture.png):
 ./gradlew :app:connectedDebugAndroidTest   # creates its own event; the app stays installed afterwards
+# LiveCaptureTest also wants: adb push fixtures/gradable/grade0_002c21358ce6.png /sdcard/Download/foresight_fixture_grade0.png
+#                             adb push fixtures/ungradable/dark_000c1434d8d7.png /sdcard/Download/foresight_fixture_dark.png
 ```
 
 ## Where things live
@@ -27,7 +29,8 @@ app/src/main/java/org/jameslick/foresight/
 ├── ui/ForesightNav.kt              routes per spec §3.1
 ├── ui/ScreeningViewModel.kt        one session's state; nextParticipant() wipes it
 ├── ui/FlowScreen.kt                the screen skeleton every step uses
-├── ui/screens/                     Home, NewEvent, Language, Consent, Intake, Under18, Capture, Processing, Results, Card, Done, Settings
+├── ui/screens/                     Home, NewEvent, Language, Consent, Intake, Under18, LiveCapture (+ Capture = import), Processing, Results, Card, Done, Settings (+ CameraSettings)
+├── capture/                        CameraController (CameraX + Camera2 manual controls), AutoCapture (3-good-frames rule), AdapterLink (Mode A/B), CaptureSettings
 ├── ui/ReferralCardPdf.kt           the printed/shared card (PDF + QR), via FileProvider
 ├── ui/theme/                       design system (§3.10): tokens + GlowRing, InstrumentCard, BigAction, StatusPill,
 │                                   MetricReadout, LanguageTile, ResultTile, OptionTile, CheckRow, ResultCard, HeatmapOverlay

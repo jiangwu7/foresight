@@ -158,4 +158,40 @@
     <string name="gallery_result_body">Texto de ejemplo. El texto real del resultado proviene de las frases médicas aprobadas.</string>
     <string name="gallery_outcome_description">Símbolo del resultado</string>
     <string name="gallery_heatmap_description">Demostración del mapa de calor</string>
+
+    <!-- Live capture and camera settings (Phase 2, spec §3.2, §3.5) -->
+    <string name="capture_live_title">Alinee el ojo</string>
+    <string name="capture_live_hint">Apoye el visor en la frente. El anillo se pone verde cuando la foto está lista.</string>
+    <string name="capture_turn_on_red">Encienda la luz roja del adaptador</string>
+    <string name="capture_press_capture">Presione el botón de captura ahora</string>
+    <string name="capture_turn_off_red">Apague la luz roja</string>
+    <string name="capture_take_photo">Tomar foto</string>
+    <string name="capture_auto_on">Captura automática activada</string>
+    <string name="capture_capturing">Capturando…</string>
+    <string name="capture_permission_body">Foresight necesita la cámara para fotografiar el fondo del ojo. La foto se queda en este teléfono.</string>
+    <string name="action_allow_camera">Permitir cámara</string>
+    <string name="quality_good">Bien</string>
+    <string name="quality_fair">Casi</string>
+    <string name="quality_poor">Ajuste</string>
+    <string name="settings_camera">Cámara</string>
+    <string name="settings_focus_mm">Distancia de enfoque (mm)</string>
+    <string name="settings_align_iso">ISO de alineación</string>
+    <string name="settings_align_shutter">Obturador de alineación (ms)</string>
+    <string name="settings_capture_iso">ISO de captura</string>
+    <string name="settings_capture_shutter">Obturador de captura (ms)</string>
+    <string name="settings_red_mode">Modo de alineación en rojo tenue</string>
+    <string name="settings_adapter_mode">Adaptador</string>
+    <string name="adapter_mode_manual">Interruptor manual (Modo A)</string>
+    <string name="adapter_mode_ble">Bluetooth (Modo B, Fase 3)</string>
+    <string name="settings_import_mode">Importar imágenes de prueba en lugar de usar la cámara</string>
+    <string name="settings_device_check">Revisión del dispositivo</string>
+    <string name="device_manual_focus">Enfoque manual</string>
+    <string name="device_manual_exposure">Exposición manual</string>
+    <string name="device_awb_lock">Bloqueo de balance de blancos</string>
+    <string name="device_ok">Sí</string>
+    <string name="device_missing">No</string>
+    <string name="device_unknown">Desconocido</string>
+    <string name="settings_led_test">Prueba de LED</string>
+    <string name="settings_led_test_body">Modo A: active el interruptor rojo y confirme un brillo rojo tenue en la lente. Presione el botón de captura una vez: un destello blanco corto. Mantenerlo presionado no debe dejarlo encendido.</string>
+    <string name="action_save">Guardar</string>
 </resources>

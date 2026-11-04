@@ -94,26 +94,34 @@ fun CaptureScreen(vm: ScreeningViewModel, eye: String, onNext: () -> Unit) {
             )
         }
         Spacer(Modifier.height(Dimens.Space2))
-        when {
-            busy -> Text(stringResource(R.string.capture_hold_still), style = type.bodyLarge)
-            analysis == null -> Text(stringResource(R.string.capture_import_hint), style = type.body, color = colors.onBackgroundMuted)
-            gradable -> {
-                StatusPill(gotIt, PillTone.Good)
+        if (analysis == null && !busy) Text(stringResource(R.string.capture_import_hint), style = type.body, color = colors.onBackgroundMuted)
+        else EyeReviewBlock(analysis, attempts, busy)
+        state.error?.let { Spacer(Modifier.height(Dimens.Space2)); Text(it, style = type.body, color = colors.outcomeRed) }
+    }
+}
+
+/** The gradability verdict for one eye photo: shared by the import flow and the live camera flow. */
+@Composable
+fun EyeReviewBlock(analysis: org.jameslick.foresight.data.ScreeningRepository.EyeAnalysis?, attempts: Int, busy: Boolean) {
+    val type = ForesightTheme.type
+    val colors = ForesightTheme.colors
+    when {
+        busy || analysis == null -> Text(stringResource(R.string.capture_hold_still), style = type.bodyLarge)
+        analysis.quality.gradable -> {
+            StatusPill(stringResource(R.string.capture_got_it), PillTone.Good)
+            Spacer(Modifier.height(Dimens.Space2))
+            MetricReadout(stringResource(R.string.capture_quality), "%.2f".format(analysis.quality.score), compact = true)
+        }
+        else -> {
+            val problem = analysis.quality.problem
+            InstrumentCard {
+                Text(stringResource(problemTitle(problem)), style = type.title)
+                Spacer(Modifier.height(Dimens.Space1))
+                Text(stringResource(problemTip(problem)), style = type.body, color = colors.onBackgroundMuted)
                 Spacer(Modifier.height(Dimens.Space2))
-                MetricReadout(stringResource(R.string.capture_quality), "%.2f".format(analysis.quality.score), compact = true)
-            }
-            else -> {
-                val problem = analysis.quality.problem
-                InstrumentCard {
-                    Text(stringResource(problemTitle(problem)), style = type.title)
-                    Spacer(Modifier.height(Dimens.Space1))
-                    Text(stringResource(problemTip(problem)), style = type.body, color = colors.onBackgroundMuted)
-                    Spacer(Modifier.height(Dimens.Space2))
-                    Text(stringResource(R.string.capture_attempt, attempts, ScreeningViewModel.MAX_ATTEMPTS).uppercase(), style = type.microLabel, color = colors.onBackgroundMuted)
-                }
+                Text(stringResource(R.string.capture_attempt, attempts, ScreeningViewModel.MAX_ATTEMPTS).uppercase(), style = type.microLabel, color = colors.onBackgroundMuted)
             }
         }
-        state.error?.let { Spacer(Modifier.height(Dimens.Space2)); Text(it, style = type.body, color = colors.outcomeRed) }
     }
 }
 

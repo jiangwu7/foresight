@@ -171,4 +171,40 @@
     <string name="gallery_result_body">Placeholder body text. Real result wording comes from the approved medical strings.</string>
     <string name="gallery_outcome_description">Outcome symbol</string>
     <string name="gallery_heatmap_description">Heat map overlay demo</string>
+
+    <!-- Live capture and camera settings (Phase 2, spec §3.2, §3.5) -->
+    <string name="capture_live_title">Line up the eye</string>
+    <string name="capture_live_hint">Rest the eyecup on the brow. The ring turns green when the photo is ready.</string>
+    <string name="capture_turn_on_red">Turn on the red light on the adapter</string>
+    <string name="capture_press_capture">Press the capture button now</string>
+    <string name="capture_turn_off_red">Turn off the red light</string>
+    <string name="capture_take_photo">Take photo</string>
+    <string name="capture_auto_on">Auto-capture on</string>
+    <string name="capture_capturing">Capturing…</string>
+    <string name="capture_permission_body">Foresight needs the camera to photograph the back of the eye. The photo stays on this phone.</string>
+    <string name="action_allow_camera">Allow camera</string>
+    <string name="quality_good">Good</string>
+    <string name="quality_fair">Almost</string>
+    <string name="quality_poor">Adjust</string>
+    <string name="settings_camera">Camera</string>
+    <string name="settings_focus_mm">Focus distance (mm)</string>
+    <string name="settings_align_iso">Alignment ISO</string>
+    <string name="settings_align_shutter">Alignment shutter (ms)</string>
+    <string name="settings_capture_iso">Capture ISO</string>
+    <string name="settings_capture_shutter">Capture shutter (ms)</string>
+    <string name="settings_red_mode">Dim-red alignment mode</string>
+    <string name="settings_adapter_mode">Adapter</string>
+    <string name="adapter_mode_manual">Manual switch (Mode A)</string>
+    <string name="adapter_mode_ble">Bluetooth (Mode B, Phase 3)</string>
+    <string name="settings_import_mode">Import test images instead of the camera</string>
+    <string name="settings_device_check">Device check</string>
+    <string name="device_manual_focus">Manual focus</string>
+    <string name="device_manual_exposure">Manual exposure</string>
+    <string name="device_awb_lock">White balance lock</string>
+    <string name="device_ok">Yes</string>
+    <string name="device_missing">No</string>
+    <string name="device_unknown">Unknown</string>
+    <string name="settings_led_test">LED test</string>
+    <string name="settings_led_test_body">Mode A: flip the red switch, confirm a dim red glow in the lens. Press the capture button once: one short white flash. Holding the button must not keep it on.</string>
+    <string name="action_save">Save</string>
 </resources>

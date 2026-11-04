@@ -68,13 +68,13 @@ class ScreeningRepository(private val context: Context) {
      * gallery-import path (Phase 1) and the camera path (Phase 2).
      */
     suspend fun analyzeEye(participantId: String, eye: String, bitmap: Bitmap, source: String, retakeN: Int = 0,
-                           now: Long = System.currentTimeMillis()): EyeAnalysis = withContext(Dispatchers.IO) {
+                           now: Long = System.currentTimeMillis(), focusCal: Float? = null): EyeAnalysis = withContext(Dispatchers.IO) {
         val w = bitmap.width; val h = bitmap.height
         val px = IntArray(w * h).also { bitmap.getPixels(it, 0, w, 0, 0, w, h) }
         val quality = QualityHeuristic.assess(px, w, h)
         val capture = Capture(
             participantId = participantId, eye = eye, imagePathEncrypted = null, qualityScore = quality.score,
-            gradable = quality.gradable, retakeN = retakeN, deviceModel = Build.MODEL, createdAt = now, source = source,
+            gradable = quality.gradable, retakeN = retakeN, deviceModel = Build.MODEL, createdAt = now, source = source, focusCal = focusCal,
         )
         val path = images.save(capture.id, bitmap)
         val stored = capture.copy(imagePathEncrypted = path)

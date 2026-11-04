@@ -158,4 +158,40 @@
     <string name="gallery_result_body">Văn bản mẫu. Nội dung kết quả thật lấy từ các câu y khoa đã được phê duyệt.</string>
     <string name="gallery_outcome_description">Biểu tượng kết quả</string>
     <string name="gallery_heatmap_description">Minh họa bản đồ nhiệt</string>
+
+    <!-- Live capture and camera settings (Phase 2, spec §3.2, §3.5) -->
+    <string name="capture_live_title">Căn chỉnh mắt</string>
+    <string name="capture_live_hint">Tựa vành che mắt lên trán. Vòng tròn chuyển xanh lá khi ảnh sẵn sàng.</string>
+    <string name="capture_turn_on_red">Bật đèn đỏ trên bộ chuyển đổi</string>
+    <string name="capture_press_capture">Nhấn nút chụp ngay bây giờ</string>
+    <string name="capture_turn_off_red">Tắt đèn đỏ</string>
+    <string name="capture_take_photo">Chụp ảnh</string>
+    <string name="capture_auto_on">Đang bật chụp tự động</string>
+    <string name="capture_capturing">Đang chụp…</string>
+    <string name="capture_permission_body">Foresight cần máy ảnh để chụp đáy mắt. Ảnh chỉ lưu trên điện thoại này.</string>
+    <string name="action_allow_camera">Cho phép máy ảnh</string>
+    <string name="quality_good">Tốt</string>
+    <string name="quality_fair">Gần được</string>
+    <string name="quality_poor">Điều chỉnh</string>
+    <string name="settings_camera">Máy ảnh</string>
+    <string name="settings_focus_mm">Khoảng lấy nét (mm)</string>
+    <string name="settings_align_iso">ISO khi căn chỉnh</string>
+    <string name="settings_align_shutter">Tốc độ màn trập khi căn chỉnh (ms)</string>
+    <string name="settings_capture_iso">ISO khi chụp</string>
+    <string name="settings_capture_shutter">Tốc độ màn trập khi chụp (ms)</string>
+    <string name="settings_red_mode">Chế độ căn chỉnh đèn đỏ mờ</string>
+    <string name="settings_adapter_mode">Bộ chuyển đổi</string>
+    <string name="adapter_mode_manual">Công tắc tay (Chế độ A)</string>
+    <string name="adapter_mode_ble">Bluetooth (Chế độ B, Giai đoạn 3)</string>
+    <string name="settings_import_mode">Nhập ảnh thử thay vì dùng máy ảnh</string>
+    <string name="settings_device_check">Kiểm tra thiết bị</string>
+    <string name="device_manual_focus">Lấy nét thủ công</string>
+    <string name="device_manual_exposure">Phơi sáng thủ công</string>
+    <string name="device_awb_lock">Khóa cân bằng trắng</string>
+    <string name="device_ok">Có</string>
+    <string name="device_missing">Không</string>
+    <string name="device_unknown">Không rõ</string>
+    <string name="settings_led_test">Kiểm tra đèn LED</string>
+    <string name="settings_led_test_body">Chế độ A: bật công tắc đỏ, xác nhận có ánh đỏ mờ trong thấu kính. Nhấn nút chụp một lần: một chớp trắng ngắn. Giữ nút không được làm đèn sáng liên tục.</string>
+    <string name="action_save">Lưu</string>
 </resources>

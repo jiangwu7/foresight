@@ -73,6 +73,8 @@ fun SettingsScreen(vm: ScreeningViewModel, onBack: () -> Unit, onGallery: () -> 
             Text(card.disclaimer, style = type.body, color = colors.onBackgroundMuted)
         }
 
+        Section(stringResource(R.string.settings_camera)) { CameraSettingsSection() }
+
         Section(stringResource(R.string.settings_export)) {
             BigAction(stringResource(R.string.action_export_deid), onClick = { vm.exportDeid() }, secondary = true, enabled = state.event != null)
             Spacer(Modifier.height(Dimens.Space2))
