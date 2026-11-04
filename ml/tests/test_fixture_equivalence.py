@@ -23,7 +23,15 @@ import preprocess as pp  # noqa: E402
 INDEX = ROOT / "fixtures" / "expected" / "index.json"
 
 
-@pytest.mark.skipif(not INDEX.exists(), reason="fixtures not built; run ml/make_fixtures.py")
+def fixtures_built() -> bool:
+    """index.json is tracked in git, but the images and tensors are built locally (APTOS terms)."""
+    if not INDEX.exists():
+        return False
+    items = json.loads(INDEX.read_text())["items"]
+    return bool(items) and all((ROOT / it["image"]).exists() and (ROOT / it["tensor"]).exists() for it in items)
+
+
+@pytest.mark.skipif(not fixtures_built(), reason="fixtures not built on this machine; run ml/make_fixtures.py")
 def test_fixture_tensors_match_within_tolerance():
     index = json.loads(INDEX.read_text())
     cfg = pp.PreprocessConfig.from_dict(index["preprocess"])
